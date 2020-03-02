@@ -1,0 +1,75 @@
+{% extends "muscu_site/base.html" %}
+
+{% load static %}
+
+{% block title %}Création d'une séance{% endblock %}
+
+{% block content %}
+<form class="" action="" method="post">
+
+  <div class="block1 text-align">
+    <h1><input  class="title" type="text" name="session_title" value="Titre de la séance"></h1>
+    <br>
+    <input class="date" type="text" name="creation_date" value="Date de création">
+  </div>
+
+  <div class="block2 text-align">
+
+    <div class="column">
+      <h2><label for="ex_name">Exercice</label><br></h2>
+      <div class="">
+        {% for element in nb_elements %}
+          <div class="answer_box">
+            <input type="text" name="ex{{element}}" value=""><br>
+          </div>
+        {% endfor %}
+      </div>
+    </div>
+
+    <div class="column">
+      <h2><label for="nb_sets">Séries</label><br></h2>
+      <div class="">
+        {% for element in nb_elements %}
+          <div class="answer_box">
+            <input type="text" name="set{{element}}" value=""><br>
+          </div>
+        {% endfor %}
+      </div>
+    </div>
+
+    <div class="column">
+      <h2><label for="nb_reps">Répétitions</label><br></h2>
+      <div class="">
+        {% for element in nb_elements %}
+          <div class="answer_box">
+            <input type="text" name="rep{{element}}" value=""><br>
+          </div>
+        {% endfor %}
+      </div>
+    </div>
+
+    <div class="column">
+      <h2><label for="break_time">Temps de pause</label><br></h2>
+      <div class="">
+        {% for element in nb_elements %}
+          <div class="answer_box">
+            <input type="text" name="bk{{element}}" value=""><br>
+          </div>
+        {% endfor %}
+      </div>
+    </div>
+
+    <div>
+      <a class= "button_add" href="#">Ajouter un exercice</a>
+    </div>
+
+    <div>
+      <button type="submit" name="button">Enregistrer</button>
+    </div>
+
+  </div>
+
+</form>
+
+
+{% endblock %}

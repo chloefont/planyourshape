@@ -1,0 +1,100 @@
+@media(min-width: 768px) {
+  body {
+    font-size: 1.5rem;
+  }
+}
+
+html {
+  background-color: #ce3a3ae6;
+  box-sizing: border-box;
+}
+
+button {
+  background-color: #ce3a3ae6;
+  color: white;
+  padding: 20px;
+  border-radius: 10px;
+  font-size: 20px;
+  cursor: pointer;
+  position: relative;
+  left: 660px;
+  margin-top: 40px;
+}
+
+button:hover {
+  background-color: #ce3a3a9c;
+}
+
+.button_add {
+  padding: 20px;
+  color: #ce3a3a9c;
+  font-size: 20px;
+}
+
+.button_add:hover {
+  font-weight: bold;
+}
+
+.container {
+  font-family: sans-serif;
+}
+
+.column {
+  display: inline-block;
+  margin: 0 40px;
+}
+
+.column h2 {
+  border: 5px solid #ce3a3ae6;
+  color: #ce3a3ae6;
+  font-size: 35px;
+  border-radius: 20px;
+  padding: 20px;
+}
+
+.text-align {
+  text-align: center;
+}
+
+.answer_box {
+  margin: 30px 0px;
+}
+
+.answer_box input {
+  height: 30px;
+  width: 270px;
+  font-size: 20px;
+}
+
+.block1 {
+  border: 5px solid white;
+  width: 600px;
+  height: 200px;
+  margin: 20px auto;
+  padding: auto;
+  border-radius: 20px;
+}
+
+.block2 {
+  background-color: white;
+  width: 1600px;
+  margin: 100px auto;
+  border-radius: 20px;
+  padding-bottom: 50px;
+  padding-top: 40px;
+}
+
+.title {
+  font-size: 30px;
+  text-align: center;
+  color: #ce3a3ae6;
+  font-weight: 800;
+  margin-top: 0px;
+}
+
+.date {
+  font-size: 22px;
+  color: #ce3a3ae6;
+  text-align: center;
+  font-weight: 600;
+}
