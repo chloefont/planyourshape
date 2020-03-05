@@ -1,22 +1,44 @@
+import datetime
+
 from django.db import models
+from django.forms import ModelForm
 from django.utils import timezone
+from django.utils.translation import gettext_lazy as _
 
 
 class TrainingSession(models.Model):
-    label = models.CharField(max_length=100)
-    date = models.DateTimeField(default=timezone.now)
+    session_title = models.CharField(max_length=100)
+    date = models.DateField(default=datetime.date.today)
 
     def __str__(self):
-        return self.label
+        return self.session_title
 
 class Exercice(models.Model):
     training_session = models.ForeignKey(
         TrainingSession, on_delete=models.CASCADE, related_name='exercice'
     )
-    label = models.CharField(max_length=100)
-    sets = models.DateTimeField(default=1)
+    exercice = models.CharField(max_length=100)
+    sets = models.IntegerField(default=1)
     reps = models.IntegerField(default=1)
     break_time = models.IntegerField(default=60)
 
     def __str__(self):
-        return self.label
+        return self.exercice
+
+class SessionForm(ModelForm):
+    class Meta:
+        model = TrainingSession
+        fields = ['session_title', 'date']
+        labels = {
+            'session_title': _('Titre de la séance'),
+        }
+
+        help_texts = {
+            'session_title': _('Titre de la séance')
+        }
+
+        error_messages = {
+            'session_title': {
+                'max_length': _('Le titre de cette séance est trop long.')
+            }
+        }
