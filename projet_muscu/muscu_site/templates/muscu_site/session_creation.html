@@ -28,6 +28,7 @@
 
 
   <div class="block2 text-align">
+    {{ exercice_formset.management_form }}
 
     <div class="column">
       <h2><label for="">Exercice</label></h2><br>
@@ -88,20 +89,12 @@
   function add_row(column){
     nb_row++;
 
+
     let row = document.createElement('div');
     row.className = 'answer_box';
 
     let inp = document.createElement('input');
     inp.type = "text";
-    if column[0]{
-      int.name = 'ex' + nb_row;
-    } else if column[1] {
-      int.name = 'set' + nb_row;
-    } else if column[2]{
-      int.name = 'rep' + nb_row;
-    } else if column[3]{
-      int.name = 'bk' + nb_row;
-    }
 
     let nextLine = document.createElement('br');
 

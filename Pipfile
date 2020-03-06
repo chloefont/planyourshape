@@ -9,6 +9,7 @@ django = "<2.3"
 [dev-packages]
 django-extensions = "*"
 django-debug-toolbar = "*"
+ipdb = "*"
 
 [requires]
 python_version = "3.7"
