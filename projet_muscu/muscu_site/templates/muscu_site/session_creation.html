@@ -13,65 +13,58 @@
     <div class="title">
       <label class="title-label">
         Titre de la séance:<br>
-        {{ form.session_title }}
+        {{ session_form.session_title }}
       </label>
     </div><br>
     <div class="date">
       <label >
         Date de création:<br>
-        {{ form.date }}
-        {{ form.date.errors }}
+        {{ session_form.date }}
+        {{ session_form.date.errors }}
       </label>
     </div>
 
   </div>
 
+
   <div class="block2 text-align">
 
-
     <div class="column">
-      <h2><label for="ex_name">Exercice</label><br></h2>
-      <div class="">
-        {% for element in nb_elements %}
-          <div class="answer_box">
-            <input type="text" name="ex{{element}}" value=""><br>
-          </div>
-        {% endfor %}
-      </div>
+      <h2><label for="">Exercice</label></h2><br>
+      {% for form in exercice_formset %}
+        <div class="answer_box">
+          {{ form.exercice }}
+        </div>
+      {% endfor %}
     </div>
 
     <div class="column">
-      <h2><label for="nb_sets">Séries</label><br></h2>
-      <div class="">
-        {% for element in nb_elements %}
-          <div class="answer_box">
-            <input type="text" name="set{{element}}" value=""><br>
-          </div>
-        {% endfor %}
-      </div>
+      <h2><label for="">Séries</label></h2><br>
+      {% for form in exercice_formset %}
+        <div class="answer_box">
+          {{ form.sets }}
+        </div>
+      {% endfor %}
     </div>
 
     <div class="column">
-      <h2><label for="nb_reps">Répétitions</label><br></h2>
-      <div class="">
-        {% for element in nb_elements %}
-          <div class="answer_box">
-            <input type="text" name="rep{{element}}" value=""><br>
-          </div>
-        {% endfor %}
-      </div>
+      <h2><label for="">Répétitions</label></h2><br>
+      {% for form in exercice_formset %}
+        <div class="answer_box">
+          {{ form.reps }}
+        </div>
+      {% endfor %}
     </div>
 
     <div class="column">
-      <h2><label for="break_time">Temps de pause</label><br></h2>
-      <div class="">
-        {% for element in nb_elements %}
-          <div class="answer_box">
-            <input type="text" name="bk{{element}}" value=""><br>
-          </div>
-        {% endfor %}
-      </div>
+      <h2><label for="">Temps de pause</label></h2><br>
+      {% for form in exercice_formset %}
+        <div class="answer_box">
+          {{ form.break_time }}
+        </div>
+      {% endfor %}
     </div>
+
 
     <div>
       <a class= "button_add" href="#">Ajouter un exercice</a>
@@ -109,6 +102,10 @@
     } else if column[3]{
       int.name = 'bk' + nb_row;
     }
+
+    let nextLine = document.createElement('br');
+
+
   }
 
   columnList.forEach((column) =>{
@@ -116,6 +113,5 @@
   })
 
 </script>
-
 
 {% endblock %}

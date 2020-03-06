@@ -42,3 +42,8 @@ class SessionForm(ModelForm):
                 'max_length': _('Le titre de cette séance est trop long.')
             }
         }
+
+class ExerciceForm(ModelForm):
+    class Meta:
+        model = Exercice
+        fields = ['exercice', 'sets', 'reps', 'break_time']

@@ -1,12 +1,21 @@
 from django.shortcuts import render
+from django.forms import formset_factory
 from .models import TrainingSession, Exercice
-from .forms import SessionForm
+from .forms import SessionForm, ExerciceForm
 
 def session_creation(request):
     initial_nb_of_row = range(1,4)
     session_form = SessionForm(request.POST)
+    ExerciceFormSet = formset_factory(ExerciceForm, extra = 3)
+    data = {
+        'form-TOTAL_FORMS': '3',
+        'form-INITIAL_FORMS': '0',
+        'form-MAX_NUM_FORMS': '10',
+    }
 
-    if session_form.is_valid():
+    exercice_formset = ExerciceFormSet(data, request.POST, request.FILES)
+
+    if session_form.is_valid() and exercice_formset.is_valid():
 
         TrainingSession.objects.create(
             session_title=session_form.cleaned_data['session_title'],
@@ -35,6 +44,7 @@ def session_creation(request):
 
     context = {
         'nb_elements': initial_nb_of_row,
-        'form': session_form,
+        'session_form': session_form,
+        'exercice_formset': exercice_formset,
     }
     return render(request, 'muscu_site/session_creation.html', context)
