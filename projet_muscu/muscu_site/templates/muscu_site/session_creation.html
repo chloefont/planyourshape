@@ -27,52 +27,58 @@
   </div>
 
 
-  <div class="block2 text-align">
+  <div class="block2">
     {{ exercice_formset.management_form }}
 
-    <div class="column">
-      <h2><label for="">Exercice</label></h2><br>
-      {% for form in exercice_formset %}
-        <div class="answer_box">
-          {{ form.exercice }}
-        </div>
-      {% endfor %}
+    <div class="second-title">
+      <h2><label class="exercice">Exercice</label></h2>
+      <h2><label class="sets">Séries</label></h2>
+      <h2><label class="reps">Répétitions</label></h2>
+      <h2><label class="break_time">Temps de pause</label></h2>
     </div>
 
-    <div class="column">
-      <h2><label for="">Séries</label></h2><br>
+    <div class="fields-container">
       {% for form in exercice_formset %}
-        <div class="answer_box">
-          {{ form.sets }}
+      <div class="fields-row">
+        <div class="fields-col">
+          {{form.exercice}}
         </div>
-      {% endfor %}
-    </div>
-
-    <div class="column">
-      <h2><label for="">Répétitions</label></h2><br>
-      {% for form in exercice_formset %}
-        <div class="answer_box">
-          {{ form.reps }}
+        <div class="fields-col">
+          {{form.sets}}
         </div>
-      {% endfor %}
-    </div>
-
-    <div class="column">
-      <h2><label for="">Temps de pause</label></h2><br>
-      {% for form in exercice_formset %}
-        <div class="answer_box">
-          {{ form.break_time }}
+        <div class="fields-col">
+          {{form.reps}}
         </div>
+        <div class="fields-col">
+          {{form.break_time}}
+        </div><br>
+      </div>
       {% endfor %}
-    </div>
-
-
-    <div>
-      <a class= "button_add" href="#">Ajouter un exercice</a>
     </div>
 
     <div>
-      <button type="submit" name="button">Enregistrer</button>
+      <a class= "button-add" href="#">Ajouter un exercice</a>
+    </div>
+
+    <div class="on-right">
+      <button type="submit" name="button" class="button-submit">Enregistrer</button>
+    </div>
+
+    <div class="hidden extra-row">
+      <div class="fields-row">
+        <div class="fields-col">
+          {{exercice_formset.empty_form.exercice}}
+        </div>
+        <div class="fields-col">
+          {{exercice_formset.empty_form.sets}}
+        </div>
+        <div class="fields-col">
+          {{exercice_formset.empty_form.reps}}
+        </div>
+        <div class="fields-col">
+          {{exercice_formset.empty_form.break_time}}
+        </div><br>
+      </div>
     </div>
 
   </div>
@@ -80,30 +86,24 @@
 </form>
 
 <script type="text/javascript">
-  let nb_row = 3;
+  var buttonAdd = document.querySelector('.button-add');
 
-  let buttonAdd = document.querySelector('.button_add');
+  function addRow(){
+    const extraRow = document.querySelector('.extra-row');
+    const fieldContainer = document.querySelector('.fields-container');
 
-  let columnList = document.querySelectorAll('.column');
+    let isInput = false;
+    const fieldsUnit = document.querySelectorAll('.fields-container .fields-row .fields-col input')
+    fieldsUnit.forEach(input => {
+      console.log(input);
+    })
 
-  function add_row(column){
-    nb_row++;
-
-
-    let row = document.createElement('div');
-    row.className = 'answer_box';
-
-    let inp = document.createElement('input');
-    inp.type = "text";
-
-    let nextLine = document.createElement('br');
-
-
+    newnbRow = document.querySelector('#id_form-TOTAL_FORMS').value++;
+    finalExtraRow = extraRow.innerHTML.replace(/__prefix__/g, newnbRow);
+    fieldContainer.innerHTML += finalExtraRow;
   }
 
-  columnList.forEach((column) =>{
-    add_row(column);
-  })
+  buttonAdd.addEventListener('click', addRow);
 
 </script>
 

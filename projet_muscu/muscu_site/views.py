@@ -1,10 +1,8 @@
 from django.shortcuts import render
 from django.forms import formset_factory
-from .models import TrainingSession, Exercice
-from .forms import SessionForm, ExerciceForm
+from .models import TrainingSession, Exercice, SessionForm, ExerciceForm
 
 def session_creation(request):
-    session_form = SessionForm(request.POST)
     ExerciceFormSet = formset_factory(ExerciceForm, extra = 3)
     data = {
         'form-TOTAL_FORMS': '3',
@@ -12,6 +10,7 @@ def session_creation(request):
         'form-MAX_NUM_FORMS': '10',
     }
     if request.method == 'POST':
+        session_form = SessionForm(request.POST)
         exercice_formset = ExerciceFormSet(request.POST, request.FILES)
 
         if session_form.is_valid() and exercice_formset.is_valid():
@@ -33,6 +32,7 @@ def session_creation(request):
                         break_time = ex.cleaned_data['break_time'],
                     )
     else:
+        session_form = SessionForm();
         exercice_formset = ExerciceFormSet()
 
     context = {

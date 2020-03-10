@@ -5,62 +5,90 @@
 }
 
 html {
-  background-color: #ce3a3ae6;
+  background-color: #ce3a3a;
   box-sizing: border-box;
 }
 
-button {
-  background-color: #ce3a3ae6;
+.button-submit {
+  background-color: #ce3a3a;
   color: white;
   padding: 20px;
   border-radius: 10px;
   font-size: 20px;
   cursor: pointer;
-  position: relative;
-  left: 660px;
   margin-top: 40px;
+  margin-right: 40px
 }
 
-button:hover {
-  background-color: #ce3a3a9c;
+.on-right {
+  display: flex;
+  justify-content: flex-end;
 }
 
-.button_add {
+.button-submit:hover {
+  background-color: #ce3a3aab;
+}
+
+.button-add {
   padding: 20px;
-  color: #ce3a3a9c;
+  color: #ce3a3a;
   font-size: 20px;
+  display: flex;
+  justify-content: center;
 }
 
-.button_add:hover {
+.button-add:hover {
   font-weight: bold;
 }
 
 .container {
   font-family: sans-serif;
+  max-width: 1500px;
+  margin: 0 auto;
 }
 
-.column {
+/* .column {
   display: inline-block;
   margin: 0 40px;
-}
+} */
 
-.column h2 {
-  border: 5px solid #ce3a3ae6;
-  color: #ce3a3ae6;
+/* .column h2 {
+  border: 5px solid #ce3a3a;
+  color: #ce3a3a;
   font-size: 35px;
   border-radius: 20px;
   padding: 20px;
+} */
+
+.second-title {
+  display: flex;
+  justify-content: space-between;
+  padding-left: 80px;
+  padding-right: 40px;
+}
+
+.second-title h2 {
+  border: 5px solid #ce3a3a;
+  color: #ce3a3a;
+  font-size: 35px;
+  border-radius: 20px;
+  padding: 20px;
+
+
 }
 
 .text-align {
   text-align: center;
 }
 
-.answer_box {
-  margin: 30px 0px;
+.fields-container {
+  padding-left: 40px;
+  padding-right: 40px;
+  padding-top: 10px;
+  padding-bottom: 50px;
 }
 
-.answer_box input {
+.fields-col input {
   height: 30px;
   width: 270px;
   font-size: 20px;
@@ -78,11 +106,10 @@ button:hover {
 
 .block2 {
   background-color: white;
-  width: 1600px;
-  margin: 100px auto;
   border-radius: 20px;
   padding-bottom: 50px;
   padding-top: 40px;
+  margin-top: 70px
 }
 
 .block1 input {
@@ -104,4 +131,20 @@ button:hover {
   color: white;
   text-align: center;
   font-weight: 600;
+}
+
+.fields-row {
+  display: flex;
+  justify-content: center;
+  padding-bottom: 15px;
+  padding-top: 15px;
+}
+
+.fields-col {
+  padding-left: 40px;
+  padding-right: 40px;
+}
+
+.hidden {
+  display: none;
 }
