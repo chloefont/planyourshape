@@ -1,13 +1,13 @@
-@media(min-width: 768px) {
-  body {
-    font-size: 1.5rem;
-  }
+body {
+  font-size: 1.5rem;
 }
 
 html {
   background-color: #ce3a3a;
   box-sizing: border-box;
 }
+
+/* button */
 
 .button-submit {
   background-color: #ce3a3a;
@@ -18,11 +18,6 @@ html {
   cursor: pointer;
   margin-top: 40px;
   margin-right: 40px
-}
-
-.on-right {
-  display: flex;
-  justify-content: flex-end;
 }
 
 .button-submit:hover {
@@ -41,24 +36,16 @@ html {
   font-weight: bold;
 }
 
-.container {
-  font-family: sans-serif;
-  max-width: 1500px;
-  margin: 0 auto;
-}
 
-/* .column {
-  display: inline-block;
-  margin: 0 40px;
-} */
+/* title */
 
-/* .column h2 {
-  border: 5px solid #ce3a3a;
-  color: #ce3a3a;
+.title {
   font-size: 35px;
-  border-radius: 20px;
-  padding: 20px;
-} */
+  text-align: center;
+  color: white;
+  font-weight: 800;
+  margin-top: 15px;
+}
 
 .second-title {
   display: flex;
@@ -73,12 +60,14 @@ html {
   font-size: 35px;
   border-radius: 20px;
   padding: 20px;
-
-
 }
 
-.text-align {
-  text-align: center;
+/* blocks and containers */
+
+.container {
+  font-family: sans-serif;
+  max-width: 1500px;
+  margin: 0 auto;
 }
 
 .fields-container {
@@ -86,12 +75,6 @@ html {
   padding-right: 40px;
   padding-top: 10px;
   padding-bottom: 50px;
-}
-
-.fields-col input {
-  height: 30px;
-  width: 270px;
-  font-size: 20px;
 }
 
 .block1 {
@@ -103,7 +86,6 @@ html {
   border-radius: 20px;
 }
 
-
 .block2 {
   background-color: white;
   border-radius: 20px;
@@ -112,18 +94,17 @@ html {
   margin-top: 70px
 }
 
+.on-right {
+  display: flex;
+  justify-content: flex-end;
+}
+
+/*block 1*/
+
 .block1 input {
   height: 25px;
   width: 350px;
   font-size: 20px;
-}
-
-.title {
-  font-size: 35px;
-  text-align: center;
-  color: white;
-  font-weight: 800;
-  margin-top: 15px;
 }
 
 .date {
@@ -132,6 +113,8 @@ html {
   text-align: center;
   font-weight: 600;
 }
+
+/* block 2 */
 
 .fields-row {
   display: flex;
@@ -145,6 +128,51 @@ html {
   padding-right: 40px;
 }
 
+.fields-col input {
+  height: 30px;
+  width: 270px;
+  font-size: 20px;
+}
+
+
+/* diverse */
+
+.text-align {
+  text-align: center;
+}
+
 .hidden {
   display: none;
+}
+
+@media(max-width: 1430px) {
+  .fields-col input {
+    height: auto;
+    width: 100px;
+    font-size: auto;
+  }
+
+  .exercice input {
+    height: auto;
+    width: 200px;
+    font-size: auto;
+  }
+
+  .fields-container {
+    padding-left: 20px;
+  }
+
+  .fields-row {
+    display: flex;
+    justify-content: space-around;
+  }
+
+  .second-title {
+    padding-left: 20px;
+    padding-right: 20px;
+  }
+
+  .second-title h2 {
+    max-width: 178px;
+  }
 }

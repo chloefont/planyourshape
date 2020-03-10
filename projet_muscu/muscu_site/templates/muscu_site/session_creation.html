@@ -13,15 +13,17 @@
     <div class="title">
       <label class="title-label">
         Titre de la séance:<br>
-        {{ session_form.session_title }}
       </label>
+        {{ session_form.session_title }}
+
     </div><br>
     <div class="date">
       <label >
         Date de création:<br>
-        {{ session_form.date }}
-        {{ session_form.date.errors }}
       </label>
+      <input type="date" name="date" value="">
+      {{ session_form.date.errors }}
+
     </div>
 
   </div>
@@ -40,7 +42,7 @@
     <div class="fields-container">
       {% for form in exercice_formset %}
       <div class="fields-row">
-        <div class="fields-col">
+        <div class="fields-col exercice">
           {{form.exercice}}
         </div>
         <div class="fields-col">
@@ -66,7 +68,7 @@
 
     <div class="hidden extra-row">
       <div class="fields-row">
-        <div class="fields-col">
+        <div class="fields-col exercice">
           {{exercice_formset.empty_form.exercice}}
         </div>
         <div class="fields-col">
@@ -89,18 +91,17 @@
   var buttonAdd = document.querySelector('.button-add');
 
   function addRow(){
-    const extraRow = document.querySelector('.extra-row');
+    const extraRow = document.querySelector('.extra-row .fields-row');
     const fieldContainer = document.querySelector('.fields-container');
 
-    let isInput = false;
-    const fieldsUnit = document.querySelectorAll('.fields-container .fields-row .fields-col input')
-    fieldsUnit.forEach(input => {
-      console.log(input);
-    })
 
     newnbRow = document.querySelector('#id_form-TOTAL_FORMS').value++;
-    finalExtraRow = extraRow.innerHTML.replace(/__prefix__/g, newnbRow);
-    fieldContainer.innerHTML += finalExtraRow;
+    let clonedRow = extraRow.cloneNode(true);
+    clonedRow.innerHTML = clonedRow.innerHTML.replace(/__prefix__/g, newnbRow);
+    fieldContainer.appendChild(clonedRow);
+
+    //finalExtraRow = extraRow.innerHTML.replace(/__prefix__/g, newnbRow);
+    //fieldContainer.innerHTML += finalExtraRow;
   }
 
   buttonAdd.addEventListener('click', addRow);
