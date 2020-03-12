@@ -1,6 +1,7 @@
 from django.shortcuts import render
 from django.forms import formset_factory
-from .models import TrainingSession, Exercice, SessionForm, ExerciceForm
+from .forms import SessionForm, ExerciceForm
+from .models import TrainingSession, Exercice
 
 def session_creation(request):
     ExerciceFormSet = formset_factory(ExerciceForm, extra = 3)
