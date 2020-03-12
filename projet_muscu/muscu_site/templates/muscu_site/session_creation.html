@@ -32,26 +32,26 @@
   <div class="block2">
     {{ exercice_formset.management_form }}
 
-    <div class="second-title">
-      <h2><label class="exercice">Exercice</label></h2>
-      <h2><label class="sets">Séries</label></h2>
-      <h2><label class="reps">Répétitions</label></h2>
-      <h2><label class="break_time">Temps de pause</label></h2>
+    <div class="second-title text-align">
+      <div class="w-3-9"><h2><label class="exercice">Exercice</label></h2></div>
+      <div class="w-2-9"><h2><label class="sets">Séries</label></h2></div>
+      <div class="w-2-9"><h2><label class="reps">Répétitions</label></h2></div>
+      <div class="w-2-9"><h2><label class="break_time w-2-9">Temps de pause</label></h2></div>
     </div>
 
     <div class="fields-container">
       {% for form in exercice_formset %}
       <div class="fields-row">
-        <div class="fields-col exercice">
+        <div class="fields-col exercice w-3-9">
           {{form.exercice}}
         </div>
-        <div class="fields-col">
+        <div class="fields-col w-2-9">
           {{form.sets}}
         </div>
-        <div class="fields-col">
+        <div class="fields-col w-2-9">
           {{form.reps}}
         </div>
-        <div class="fields-col">
+        <div class="fields-col w-2-9">
           {{form.break_time}}
         </div><br>
       </div>
@@ -68,16 +68,16 @@
 
     <div class="hidden extra-row">
       <div class="fields-row">
-        <div class="fields-col exercice">
+        <div class="fields-col exercice w-3-9">
           {{exercice_formset.empty_form.exercice}}
         </div>
-        <div class="fields-col">
+        <div class="fields-col w-2-9">
           {{exercice_formset.empty_form.sets}}
         </div>
-        <div class="fields-col">
+        <div class="fields-col w-2-9">
           {{exercice_formset.empty_form.reps}}
         </div>
-        <div class="fields-col">
+        <div class="fields-col w-2-9">
           {{exercice_formset.empty_form.break_time}}
         </div><br>
       </div>

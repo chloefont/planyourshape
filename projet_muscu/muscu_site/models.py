@@ -17,7 +17,7 @@ class Exercice(models.Model):
     training_session = models.ForeignKey(
         TrainingSession, on_delete=models.CASCADE, related_name='exercice'
     )
-    exercice = models.CharField(max_length=100)
+    exercice = models.CharField(max_length=100, blank=True)
     sets = models.IntegerField(default=1)
     reps = models.IntegerField(default=1)
     break_time = models.IntegerField(default=60)
@@ -42,6 +42,7 @@ class SessionForm(ModelForm):
                 'max_length': _('Le titre de cette séance est trop long.')
             }
         }
+
 
 class ExerciceForm(ModelForm):
     class Meta:
