@@ -1,7 +1,7 @@
 from django.test import TestCase
 from django.test import Client
 from django.urls import reverse
-from .models import TrainingSession, Exercice, SessionForm, ExerciceForm
+from .models import TrainingSession, Exercise, SessionForm, ExerciseForm
 
 class SessionCreationTest(TestCase):
     def test_date_in_future(self):

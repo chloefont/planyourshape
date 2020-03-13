@@ -134,7 +134,7 @@ html {
   font-size: 20px;
 }
 
-.exercice input {
+.exercise input {
   min-width: 350px;
 }
 
@@ -171,7 +171,7 @@ html {
     padding-right: 15px;
   }
 
-  .exercice input {
+  .exercise input {
     width: 90%;
     min-width: 250px;
     margin-right: 10px;
@@ -189,7 +189,7 @@ html {
     margin-left: 5px;
   }
 
-  .exercice input {
+  .exercise input {
     margin-right: 10px;
     min-width:200px;
   }
@@ -213,7 +213,7 @@ html {
     padding: 2px;
   }
 
-  .exercice input {
+  .exercise input {
     margin-right: 5px;
   }
 

@@ -12,14 +12,14 @@ class TrainingSession(models.Model):
     def __str__(self):
         return self.session_title
 
-class Exercice(models.Model):
+class Exercise(models.Model):
     training_session = models.ForeignKey(
-        TrainingSession, on_delete=models.CASCADE, related_name='exercice'
+        TrainingSession, on_delete=models.CASCADE, related_name='exercises'
     )
-    exercice = models.CharField(max_length=100, blank=True)
+    exercise = models.CharField(max_length=100, blank=True)
     sets = models.IntegerField(default=1)
     reps = models.IntegerField(default=1)
     break_time = models.IntegerField(default=60)
 
     def __str__(self):
-        return self.exercice
+        return self.exercise

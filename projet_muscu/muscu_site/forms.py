@@ -1,8 +1,6 @@
 import datetime
-from django import forms
-from django.forms import ValidationError
-from django.forms import ModelForm
-from .models import TrainingSession, Exercice
+from django.forms import ModelForm, ValidationError
+from .models import TrainingSession, Exercise
 
 class SessionForm(ModelForm):
     class Meta:
@@ -15,7 +13,7 @@ class SessionForm(ModelForm):
             raise ValidationError("La date ne doit pas être dans le futur !")
         return date
 
-class ExerciceForm(ModelForm):
+class ExerciseForm(ModelForm):
     class Meta:
-        model = Exercice
-        fields = ['exercice', 'sets', 'reps', 'break_time']
+        model = Exercise
+        fields = ['exercise', 'sets', 'reps', 'break_time']

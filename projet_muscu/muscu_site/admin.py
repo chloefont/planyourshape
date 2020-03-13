@@ -1,10 +1,10 @@
 from django.contrib import admin
-from muscu_site.models import TrainingSession, Exercice
+from muscu_site.models import TrainingSession, Exercise
 
-class ExerciceInLine(admin.TabularInline):
-    model = Exercice
+class ExerciseInLine(admin.TabularInline):
+    model = Exercise
 
 class TrainingSessionAdmin(admin.ModelAdmin):
-    inlines = [ExerciceInLine]
+    inlines = [ExerciseInLine]
 
 admin.site.register(TrainingSession, TrainingSessionAdmin)
