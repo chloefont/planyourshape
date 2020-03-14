@@ -36,3 +36,12 @@ def create_session(request):
         'exercise_formset': exercise_formset,
     }
     return render(request, 'muscu_site/session_creation.html', context)
+
+
+def sessions_list(request):
+    training_sessions = TrainingSession.objects.all()
+    context = {
+        'training_sessions': training_sessions,
+    }
+
+    return render(request, 'muscu_site/sessions_list.html', context)

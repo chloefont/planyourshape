@@ -78,6 +78,23 @@ html {
   font-weight: var(--font-weight-bold);
 }
 
+.button-create-session {
+  background-color: white;
+  border-radius: 20px;
+  padding: 10px;
+  cursor: pointer;
+  max-width: 600px;
+  margin: 30px auto;
+}
+
+.button-create-session a {
+  color: #ce3a3a;
+  text-decoration: none;
+}
+
+.button-create-session:hover {
+  font-weight: bold;
+}
 
 /* --
   title
@@ -88,6 +105,14 @@ html {
   color: white;
   font-weight: var(--font-weight-bolder);
   margin-top: var(--spacing-medium);
+}
+
+.title-large {
+  font-size: 35px;
+  color: white;
+  padding-top: 20px;
+  padding-bottom: 20px;
+  font-weight: bold;
 }
 
 .second-title {
@@ -138,9 +163,46 @@ html {
   margin-top: var(--spacing-xl);
 }
 
-/*--
-  block title
---*/
+.page-block {
+  display: flex;
+  justify-content: space-around;
+  margin-top: 70px;
+}
+
+.column-block {
+  border: 5px solid white;
+  border-radius: 20px;
+}
+
+/* session blocks */
+
+.session-block {
+  background-color: white;
+  color: #ce3a3a;
+  border-radius: 20px;
+  padding: 20px;
+  margin: 20px;
+  text-decoration: none;
+  cursor:pointer;
+}
+
+.session-block a {
+  color: #ce3a3a;
+  padding: 20px;
+  text-decoration: none;
+}
+
+.session-block:hover {
+  font-weight: bold;
+}
+
+
+.session-block-date {
+  font-size: 1.2rem;
+}
+
+/*block 1*/
+
 .block-title input {
   max-height: 25px;
   max-width: 350px;
