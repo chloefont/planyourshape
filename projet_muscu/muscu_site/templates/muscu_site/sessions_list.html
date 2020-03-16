@@ -1,0 +1,49 @@
+{% extends "muscu_site/base.html" %}
+
+{% load static %}
+
+{% block title %}Liste des séances{% endblock %}
+
+{% block content %}
+<div class="block1">
+  <div class="title-large text-align">
+    Liste des séances
+  </div>
+</div>
+
+<div class="button-create-session text-align">
+  <a href="{% url 'session_creation' %}">Créer une nouvelle séance</a>
+</div>
+
+<div class="page-block">
+
+  <div class="column-block">
+    <div class="column-title">Séances planifiées</div>
+    {% for session in training_sessions %}
+    <div class="session-block">
+      <div class="session-block-title">
+        <a href="#">{{session.session_title}}</a>
+      </div>
+      <div class="session-block-date">
+        <a href="#">{{session.date}}</a>
+      </div>
+    </div>
+    {% endfor %}
+  </div>
+
+  <div class="column-block">
+    <div class="column-title">Séances complétées</div>
+    <div class="session-block">
+      <div class="session-block-title">
+        <a href="#">Titre</a>
+      </div>
+      <div class="session-block-date">
+        <a href="#">Date</a>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+
+{% endblock %}

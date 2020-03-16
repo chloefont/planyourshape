@@ -26,7 +26,9 @@ def create_session(request):
                         reps = ex.cleaned_data['reps'],
                         break_time = ex.cleaned_data['break_time'],
                     )
-            return redirect('create_session')
+
+            return redirect('sessions_list')
+
     else:
         session_form = SessionForm();
         exercise_formset = ExerciseFormSet()
