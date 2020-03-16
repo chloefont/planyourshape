@@ -22,7 +22,7 @@ import muscu_site.views
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('sessioncreation/',muscu_site.views.session_creation, name='session_creation')
+    path('sessions/create/',muscu_site.views.create_session, name='create_session')
 ]
 
 if settings.DEBUG:

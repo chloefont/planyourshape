@@ -7,6 +7,11 @@ class SessionForm(ModelForm):
         model = TrainingSession
         fields = ['session_title', 'date']
 
+        labels = {
+            'session_title': 'Titre de la séance:',
+            'date': 'Date de la séance:',
+        }
+
     def clean_date(self):
         date = self.cleaned_data['date']
         if date > datetime.date.today():

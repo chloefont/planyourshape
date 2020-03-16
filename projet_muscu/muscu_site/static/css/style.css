@@ -1,49 +1,82 @@
+:root {
+
+  /* colors */
+  --main-color: #ce3a3a;
+  --main-color-light:#ce3a3aab;
+
+  /* spacing */
+  --spacing-tiny: 2px;
+  --spacing-smaller: 5px;
+  --spacing-small: 15px;
+  --spacing-medium: 20px;
+  --spacing-large: 40px;
+  --spacing-larger: 60px;
+  --spacing-xl: 80px;
+
+  /* font size */
+  --font-size-button-smaller: 1.1rem;
+  --font-size-button: 1.25rem;
+  --font-size-text-smaller: 1.3rem;
+  --font-size-text: 1.5rem;
+  --font-size-title-medium: 2rem;
+  --font-size-title-large: 2.2rem;
+
+  /* font weight */
+  --font-weight-bold: bold;
+  --font-weight-bolder: 800;
+
+  /* border radius */
+  --main-border-radius: 20px;
+  --border-radius-button: 10px;
+}
+
 body {
-  font-size: 1.5rem;
+  font-size: var(--font-size-text);
 }
 
 html {
-  background-color: #ce3a3a;
+  background-color: var(--main-color);
   box-sizing: border-box;
+  font-family: sans-serif;
 }
 
 /* button */
 
 .button-submit {
-  background-color: #ce3a3a;
+  background-color: var(--main-color);
   color: white;
-  padding: 20px;
-  border-radius: 10px;
-  font-size: 20px;
+  padding: var(--spacing-medium);
+  border-radius: var(--boder-radius-button);
+  font-size: var(--font-size-button);
   cursor: pointer;
-  margin-top: 40px;
-  margin-right: 40px
+  margin-top: var(--spacing-large);
+  margin-right: var(--spacing-large)
 }
 
 .button-submit:hover {
-  background-color: #ce3a3aab;
+  background-color: var(--main-color-light);
 }
 
 .button-add {
-  padding: 20px;
-  color: #ce3a3a;
+  padding: var(--spacing-medium);
+  color: var(--main-color);
   display: flex;
   justify-content: center;
 }
 
 .button-add:hover {
-  font-weight: bold;
+  font-weight: var(--font-weight-bold);
 }
 
 
 /* title */
 
-.title {
-  font-size: 35px;
+.title-label {
+  font-size: var(--font-size-title-large);
   text-align: center;
   color: white;
-  font-weight: 800;
-  margin-top: 15px;
+  font-weight: var(--font-weight-bolder);
+  margin-top: var(--spacing-medium);
 }
 
 .second-title {
@@ -51,47 +84,46 @@ html {
   justify-content: space-around;
 }
 
-.second-title h2 {
-  border: 5px solid #ce3a3a;
-  color: #ce3a3a;
-  font-size: 2rem;
-  border-radius: 20px;
-  padding: 20px;
-  margin-left: 10px;
-  margin-right: 10px;
-  /* max-width: 249px; */
+.second-title span {
+  border: 5px solid var(--main-color);
+  color: var(--main-color);
+  font-size: var(--font-size-title-medium);
+  border-radius: var(--spacing-medium);
+  padding: var(--spacing-medium);
+  margin-left: var(--spacing-small);
+  margin-right: var(--spacing-small);
+  font-weight: var(--font-weight-bold);
 }
 
 /* blocks and containers */
 
 .container {
-  font-family: sans-serif;
   max-width: 1600px;
   margin: 0 auto;
 }
 
 .fields-container {
-  padding-left: 80px;
+  padding-left: var(--spacing-xl);
   padding-right: 0px;
-  padding-top: 10px;
-  padding-bottom: 50px;
+  padding-top: var(--spacing-large);
+  padding-bottom: var(--spacing-larger);
 }
 
-.block1 {
+.block-title {
   border: 5px solid white;
   max-width: 600px;
   height: 200px;
-  margin: 20px auto;
+  margin: var(--spacing-medium) auto;
   padding: auto;
-  border-radius: 20px;
+  border-radius: var(--main-border-radius);
 }
 
-.block2 {
+.block-exercises {
   background-color: white;
-  border-radius: 20px;
-  padding-bottom: 50px;
-  padding-top: 40px;
-  margin-top: 70px
+  border-radius: var(--main-border-radius);
+  padding-bottom: var(--spacing-larger);
+  padding-top: var(--spacing-large);
+  margin-top: var(--spacing-xl);
 }
 
 .on-right {
@@ -99,39 +131,36 @@ html {
   justify-content: flex-end;
 }
 
-/*block 1*/
+/* block title */
 
-.block1 input {
+.block-title input {
   max-height: 25px;
   max-width: 350px;
-  font-size: 20px;
-}
-
-.title {
-  font-size: 37px;
+  font-size: var(--font-size-text);
+  background-color: white;
 }
 
 .date {
-  font-size: 24px;
+  font-size: var(--font-size-title-medium);
   color: white;
   text-align: center;
-  font-weight: 600;
+  font-weight: var(--font-weight-bold);
   padding: inherit;
 }
 
-/* block 2 */
+/* block exercises */
 
 .fields-row {
   display: flex;
   justify-content: space-between;
-  padding-bottom: 15px;
-  padding-top: 15px;
+  padding-bottom: var(--spacing-small);
+  padding-top: var(--spacing-small);
 }
 
 .fields-col input {
   max-height: 30px;
   width: 90%;
-  font-size: 20px;
+  font-size: var(--font-size-text);
 }
 
 .exercise input {
@@ -149,7 +178,7 @@ html {
 
 /* diverse */
 
-.text-align {
+.text-align-center {
   text-align: center;
 }
 
@@ -160,15 +189,15 @@ html {
 .errorlist li {
   list-style: none;
   font-style: italic;
-  font-size: 1.8rem;
+  font-size: var(--font-size-text);
 }
 
 /* smaller device */
 
 @media(max-width: 1290px) {
   .fields-container {
-    padding-left: 15px;
-    padding-right: 15px;
+    padding-left: var(--spacing-small);
+    padding-right: var(--spacing-small);
   }
 
   .exercise input {
@@ -180,50 +209,46 @@ html {
 
 @media(max-width: 885px) {
   body {
-    font-size: 1.5rem;
+    font-size: var(--font-size-text-smaller);
   }
 
   .second-title h2 {
-    font-size: 1.5rem;
-    margin-right: 5px;
-    margin-left: 5px;
+    font-size: var(--font-size-text);
+    margin-right: var(--spacing-smaller);
+    margin-left: var(--sapcing-smaller);
   }
 
   .exercise input {
-    margin-right: 10px;
+    margin-right: var(--spacing-smaller);
     min-width:200px;
   }
 }
 
 @media(max-width: 625px) {
   body {
-    font-size: 1.3rem;
+    font-size: var(--font-size-text-smaller);
   }
 
-  .title {
-    font-size: 30px;
-  }
 
   .second-title h2 {
     border: none;
-    font-size: 1.5rem;
-    font-weight: bold;
+    font-size: var(--font-size-text);
+    font-weight: var(--font-weight-bold);
     text-decoration: underline;
     border-radius: none;
-    padding: 2px;
+    padding: var(--spacing-tiny);
   }
 
   .exercise input {
-    margin-right: 5px;
+    margin-right: var(--spacing-smaller);
   }
 
   .button-submit {
     color: white;
-    padding: 15px;
-    border-radius: 10px;
-    font-size: 18px;
+    padding: var(--spacing-medium);
+    font-size: var(--font-size-button-smaller);
     cursor: pointer;
-    margin-top: 40px;
-    margin-right: 40px
+    margin-top: var(--spacing-large);
+    margin-right: var(--spacing-large);
   }
 }

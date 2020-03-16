@@ -5,23 +5,23 @@
 {% block title %}Création d'une séance{% endblock %}
 
 {% block content %}
-<form class="" action="" method="post">
+<form method="post">
   {% csrf_token %}
 
-  <div class="block1 text-align">
+  <div class="block-title text-align-center">
 
     <div class="title">
-      <label class="title-label">
-        Titre de la séance:<br>
+      <label for="{{session_form.session_title.id_for_label}}" class="title-label">
+        {{session_form.session_title.label}}<br>
       </label>
         {{ session_form.session_title }}
 
     </div><br>
     <div class="date">
-      <label >
-        Date de création:<br>
+      <label for="{{session_form.date.id_for_label}}">
+        {{session_form.date.label}}<br>
       </label>
-      <input type="date" name="date" value="">
+      <input type="date" name="date">
       {{ session_form.date.errors }}
 
     </div>
@@ -29,14 +29,14 @@
   </div>
 
 
-  <div class="block2">
+  <div class="block-exercises">
     {{ exercise_formset.management_form }}
 
-    <div class="second-title text-align">
-      <div class="w-3-9"><h2><label class="exercise">Exercice</label></h2></div>
-      <div class="w-2-9"><h2><label class="sets">Séries</label></h2></div>
-      <div class="w-2-9"><h2><label class="reps">Répétitions</label></h2></div>
-      <div class="w-2-9"><h2><label class="break_time w-2-9">Temps de pause</label></h2></div>
+    <div class="second-title text-align-center">
+      <span class="w-3-9 exercise">Exercice</span>
+      <span class="w-2-9 sets">Séries</span>
+      <span class="w-2-9 reps">Répétitions</span>
+      <span class="w-2-9 break_time">Temps de pause</span>
     </div>
 
     <div class="fields-container">
