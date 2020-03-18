@@ -41,9 +41,10 @@ def create_session(request):
 
 
 def sessions_list(request):
-    training_sessions = TrainingSession.objects.all()
+    training_sessions = TrainingSession.objects.order_by('-date')
     context = {
         'training_sessions': training_sessions,
+        'training_sessions_completed': None,
     }
 
     return render(request, 'muscu_site/sessions_list.html', context)

@@ -174,8 +174,9 @@ html {
   border-radius: 20px;
 }
 
-/* session blocks */
-
+/*--
+  session blocks
+--*/
 .session-block {
   background-color: white;
   color: #ce3a3a;

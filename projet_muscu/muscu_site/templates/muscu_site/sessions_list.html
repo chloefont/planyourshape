@@ -17,8 +17,8 @@
 
 <div class="page-block">
 
-  <div class="column-block">
-    <div class="column-title">Séances planifiées</div>
+<div class="column-block text-align">
+  <div class="column-title">Séances planifiées</div><br>
     {% for session in training_sessions %}
     <div class="session-block">
       <div class="session-block-title">
@@ -31,6 +31,7 @@
     {% endfor %}
   </div>
 
+  {% if training_sessions_completed %}
   <div class="column-block">
     <div class="column-title">Séances complétées</div>
     <div class="session-block">
@@ -42,6 +43,7 @@
       </div>
     </div>
   </div>
+  {% endif %}
 
 </div>
 
