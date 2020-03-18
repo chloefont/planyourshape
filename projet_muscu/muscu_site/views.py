@@ -11,7 +11,6 @@ def create_session(request):
 
         if session_form.is_valid() and exercise_formset.is_valid():
 
-
             session = TrainingSession.objects.create(
                 session_title=session_form.cleaned_data['session_title'],
                 date=session_form.cleaned_data['date'],

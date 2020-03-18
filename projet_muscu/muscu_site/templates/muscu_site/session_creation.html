@@ -41,6 +41,21 @@
 
     <div class="fields-container">
       {% for form in exercise_formset %}
+      {% if form.errors %}
+        <span class="error-validation">Erreurs de validation:</span><br>
+        <ul class="error-validation--list">
+          {% if form.sets.errors %}
+            <li>Le champ <strong>'Séries'</strong> doit contenir un nombre entier positif.</li>
+          {% endif %}
+          {% if form.reps.errors %}
+            <li>Le champ <strong>'Répétitons'</strong> doit contenir un nombre entier positif.</li>
+          {% endif %}
+          {% if form.break_time.errors %}
+            <li>Le champ <strong>'Temps de pause'</strong> doit contenir un nombre entier positif.</li>
+          {% endif %}
+        </ul>
+      {% endif %}
+
       <div class="fields-row">
         <div class="fields-col exercise w-3-9">
           {{form.exercise}}

@@ -1,10 +1,13 @@
 :root {
-
-  /* colors */
+  /*--
+    colors
+  --*/
   --main-color: #ce3a3a;
   --main-color-light:#ce3a3aab;
 
-  /* spacing */
+  /*--
+    spacing
+  --*/
   --spacing-tiny: 2px;
   --spacing-smaller: 5px;
   --spacing-small: 15px;
@@ -13,7 +16,9 @@
   --spacing-larger: 60px;
   --spacing-xl: 80px;
 
-  /* font size */
+  /*--
+    font size
+  --*/
   --font-size-button-smaller: 1.1rem;
   --font-size-button: 1.25rem;
   --font-size-text-smaller: 1.3rem;
@@ -21,11 +26,15 @@
   --font-size-title-medium: 2rem;
   --font-size-title-large: 2.2rem;
 
-  /* font weight */
+  /*--
+    font weight
+  --*/
   --font-weight-bold: bold;
   --font-weight-bolder: 800;
 
-  /* border radius */
+  /*--
+    border radius
+  --*/
   --main-border-radius: 20px;
   --border-radius-button: 10px;
 }
@@ -40,13 +49,14 @@ html {
   font-family: sans-serif;
 }
 
-/* button */
-
+/*--
+  button
+--*/
 .button-submit {
   background-color: var(--main-color);
   color: white;
   padding: var(--spacing-medium);
-  border-radius: var(--boder-radius-button);
+  border-radius: var(--border-radius-button);
   font-size: var(--font-size-button);
   cursor: pointer;
   margin-top: var(--spacing-large);
@@ -69,8 +79,9 @@ html {
 }
 
 
-/* title */
-
+/* --
+  title
+--*/
 .title-label {
   font-size: var(--font-size-title-large);
   text-align: center;
@@ -95,8 +106,9 @@ html {
   font-weight: var(--font-weight-bold);
 }
 
-/* blocks and containers */
-
+/*--
+  blocks and containers
+--*/
 .container {
   max-width: 1600px;
   margin: 0 auto;
@@ -131,8 +143,9 @@ html {
   justify-content: flex-end;
 }
 
-/* block title */
-
+/*--
+  block title
+--*/
 .block-title input {
   max-height: 25px;
   max-width: 350px;
@@ -148,8 +161,9 @@ html {
   padding: inherit;
 }
 
-/* block exercises */
-
+/*--
+  block exercises
+--*/
 .fields-row {
   display: flex;
   justify-content: space-between;
@@ -176,8 +190,9 @@ html {
 }
 
 
-/* diverse */
-
+/*--
+  diverse
+--*/
 .text-align-center {
   text-align: center;
 }
@@ -186,14 +201,28 @@ html {
   display: none;
 }
 
+/*--
+  errors
+--*/
 .errorlist li {
   list-style: none;
   font-style: italic;
   font-size: var(--font-size-text);
 }
 
-/* smaller device */
+.error-validation {
+  color: var(--main-color);
+  font-weight: var(--font-weight-bold);
+  font-style: italic;
+}
 
+.error-validation--list li {
+  color: var(--main-color);
+}
+
+/*--
+  smaller device
+--*/
 @media(max-width: 1290px) {
   .fields-container {
     padding-left: var(--spacing-small);
