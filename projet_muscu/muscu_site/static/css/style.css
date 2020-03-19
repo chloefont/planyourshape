@@ -210,12 +210,6 @@ html {
   font-size: var(--font-size-text);
 }
 
-.error-validation {
-  color: var(--main-color);
-  font-weight: var(--font-weight-bold);
-  font-style: italic;
-}
-
 .error-validation--list li {
   color: var(--main-color);
 }
