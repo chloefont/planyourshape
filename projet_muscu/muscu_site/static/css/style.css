@@ -100,9 +100,8 @@ html {
   color: var(--main-color);
   font-size: var(--font-size-title-medium);
   border-radius: var(--spacing-medium);
+  margin: var(--spacing-smaller);
   padding: var(--spacing-medium);
-  margin-left: var(--spacing-small);
-  margin-right: var(--spacing-small);
   font-weight: var(--font-weight-bold);
 }
 
@@ -115,8 +114,6 @@ html {
 }
 
 .fields-container {
-  padding-left: var(--spacing-xl);
-  padding-right: 0px;
   padding-top: var(--spacing-large);
   padding-bottom: var(--spacing-larger);
 }
@@ -135,12 +132,9 @@ html {
   border-radius: var(--main-border-radius);
   padding-bottom: var(--spacing-larger);
   padding-top: var(--spacing-large);
+  padding-left: var(--spacing-medium);
+  padding-right: var(--spacing-medium);
   margin-top: var(--spacing-xl);
-}
-
-.on-right {
-  display: flex;
-  justify-content: flex-end;
 }
 
 /*--
@@ -171,22 +165,26 @@ html {
   padding-top: var(--spacing-small);
 }
 
+.fields-col {
+  text-align: center
+}
+
 .fields-col input {
   max-height: 30px;
   width: 90%;
   font-size: var(--font-size-text);
 }
 
-.exercise input {
+/* .exercise input {
   min-width: 350px;
+} */
+
+.w-3-9 {
+  width: 33.333%;
 }
 
-.second-title .w-3-9{
-  width: 500px;
-}
-
-.second-title .w-2-9{
-  width: 333.34px;
+.w-2-9 {
+  width: 22.222%;
 }
 
 
@@ -201,17 +199,25 @@ html {
   display: none;
 }
 
+.on-right {
+  display: flex;
+  justify-content: flex-end;
+}
+
 /*--
   errors
 --*/
-.error-validation--block-title .error-validation--list li {
+.error-validation-list li {
   list-style: none;
   font-style: italic;
   font-size: var(--font-size-text);
+}
+
+.error-validation-list--white li{
   color: white;
 }
 
-.error-validation--list li {
+.error-validation-list--red li {
   color: var(--main-color);
 }
 
@@ -236,7 +242,7 @@ html {
     font-size: var(--font-size-text-smaller);
   }
 
-  .second-title h2 {
+  .second-title span {
     font-size: var(--font-size-text);
     margin-right: var(--spacing-smaller);
     margin-left: var(--sapcing-smaller);
@@ -250,21 +256,35 @@ html {
 
 @media(max-width: 625px) {
   body {
-    font-size: var(--font-size-text-smaller);
+    font-size: var(--font-size-text-button);
   }
 
+  .block-exercises {
+    padding-left: var(--spacing-smaller);
+    padding-right: var(--spacing-smaller);
+  }
 
-  .second-title h2 {
+  .fields-container {
+    padding-right: var(--spacing-smaller);
+    padding-left: var(--spacing-smaller)
+  }
+
+  .second-title span {
     border: none;
-    font-size: var(--font-size-text);
+    font-size: var(--font-size-text-button);
     font-weight: var(--font-weight-bold);
     text-decoration: underline;
     border-radius: none;
     padding: var(--spacing-tiny);
+    margin: 0;
   }
 
   .exercise input {
     margin-right: var(--spacing-smaller);
+  }
+
+  .fields-col input {
+    font-size: var(--font-size-button);
   }
 
   .button-submit {

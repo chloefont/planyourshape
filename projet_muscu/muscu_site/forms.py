@@ -1,5 +1,5 @@
 import datetime
-from django.forms import ModelForm, ValidationError
+from django.forms import ModelForm, ValidationError, DateInput
 from .models import TrainingSession, Exercise
 
 class SessionForm(ModelForm):
@@ -10,6 +10,9 @@ class SessionForm(ModelForm):
         labels = {
             'session_title': 'Titre de la séance:',
             'date': 'Date de la séance:',
+        }
+        widgets = {
+            'date': DateInput(attrs={'type':'date'})
         }
 
     def clean_date(self):

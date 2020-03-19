@@ -1,5 +1,5 @@
 {% if field.errors %}
-  <ul class="error-validation--list">
+  <ul class="error-validation-list {{extra_classes}}">
     {% for error in field.errors %}
       <li>{{error}}</li>
     {% endfor %}

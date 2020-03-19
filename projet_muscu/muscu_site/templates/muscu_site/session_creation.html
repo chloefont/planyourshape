@@ -21,10 +21,9 @@
       <label for="{{session_form.date.id_for_label}}">
         {{session_form.date.label}}<br>
       </label>
-      <input type="date" name="date">
-      <span class="error-validation--block-title">
-        {% include "muscu_site/_field_errors.html" with field=session_form.date %}
-      </span>
+      <!-- <input type="date" name="date"> -->
+      {{session_form.date}}
+      {% include "muscu_site/_field_errors.html" with field=session_form.date extra_classes="error-validation--white" %}
     </div>
 
   </div>
@@ -45,19 +44,19 @@
       <div class="fields-row">
         <div class="fields-col exercise w-3-9">
           {{form.exercise}}
-          {% include "muscu_site/_field_errors.html" with field=form.exercice %}
+          {% include "muscu_site/_field_errors.html" with field=form.exercice extra_classes="error-validation-list--red" %}
         </div>
         <div class="fields-col w-2-9">
           {{form.sets}}
-          {% include "muscu_site/_field_errors.html" with field=form.sets %}
+          {% include "muscu_site/_field_errors.html" with field=form.sets extra_classes="error-validation-list--red" %}
         </div>
         <div class="fields-col w-2-9">
           {{form.reps}}
-          {% include "muscu_site/_field_errors.html" with field=form.reps %}
+          {% include "muscu_site/_field_errors.html" with field=form.reps extra_classes="error-validation-list--red" %}
         </div>
         <div class="fields-col w-2-9">
           {{form.break_time}}
-          {% include "muscu_site/_field_errors.html" with field=form.break_time %}
+          {% include "muscu_site/_field_errors.html" with field=form.break_time extra_classes="error-validation-list--red" %}
         </div><br>
       </div>
       {% endfor %}
