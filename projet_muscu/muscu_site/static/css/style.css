@@ -23,7 +23,7 @@
   --font-size-button: 1.25rem;
   --font-size-text-smaller: 1.3rem;
   --font-size-text: 1.5rem;
-  --font-size-title-medium: 2rem;
+  --font-size-title-medium: 1.7rem;
   --font-size-title-large: 2.2rem;
 
   /*--
@@ -103,6 +103,7 @@ html {
   margin: var(--spacing-smaller);
   padding: var(--spacing-medium);
   font-weight: var(--font-weight-bold);
+  display: block;
 }
 
 /*--
