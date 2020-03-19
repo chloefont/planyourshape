@@ -22,8 +22,9 @@
         {{session_form.date.label}}<br>
       </label>
       <input type="date" name="date">
-      {{ session_form.date.errors }}
-
+      <span class="error-validation--block-title">
+        {% include "muscu_site/_field_errors.html" with field=session_form.date %}
+      </span>
     </div>
 
   </div>

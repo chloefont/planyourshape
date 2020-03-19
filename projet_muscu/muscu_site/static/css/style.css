@@ -204,10 +204,11 @@ html {
 /*--
   errors
 --*/
-.errorlist li {
+.error-validation--block-title .error-validation--list li {
   list-style: none;
   font-style: italic;
   font-size: var(--font-size-text);
+  color: white;
 }
 
 .error-validation--list li {
