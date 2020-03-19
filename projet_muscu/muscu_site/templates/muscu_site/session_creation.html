@@ -1,0 +1,121 @@
+{% extends "muscu_site/base.html" %}
+
+{% load static %}
+
+{% block title %}Création d'une séance{% endblock %}
+
+{% block content %}
+<form method="post">
+  {% csrf_token %}
+
+  <div class="block-title text-align-center">
+
+    <div class="title">
+      <label for="{{session_form.session_title.id_for_label}}" class="title-label">
+        {{session_form.session_title.label}}<br>
+      </label>
+        {{ session_form.session_title }}
+
+    </div><br>
+    <div class="date">
+      <label for="{{session_form.date.id_for_label}}">
+        {{session_form.date.label}}<br>
+      </label>
+      <!-- <input type="date" name="date"> -->
+      {{session_form.date}}
+      {% include "muscu_site/_field_errors.html" with field=session_form.date extra_classes="error-validation--white" %}
+    </div>
+
+  </div>
+
+
+  <div class="block-exercises">
+    {{ exercise_formset.management_form }}
+
+    <div class="second-title text-align-center">
+      <div class="w-3-9">
+        <span class="exercise">Exercice</span>
+      </div>
+      <div class="w-2-9">
+        <span class="sets">Séries</span>
+      </div>
+      <div class="w-2-9">
+        <span class="reps">Répétitions</span>
+      </div>
+      <div class="w-2-9">
+        <span class="break_time">Temps de pause</span>
+      </div>
+    </div>
+
+    <div class="fields-container">
+      {% for form in exercise_formset %}
+      <div class="fields-row">
+        <div class="fields-col exercise w-3-9">
+          {{form.exercise}}
+          {% include "muscu_site/_field_errors.html" with field=form.exercice extra_classes="error-validation-list--red" %}
+        </div>
+        <div class="fields-col w-2-9">
+          {{form.sets}}
+          {% include "muscu_site/_field_errors.html" with field=form.sets extra_classes="error-validation-list--red" %}
+        </div>
+        <div class="fields-col w-2-9">
+          {{form.reps}}
+          {% include "muscu_site/_field_errors.html" with field=form.reps extra_classes="error-validation-list--red" %}
+        </div>
+        <div class="fields-col w-2-9">
+          {{form.break_time}}
+          {% include "muscu_site/_field_errors.html" with field=form.break_time extra_classes="error-validation-list--red" %}
+        </div><br>
+      </div>
+      {% endfor %}
+    </div>
+
+    <div>
+      <a class= "button-add" href="#">Ajouter un exercice</a>
+    </div>
+
+    <div class="on-right">
+      <button type="submit" name="button" class="button-submit">Enregistrer</button>
+    </div>
+
+    <div class="hidden extra-row">
+      <div class="fields-row">
+        <div class="fields-col exercise w-3-9">
+          {{exercise_formset.empty_form.exercise}}
+        </div>
+        <div class="fields-col w-2-9">
+          {{exercise_formset.empty_form.sets}}
+        </div>
+        <div class="fields-col w-2-9">
+          {{exercise_formset.empty_form.reps}}
+        </div>
+        <div class="fields-col w-2-9">
+          {{exercise_formset.empty_form.break_time}}
+        </div><br>
+      </div>
+    </div>
+
+  </div>
+
+</form>
+
+<script type="text/javascript">
+  var buttonAdd = document.querySelector('.button-add');
+
+  function addRow(){
+    const extraRow = document.querySelector('.extra-row .fields-row');
+    const fieldContainer = document.querySelector('.fields-container');
+
+
+    newNbRow = document.querySelector('#id_form-TOTAL_FORMS').value++;
+    let clonedRow = extraRow.cloneNode(true);
+    clonedRow.innerHTML = clonedRow.innerHTML.replace(/__prefix__/g, newNbRow);
+    fieldContainer.appendChild(clonedRow);
+
+  }
+
+  buttonAdd.addEventListener('click', addRow);
+
+</script>
+
+{% endblock %}
