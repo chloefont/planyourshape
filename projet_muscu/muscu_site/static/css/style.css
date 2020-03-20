@@ -328,6 +328,10 @@ html {
   .session-block-date {
     font-size: var(--font-size-button-smaller);
   }
+
+  .error-validation-list li {
+    font-size: var(--font-size-text-smaller);
+  }
 }
 
 @media(max-width: 625px) {
@@ -373,6 +377,10 @@ html {
   }
 
   .session-block-date {
+    font-size: var(--font-size-button-smaller);
+  }
+
+  .error-validation-list li {
     font-size: var(--font-size-button-smaller);
   }
 }

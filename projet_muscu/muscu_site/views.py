@@ -3,6 +3,16 @@ from django.forms import formset_factory
 from .forms import SessionForm, ExerciseForm
 from .models import TrainingSession, Exercise
 
+def sessions_list(request):
+    training_sessions = TrainingSession.objects.order_by('-date')
+    context = {
+        'training_sessions': training_sessions,
+        'training_sessions_completed': None,
+    }
+
+    return render(request, 'muscu_site/sessions_list.html', context)
+
+
 def create_session(request):
     ExerciseFormSet = formset_factory(ExerciseForm, extra = 3)
     if request.method == 'POST':
@@ -38,13 +48,3 @@ def create_session(request):
         'exercise_formset': exercise_formset,
     }
     return render(request, 'muscu_site/session_creation.html', context)
-
-
-def sessions_list(request):
-    training_sessions = TrainingSession.objects.order_by('-date')
-    context = {
-        'training_sessions': training_sessions,
-        'training_sessions_completed': None,
-    }
-
-    return render(request, 'muscu_site/sessions_list.html', context)
