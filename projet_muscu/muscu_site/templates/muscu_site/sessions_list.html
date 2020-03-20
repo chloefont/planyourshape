@@ -5,19 +5,19 @@
 {% block title %}Liste des séances{% endblock %}
 
 {% block content %}
-<div class="block1">
-  <div class="title-large text-align">
+<div class="block-title">
+  <div class="title-large text-align-center">
     Liste des séances
   </div>
 </div>
 
-<div class="button-create-session text-align">
-  <a href="{% url 'session_creation' %}">Créer une nouvelle séance</a>
+<div class="button-create-session text-align-center">
+  <a href="{% url 'create_session' %}">Créer une nouvelle séance</a>
 </div>
 
 <div class="page-block">
 
-<div class="column-block text-align">
+<div class="column-block">
   <div class="column-title">Séances planifiées</div><br>
     {% for session in training_sessions %}
     <div class="session-block">

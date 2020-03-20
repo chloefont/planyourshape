@@ -9,7 +9,7 @@ class SessionForm(ModelForm):
 
         labels = {
             'session_title': 'Titre de la séance:',
-            'date': 'Date de la séance:',
+            'date': 'Date de création de la séance:',
         }
         widgets = {
             'date': DateInput(attrs={'type':'date'})
