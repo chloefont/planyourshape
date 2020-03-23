@@ -97,14 +97,10 @@ html {
 /* --
   title
 --*/
-.title {
+.title-label {
   font-size: var(--font-size-title-large);
   text-align: center;
   color: white;
-  padding: var(--spacing-medium);
-}
-
-.title-label {
   font-weight: var(--font-weight-bolder);
   margin-top: var(--spacing-medium);
 }
@@ -173,6 +169,7 @@ html {
   margin: var(--spacing-medium) auto;
   padding: var(--spacing-medium);
   border-radius: var(--main-border-radius);
+  padding: var(--spacing-medium);
 }
 
 .block-exercises {

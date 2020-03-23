@@ -21,4 +21,4 @@ class Exercise(models.Model):
     reps = models.PositiveIntegerField(default=1)
     break_time = models.PositiveIntegerField(default=60)
     weight = models.PositiveIntegerField(default=0)
-    comment = models.CharField(max_length=500)
+    comment = models.CharField(max_length=500, blank=True)
