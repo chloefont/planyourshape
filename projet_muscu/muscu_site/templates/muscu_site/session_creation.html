@@ -15,15 +15,6 @@
         {{session_form.session_title.label}}<br>
       </label>
         {{ session_form.session_title }}
-
-    </div><br>
-    <div class="date">
-      <label for="{{session_form.date.id_for_label}}">
-        {{session_form.date.label}}<br>
-      </label>
-      <!-- <input type="date" name="date"> -->
-      {{session_form.date}}
-      {% include "muscu_site/_field_errors.html" with field=session_form.date extra_classes="error-validation--white" %}
     </div>
 
   </div>

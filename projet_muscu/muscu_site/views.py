@@ -23,7 +23,6 @@ def create_session(request):
 
             session = TrainingSession.objects.create(
                 session_title=session_form.cleaned_data['session_title'],
-                date=session_form.cleaned_data['date'],
             )
 
 

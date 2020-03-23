@@ -158,7 +158,7 @@ html {
   max-width: 600px;
   max-height: 200px;
   margin: var(--spacing-medium) auto;
-  padding: auto;
+  padding: var(--spacing-medium);
   border-radius: var(--main-border-radius);
 }
 
