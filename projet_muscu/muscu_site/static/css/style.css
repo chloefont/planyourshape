@@ -97,10 +97,14 @@ html {
 /* --
   title
 --*/
-.title-label {
+.title {
   font-size: var(--font-size-title-large);
   text-align: center;
   color: white;
+  padding: var(--spacing-medium);
+}
+
+.title-label {
   font-weight: var(--font-weight-bolder);
   margin-top: var(--spacing-medium);
 }
@@ -137,6 +141,17 @@ html {
   margin-right: 40px;
   margin-left: 40px;
 }
+
+.title-exercise-complete {
+  color: var(--main-color);
+  font-size: var(--font-size-title-medium);
+  font-weight: var(--font-weight-bold);
+  padding-left: var(--spacing-medium);
+  padding-right: var(--spacing-medium);
+  padding-bottom: var(--spacing-medium);
+  border-bottom: 2px solid var(--main-color);
+}
+
 
 /*--
   blocks and containers
@@ -212,7 +227,6 @@ html {
 /*--
   block title
 --*/
-
 .block-title input {
   max-height: 25px;
   max-width: 350px;
@@ -257,6 +271,25 @@ html {
   width: 22.222%;
 }
 
+/*--
+  sessions complete block exercice
+--*/
+.exercise-info-row {
+  display: flex;
+  justify-content: space-between;
+  padding: var(--spacing-medium);
+}
+.exercise-info-item,.exercice-info-item label {
+  color: var(--main-color);
+}
+
+.exercice-info-sup-row {
+  padding: var(--spacing-medium);
+}
+
+.exercice-info-sup {
+  color: var(--main-color);
+}
 
 /*--
   diverse

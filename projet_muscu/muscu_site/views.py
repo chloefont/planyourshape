@@ -46,3 +46,8 @@ def create_session(request):
         'exercise_formset': exercise_formset,
     }
     return render(request, 'muscu_site/session_creation.html', context)
+
+def complete_session(request):
+    
+
+    return render(request, 'muscu_site/session_complete.html')

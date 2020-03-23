@@ -1,5 +1,8 @@
 from django.test import TestCase
 from django.urls import reverse
+from .forms import SessionForm, ExerciseForm
+from .models import TrainingSession, Exercise
+from .views import sessions_list
 
 from .models import TrainingSession
 
