@@ -22,7 +22,7 @@ import muscu_site.views
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('sessions/', muscu_site.views.sessions_list, name='sessions_list'),
+    path('sessions/', muscu_site.views.list_sessions, name='list_sessions'),
     path('sessions/create/',muscu_site.views.create_session, name='create_session'),
 ]
 

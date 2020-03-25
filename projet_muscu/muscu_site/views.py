@@ -3,7 +3,7 @@ from django.forms import formset_factory
 from .forms import SessionForm, ExerciseForm
 from .models import TrainingSession, Exercise
 
-def sessions_list(request):
+def list_sessions(request):
     training_sessions = TrainingSession.objects.order_by('-date')
     context = {
         'training_sessions': training_sessions,
@@ -36,7 +36,7 @@ def create_session(request):
                         break_time = ex.cleaned_data['break_time'],
                     )
 
-            return redirect('sessions_list')
+            return redirect('list_sessions')
 
     else:
         session_form = SessionForm();
