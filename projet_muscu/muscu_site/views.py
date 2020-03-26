@@ -1,6 +1,6 @@
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, get_object_or_404
 from django.forms import formset_factory
-from .forms import SessionForm, ExerciseForm
+from .forms import SessionForm, ExerciseForm, SessionCompletedForm, ExerciseCompletedForm
 from .models import TrainingSession, Exercise
 
 
@@ -47,7 +47,13 @@ def create_session(request):
     }
     return render(request, 'muscu_site/session_creation.html', context)
 
-def complete_session(request):
+def complete_session(request, session_id):
+    training_session = get_object_or_404(TrainingSession, id=session_id)
+    exercises = Exercise.objects.all().filter(training_session=training_session)
 
+    context = {
+        'training_session': training_session,
+        'exercises': exercises,
+    }
 
-    return render(request, 'muscu_site/session_complete.html')
+    return render(request, 'muscu_site/session_complete.html', context)

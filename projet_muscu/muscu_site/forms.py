@@ -23,3 +23,22 @@ class ExerciseForm(ModelForm):
             'reps': 'Répétitions',
             'break_time': 'Temps de pause',
         }
+
+class SessionCompletedForm(ModelForm):
+    class Meta:
+        model = TrainingSession
+        fields = ['date_completed']
+
+        label = {
+            'date_completed': 'Date de la séance:',
+        }
+
+class ExerciseCompletedForm(ModelForm):
+    class Meta:
+        model = Exercise
+        fields = ['weight', 'comment']
+
+        label = {
+            'weight': 'Poids:',
+            'comment': 'Commentaires:',
+        }

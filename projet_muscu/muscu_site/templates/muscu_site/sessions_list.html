@@ -18,6 +18,7 @@
 <div class="column-block">
   <div class="column-title">Séances planifiées</div>
     {% for session in training_sessions %}
+<<<<<<< HEAD
       <div class="session-block">
         <div class="session-block-title">
           <a href="{% url 'complete_session' session.id %}">{{ session.session_title }}</a>
@@ -25,6 +26,14 @@
         <div class="session-block-date">
           <a href="{% url 'complete_session' session.id %}">{{ session.date }}</a>
         </div>
+=======
+    <div class="session-block">
+      <div class="session-block-title">
+        <a href="{% url 'complete_session' session.id %}">{{ session.session_title }}</a>
+      </div>
+      <div class="session-block-date">
+        <a href="{% url 'complete_session' session.id %}">{{ session.date }}</a>
+>>>>>>> CHLOE-3 session display in template
       </div>
     {% endfor %}
   </div>
