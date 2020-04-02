@@ -82,8 +82,13 @@
 =======
 >>>>>>> CHLOE-3 session display in template
 
-  <div class="on-right">
-    <button type="submit" name="button" class="button-submit--white">Enregistrer</button>
+  <div class="block-button">
+    <div class="on-left">
+      <a href="{% url 'sessions_list' %}" class="button-submit--white">Supprimer la séance</a>
+    </div>
+    <div class="on-right">
+      <button type="submit" name="button" class="button-submit--white">Enregistrer</button>
+    </div>
   </div>
 
 </form>

@@ -76,6 +76,8 @@ html {
   cursor: pointer;
   margin-top: var(--spacing-large);
   margin-right: var(--spacing-large);
+  margin-left: var(--spacing-large);
+  text-decoration: none;
 }
 
 .button-submit--white:hover {
@@ -195,6 +197,11 @@ html {
   padding-left: var(--spacing-medium);
   padding-right: var(--spacing-medium);
   margin-top: var(--spacing-xl);
+}
+
+.block-button {
+  display: flex;
+  justify-content: space-between;
 }
 
 .page-block {
@@ -321,6 +328,11 @@ html {
 .on-right {
   display: flex;
   justify-content: flex-end;
+}
+
+.on-left {
+  display: flex;
+  justify-content: flex-start;
 }
 
 /*--
