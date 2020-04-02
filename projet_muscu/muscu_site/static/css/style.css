@@ -60,11 +60,26 @@ html {
   font-size: var(--font-size-button);
   cursor: pointer;
   margin-top: var(--spacing-large);
-  margin-right: var(--spacing-large)
+  margin-right: var(--spacing-large);
 }
 
 .button-submit:hover {
   background-color: var(--main-color-light);
+}
+
+.button-submit--white {
+  background-color: white;
+  color: var(--main-color);
+  padding: var(--spacing-medium);
+  border-radius: var(--border-radius-button);
+  font-size: var(--font-size-button);
+  cursor: pointer;
+  margin-top: var(--spacing-large);
+  margin-right: var(--spacing-large);
+}
+
+.button-submit--white:hover {
+  font-weight: var(--font-weight-bold)
 }
 
 .button-add {
@@ -276,16 +291,20 @@ html {
   justify-content: space-between;
   padding: var(--spacing-medium);
 }
-.exercise-info-item,.exercice-info-item label {
-  color: var(--main-color);
+.exercise-info-item {
+  color: black;
 }
 
 .exercice-info-sup-row {
   padding: var(--spacing-medium);
 }
 
-.exercice-info-sup {
+.exercice-info-sup,.exercice-info-item {
   color: var(--main-color);
+}
+
+.exercice-info-item input, .exercice-info-sup textarea {
+  font-size: var(--font-size-text);
 }
 
 /*--

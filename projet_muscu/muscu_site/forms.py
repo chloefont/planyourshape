@@ -17,28 +17,39 @@ class ExerciseForm(ModelForm):
         model = Exercise
         fields = ['exercise', 'sets', 'reps', 'break_time']
 
-        label = {
+        labels = {
             'exercise': 'Exercice',
             'sets': 'Séries',
             'reps': 'Répétitions',
             'break_time': 'Temps de pause',
         }
 
+
 class SessionCompletedForm(ModelForm):
     class Meta:
-        model = TrainingSession
+        model = TrainingSessionCompleted
         fields = ['date_completed']
 
-        label = {
+        labels = {
             'date_completed': 'Date de la séance:',
         }
 
+        widgets = {
+            'date_completed': DateInput(attrs={'type': 'date'}),
+        }
+
+
 class ExerciseCompletedForm(ModelForm):
     class Meta:
-        model = Exercise
+        model = ExerciseCompleted
         fields = ['weight', 'comment']
 
-        label = {
+        labels = {
             'weight': 'Poids:',
             'comment': 'Commentaires:',
+        }
+
+        widgets = {
+            'weight': NumberInput(attrs={'required': True}),
+            'comment': Textarea(attrs={'type': 'textarea', 'cols': 50, 'rows': 6}),
         }
