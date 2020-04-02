@@ -1,8 +1,6 @@
 import datetime
 
 from django.db import models
-from django.utils import timezone
-from django.utils.translation import gettext_lazy as _
 
 
 class TrainingSession(models.Model):
@@ -11,6 +9,7 @@ class TrainingSession(models.Model):
 
     def __str__(self):
         return self.session_title
+
 
 class Exercise(models.Model):
     training_session = models.ForeignKey(

@@ -85,9 +85,7 @@ html {
   cursor: pointer;
   max-width: 600px;
   margin: var(--spacing-large) auto;
-}
-
-.button-create-session a {
+  display: block;
   color: var(--main-color);
   text-decoration: none;
 }

@@ -11,8 +11,8 @@
   </div>
 </div>
 
-<div class="button-create-session text-align-center">
-  <a href="{% url 'create_session' %}">Créer une nouvelle séance</a>
+<div class="">
+  <a href="{% url 'create_session' %}" class="button-create-session text-align-center">Créer une nouvelle séance</a>
 </div>
 
 <div class="page-block">
@@ -22,28 +22,14 @@
     {% for session in training_sessions %}
     <div class="session-block">
       <div class="session-block-title">
-        <a href="#">{{ session.session_title }}</a>
+        {{ session.session_title }}
       </div>
       <div class="session-block-date">
-        <a href="#">{{ session.date }}</a>
+        {{ session.date }}
       </div>
     </div>
     {% endfor %}
   </div>
-
-  <!-- {% if training_sessions_completed %}
-  <div class="column-block">
-    <div class="column-title">Séances complétées</div>
-    <div class="session-block">
-      <div class="session-block-title">
-        <a href="#">Titre</a>
-      </div>
-      <div class="session-block-date">
-        <a href="#">Date</a>
-      </div>
-    </div>
-  </div>
-  {% endif %} -->
 
 </div>
 
