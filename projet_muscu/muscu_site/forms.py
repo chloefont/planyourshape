@@ -1,6 +1,8 @@
 from django.forms import ModelForm
 from .models import TrainingSession, Exercise
 
+from datetime import datetime
+
 
 class SessionForm(ModelForm):
     class Meta:
@@ -29,13 +31,14 @@ class SessionCompletedForm(ModelForm):
     class Meta:
         model = TrainingSessionCompleted
         fields = ['date_completed']
+        use_required_attribute = False
 
         labels = {
             'date_completed': 'Date de la séance:',
         }
 
         widgets = {
-            'date_completed': DateInput(attrs={'type': 'date'}),
+            'date_completed': DateInput(attrs={'type': 'date', 'required': False}),
         }
 
 
@@ -50,6 +53,6 @@ class ExerciseCompletedForm(ModelForm):
         }
 
         widgets = {
-            'weight': NumberInput(attrs={'required': True}),
+            'weight': NumberInput(attrs={'required': False}),
             'comment': Textarea(attrs={'type': 'textarea', 'cols': 50, 'rows': 6}),
         }

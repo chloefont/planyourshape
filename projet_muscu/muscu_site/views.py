@@ -1,3 +1,5 @@
+from datetime import datetime
+
 from django.shortcuts import render, redirect, get_object_or_404
 from django.forms import formset_factory
 from .forms import (SessionForm, ExerciseForm, SessionCompletedForm,
@@ -8,8 +10,10 @@ from .models import TrainingSession, Exercise, TrainingSessionCompleted, Exercis
 
 def list_sessions(request):
     training_sessions = TrainingSession.objects.order_by('-date')
+    training_sessions_completed = TrainingSessionCompleted.objects.order_by('-date_completed')
     context = {
         'training_sessions': training_sessions,
+        'training_sessions_completed': training_sessions_completed,
     }
 
     return render(request, 'muscu_site/sessions_list.html', context)
@@ -61,27 +65,36 @@ def complete_session(request, session_id):
     list_exercice_form = []
 
     if request.method == 'POST':
-        session_completed_form = SessionCompletedForm(request.POST)
-        exercise_completed_formset = ExerciseCompletedFormSet(request.POST)
 
-        if session_completed_form.is_valid() and exercise_completed_formset.is_valid():
+        if 'button_save' in request.POST:
+            session_completed_form = SessionCompletedForm(request.POST)
+            exercise_completed_formset = ExerciseCompletedFormSet(request.POST)
 
-            session_completed = TrainingSessionCompleted.objects.create(
-                training_session=training_session,
-                date_completed=session_completed_form.cleaned_data['date_completed'],
-            )
+            if session_completed_form.is_valid() and exercise_completed_formset.is_valid():
 
-            number_ex = 0
-            for exercise_completed_form in exercise_completed_formset:
-                ExerciseCompleted.objects.create(
-                    training_session_completed=session_completed,
-                    exercise=exercises[number_ex],
-                    weight=exercise_completed_form.cleaned_data['weight'],
-                    comment=exercise_completed_form.cleaned_data['comment'],
+                session_completed = TrainingSessionCompleted.objects.create(
+                    training_session=training_session,
+                    date_completed=session_completed_form.cleaned_data['date_completed'],
                 )
-                number_ex += 1
 
-            return redirect('sessions_list')
+                number_ex = 0
+                for exercise_completed_form in exercise_completed_formset:
+                    # if exercise_completed_form.cleaned_data['weight']:
+                    #     completed_weight = exercise_completed_form.cleaned_data['weight']
+                    # else:
+                    #     completed_weight = 0
+                    ExerciseCompleted.objects.create(
+                        training_session_completed=session_completed,
+                        exercise=exercises[number_ex],
+                        weight=exercise_completed_form.cleaned_data['weight'],
+                        comment=exercise_completed_form.cleaned_data['comment'],
+                    )
+                    number_ex += 1
+
+        elif 'button_delete' in request.POST:
+            return redirect('delete_session', session_id)
+
+        return redirect('sessions_list')
 
     else:
         session_completed_form = SessionCompletedForm()
@@ -101,3 +114,25 @@ def complete_session(request, session_id):
     }
 
     return render(request, 'muscu_site/session_complete.html', context)
+
+
+def delete_session(request, session_id):
+    training_session = get_object_or_404(TrainingSession, id=session_id)
+    exercises = Exercise.objects.all().filter(
+        training_session=training_session
+    )
+
+    if request.method == 'POST':
+        if 'button_cancel' in request.POST:
+            return redirect('complete_session', session_id)
+
+        elif 'button_delete' in request.POST:
+            training_session.delete()
+            return redirect('sessions_list')
+
+    context = {
+        'training_session': training_session,
+        'exercises': exercises,
+    }
+
+    return render(request, 'muscu_site/session_delete_confirmation.html', context)

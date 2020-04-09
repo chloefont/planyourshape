@@ -16,6 +16,9 @@
       {{ session_completed_form.date_completed.label }}<br>
       {{ session_completed_form.date_completed }}
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> CHLOE-3 confirmation message when try to delete a session
       {% include "muscu_site/_field_errors.html" with field=session_completed_form.date_completed extra_classes="error-validation-list--white" %}
     </div>
   </div>
@@ -84,10 +87,10 @@
 
   <div class="block-button">
     <div class="on-left">
-      <a href="{% url 'sessions_list' %}" class="button-submit--white">Supprimer la séance</a>
+      <button type="submit" name="button_delete" class="button-submit--white button-delete">Supprimer la séance</button>
     </div>
     <div class="on-right">
-      <button type="submit" name="button" class="button-submit--white">Enregistrer</button>
+      <button type="submit" name="button_save" class="button-submit--white">Enregistrer</button>
     </div>
   </div>
 
@@ -96,12 +99,23 @@
 <script type="text/javascript">
   let buttonDelete = document.querySelector('.button-delete');
 
+<<<<<<< HEAD
   function takeOffRequired(){
     let dateForm = document.querySelector('.date');
     dateForm.innerHTML = dateForm.innerHTML.replace('required=""', '');
   }
 
   buttonDelete.addEventListener('click', takeOffRequired);
+=======
+  function askConfirmation(){
+    let confirmation = confirm('Êtes-vous sûr de vouloir supprimer votre séance? En acceptant, votre séance ne figurera
+                                plus dans la liste des séances planifiées.');
+    if (confirmation == true):
+        console.log('coucou');
+  }
+
+  buttonDelete.addEventListener('click', askConfirmation);
+>>>>>>> CHLOE-3 confirmation message when try to delete a session
 </script>
 
 {% endblock %}

@@ -32,7 +32,7 @@ class TrainingSessionCompleted(models.Model):
 
 class ExerciseCompleted(models.Model):
     training_session_completed = models.ForeignKey(
-        TrainingSessionCompleted, on_delete=models.PROTECT, related_name='exercise_completed'
+        TrainingSessionCompleted, on_delete=models.CASCADE, related_name='exercise_completed'
     )
     exercise = models.ForeignKey(
         Exercise, on_delete=models.PROTECT, related_name='exercise_completed'
