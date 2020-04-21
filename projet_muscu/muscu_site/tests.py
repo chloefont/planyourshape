@@ -1,10 +1,28 @@
-import datetime
-
 from django.test import TestCase
-from django.test import Client
 from django.urls import reverse
-from .forms import SessionForm, ExerciseForm
-from .models import TrainingSession, Exercise
+
+from .models import TrainingSession
+
+
+class SessionListTest(TestCase):
+
+    def test_sessions_in_list_ordered_by_time(self):
+        TrainingSession.objects.create(
+            session_title='recent session',
+            date='2020-04-21'
+        )
+        TrainingSession.objects.create(
+            session_title='old session',
+            date='2020-03-01'
+        )
+
+        response = self.client.get(reverse('list_sessions'))
+        self.assertIn('training_sessions', response.context[0])
+        data = response.context['training_sessions']
+
+        self.assertIn(data.all()[0].session_title, 'recent session')
+        self.assertIn(data.all()[1].session_title, 'old session')
+
 
 class SessionCreationTest(TestCase):
 
@@ -19,7 +37,6 @@ class SessionCreationTest(TestCase):
             'form-INITIAL_FORMS': '0',
             'form-MAX_NUM_FORMS': '10',
         })
-
 
         self.assertFormsetError(
             self.response,

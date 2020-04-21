@@ -1,6 +1,6 @@
-import datetime
-from django.forms import ModelForm, ValidationError, DateInput
+from django.forms import ModelForm
 from .models import TrainingSession, Exercise
+
 
 class SessionForm(ModelForm):
     class Meta:
@@ -10,6 +10,7 @@ class SessionForm(ModelForm):
         labels = {
             'session_title': 'Titre de la séance:',
         }
+
 
 class ExerciseForm(ModelForm):
     class Meta:

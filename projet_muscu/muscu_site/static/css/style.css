@@ -195,7 +195,7 @@ html {
 }
 
 .session-block a {
-  color: #ce3a3a;
+  color: var(--main-color);
   padding: 20px;
   text-decoration: none;
 }
