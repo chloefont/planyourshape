@@ -5,6 +5,7 @@ from django.db import models
 class TrainingSession(models.Model):
     session_title = models.CharField(max_length=100)
     date = models.DateField(default=datetime.date.today)
+    visible = models.BooleanField(default=True)
 
     def __str__(self):
         return self.session_title
@@ -25,7 +26,7 @@ class Exercise(models.Model):
 
 class TrainingSessionCompleted(models.Model):
     training_session = models.ForeignKey(
-        TrainingSession, on_delete=models.PROTECT, related_name='session_completed'
+        TrainingSession, on_delete=models.PROTECT, related_name='session_completed', blank=True
     )
     date_completed = models.DateField(default=datetime.date.today)
 
@@ -35,7 +36,7 @@ class ExerciseCompleted(models.Model):
         TrainingSessionCompleted, on_delete=models.CASCADE, related_name='exercise_completed'
     )
     exercise = models.ForeignKey(
-        Exercise, on_delete=models.PROTECT, related_name='exercise_completed'
+        Exercise, on_delete=models.PROTECT, related_name='exercise_completed', blank=True
     )
     weight = models.PositiveIntegerField(default=0)
     comment = models.CharField(max_length=800, blank=True)

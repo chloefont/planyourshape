@@ -86,3 +86,11 @@ class SessionCreationTest(TestCase):
             'break_time',
             'Saisissez un nombre entier.'
         )
+
+
+class SessionCompleteTest(TestCase):
+
+    def test_delete_button_leads_to_confirmation_page(self):
+        self.response = self.client.post(reverse('complete_session'), data={
+            'button_save'
+        })

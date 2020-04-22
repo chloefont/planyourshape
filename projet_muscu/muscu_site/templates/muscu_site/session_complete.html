@@ -100,6 +100,7 @@
   let buttonDelete = document.querySelector('.button-delete');
 
 <<<<<<< HEAD
+<<<<<<< HEAD
   function takeOffRequired(){
     let dateForm = document.querySelector('.date');
     dateForm.innerHTML = dateForm.innerHTML.replace('required=""', '');
@@ -116,6 +117,14 @@
 
   buttonDelete.addEventListener('click', askConfirmation);
 >>>>>>> CHLOE-3 confirmation message when try to delete a session
+=======
+  function takeOffRequired(){
+    let dateForm = document.querySelector('.date');
+    dateForm.innerHTML = dateForm.innerHTML.replace('required=""', '');
+  }
+
+  buttonDelete.addEventListener('click', takeOffRequired);
+>>>>>>> CHLOE-3 errors corrections
 </script>
 
 {% endblock %}

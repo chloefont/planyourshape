@@ -1,5 +1,3 @@
-from datetime import datetime
-
 from django.shortcuts import render, redirect, get_object_or_404
 from django.forms import formset_factory
 from .forms import (SessionForm, ExerciseForm, SessionCompletedForm,
@@ -7,9 +5,8 @@ from .forms import (SessionForm, ExerciseForm, SessionCompletedForm,
 from .models import TrainingSession, Exercise, TrainingSessionCompleted, ExerciseCompleted
 
 
-
-def list_sessions(request):
-    training_sessions = TrainingSession.objects.order_by('-date')
+def sessions_list(request):
+    training_sessions = TrainingSession.objects.filter(visible=True).order_by('-date')
     training_sessions_completed = TrainingSessionCompleted.objects.order_by('-date_completed')
     context = {
         'training_sessions': training_sessions,
@@ -79,17 +76,14 @@ def complete_session(request, session_id):
 
                 number_ex = 0
                 for exercise_completed_form in exercise_completed_formset:
-                    # if exercise_completed_form.cleaned_data['weight']:
-                    #     completed_weight = exercise_completed_form.cleaned_data['weight']
-                    # else:
-                    #     completed_weight = 0
-                    ExerciseCompleted.objects.create(
-                        training_session_completed=session_completed,
-                        exercise=exercises[number_ex],
-                        weight=exercise_completed_form.cleaned_data['weight'],
-                        comment=exercise_completed_form.cleaned_data['comment'],
-                    )
-                    number_ex += 1
+                    if exercise_completed_form.cleaned_data:
+                        ExerciseCompleted.objects.create(
+                            training_session_completed=session_completed,
+                            exercise=exercises[number_ex],
+                            weight=exercise_completed_form.cleaned_data['weight'],
+                            comment=exercise_completed_form.cleaned_data['comment'],
+                        )
+                        number_ex += 1
 
         elif 'button_delete' in request.POST:
             return redirect('delete_session', session_id)
@@ -127,7 +121,8 @@ def delete_session(request, session_id):
             return redirect('complete_session', session_id)
 
         elif 'button_delete' in request.POST:
-            training_session.delete()
+            training_session.visible = False
+            training_session.save()
             return redirect('sessions_list')
 
     context = {
