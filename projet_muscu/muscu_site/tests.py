@@ -20,8 +20,8 @@ class SessionListTest(TestCase):
         self.assertIn('training_sessions', response.context[0])
         data = response.context['training_sessions']
 
-        self.assertIn(data.all()[0].session_title, 'recent session')
-        self.assertIn(data.all()[1].session_title, 'old session')
+        self.assertEqual(data.all()[0].session_title, 'recent session')
+        self.assertEqual(data.all()[1].session_title, 'old session')
 
 
 class SessionCreationTest(TestCase):
