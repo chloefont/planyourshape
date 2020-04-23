@@ -26,7 +26,7 @@ class Exercise(models.Model):
 
 class TrainingSessionCompleted(models.Model):
     training_session = models.ForeignKey(
-        TrainingSession, on_delete=models.PROTECT, related_name='session_completed', blank=True
+        TrainingSession, on_delete=models.PROTECT, related_name='session_completed'
     )
     date_completed = models.DateField(default=datetime.date.today)
 

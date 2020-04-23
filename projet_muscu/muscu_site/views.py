@@ -62,12 +62,14 @@ def complete_session(request, session_id):
     list_exercice_form = []
 
     if request.method == 'POST':
+        if 'button_delete' in request.POST:
+            return redirect('delete_session', session_id)
+        session_completed_form = SessionCompletedForm(request.POST)
+        exercise_completed_formset = ExerciseCompletedFormSet(request.POST)
 
-        if 'button_save' in request.POST:
-            session_completed_form = SessionCompletedForm(request.POST)
-            exercise_completed_formset = ExerciseCompletedFormSet(request.POST)
+        if session_completed_form.is_valid() and exercise_completed_formset.is_valid():
 
-            if session_completed_form.is_valid() and exercise_completed_formset.is_valid():
+            if 'button_save' in request.POST:
 
                 session_completed = TrainingSessionCompleted.objects.create(
                     training_session=training_session,
@@ -85,10 +87,7 @@ def complete_session(request, session_id):
                         )
                         number_ex += 1
 
-        elif 'button_delete' in request.POST:
-            return redirect('delete_session', session_id)
-
-        return redirect('sessions_list')
+                    return redirect('sessions_list')
 
     else:
         session_completed_form = SessionCompletedForm()
@@ -121,8 +120,12 @@ def delete_session(request, session_id):
             return redirect('complete_session', session_id)
 
         elif 'button_delete' in request.POST:
-            training_session.visible = False
-            training_session.save()
+            if training_session.session_completed:
+                training_session.visible = False
+                training_session.save()
+            else:
+                training_session.delete()
+
             return redirect('sessions_list')
 
     context = {
