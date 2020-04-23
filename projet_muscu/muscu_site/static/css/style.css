@@ -59,6 +59,7 @@ html {
   border-radius: var(--border-radius-button);
   font-size: var(--font-size-button);
   cursor: pointer;
+  text-decoration: none;
 }
 
 .button-submit:hover {

@@ -4,9 +4,6 @@ from django.urls import reverse
 from muscu_site.models import TrainingSession, Exercise, TrainingSessionCompleted, ExerciseCompleted
 
 
-from .models import TrainingSession
-
-
 class SessionListTest(TestCase):
 
     def test_sessions_in_list_ordered_by_time(self):

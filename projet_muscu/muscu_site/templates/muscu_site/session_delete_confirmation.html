@@ -16,7 +16,7 @@
     {% csrf_token %}
     <div class="block-button">
       <div class="on-left">
-        <button type="submit" name="button_cancel" class="button-submit">Annuler</button>
+        <a href="{% url 'complete_session' training_session.id %}" class="button-submit">Annuler</a>
       </div>
       <div class="on-right">
         <button type="submit" name="button_delete" class="button-submit ">Supprimer</button>

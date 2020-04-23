@@ -9,19 +9,13 @@
   </div>
 </div>
 
-<div class="button-create-session text-align-center">
-  <a href="{% url 'create_session' %}">Créer une nouvelle séance</a>
-</div>
+<a href="{% url 'create_session' %}" class="button-create-session text-align-center">Créer une nouvelle séance</a>
 
 <div class="page-block">
 
-<div class="column-block">
-  <div class="column-title">Séances planifiées</div>
-    {% for session in training_sessions %}
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
->>>>>>> CHLOE-3 confirmation message when try to delete a session
+  <div class="column-block">
+    <div class="column-title">Séances planifiées</div>
+      {% for session in training_sessions %}
       <div class="session-block">
         <div class="session-block-title">
           <a href="{% url 'complete_session' session.id %}">{{ session.session_title }}</a>
@@ -29,20 +23,8 @@
         <div class="session-block-date">
           <a href="{% url 'complete_session' session.id %}">{{ session.date }}</a>
         </div>
-<<<<<<< HEAD
-=======
-    <div class="session-block">
-      <div class="session-block-title">
-        <a href="{% url 'complete_session' session.id %}">{{ session.session_title }}</a>
       </div>
-      <div class="session-block-date">
-        <a href="{% url 'complete_session' session.id %}">{{ session.date }}</a>
->>>>>>> CHLOE-3 session display in template
-      </div>
-=======
-      </div>
->>>>>>> CHLOE-3 confirmation message when try to delete a session
-    {% endfor %}
+      {% endfor %}
   </div>
 
   {% if training_sessions_completed %}

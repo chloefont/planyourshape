@@ -53,41 +53,34 @@ def create_session(request):
 
 def complete_session(request, session_id):
     training_session = get_object_or_404(TrainingSession, id=session_id)
-    exercises = Exercise.objects.all().filter(
-        training_session=training_session
-    )
+    exercises = training_session.exercises.all()
     number_exercises = len(exercises)
     ExerciseCompletedFormSet = formset_factory(ExerciseCompletedForm,
                                                extra=number_exercises)
     list_exercice_form = []
 
     if request.method == 'POST':
-        if 'button_delete' in request.POST:
-            return redirect('delete_session', session_id)
         session_completed_form = SessionCompletedForm(request.POST)
         exercise_completed_formset = ExerciseCompletedFormSet(request.POST)
 
         if session_completed_form.is_valid() and exercise_completed_formset.is_valid():
+            session_completed = TrainingSessionCompleted.objects.create(
+                training_session=training_session,
+                date_completed=session_completed_form.cleaned_data['date_completed'],
+            )
 
-            if 'button_save' in request.POST:
+            number_ex = 0
+            for exercise_completed_form in exercise_completed_formset:
+                if exercise_completed_form.cleaned_data:
+                    ExerciseCompleted.objects.create(
+                        training_session_completed=session_completed,
+                        exercise=exercises[number_ex],
+                        weight=exercise_completed_form.cleaned_data['weight'],
+                        comment=exercise_completed_form.cleaned_data['comment'],
+                    )
+                    number_ex += 1
 
-                session_completed = TrainingSessionCompleted.objects.create(
-                    training_session=training_session,
-                    date_completed=session_completed_form.cleaned_data['date_completed'],
-                )
-
-                number_ex = 0
-                for exercise_completed_form in exercise_completed_formset:
-                    if exercise_completed_form.cleaned_data:
-                        ExerciseCompleted.objects.create(
-                            training_session_completed=session_completed,
-                            exercise=exercises[number_ex],
-                            weight=exercise_completed_form.cleaned_data['weight'],
-                            comment=exercise_completed_form.cleaned_data['comment'],
-                        )
-                        number_ex += 1
-
-                    return redirect('sessions_list')
+                return redirect('sessions_list')
 
     else:
         session_completed_form = SessionCompletedForm()

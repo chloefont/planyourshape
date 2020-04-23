@@ -15,29 +15,13 @@
     <div class="date">
       {{ session_completed_form.date_completed.label }}<br>
       {{ session_completed_form.date_completed }}
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
->>>>>>> CHLOE-3 confirmation message when try to delete a session
       {% include "muscu_site/_field_errors.html" with field=session_completed_form.date_completed extra_classes="error-validation-list--white" %}
     </div>
   </div>
 
-<<<<<<< HEAD
   {{ exercise_completed_formset.management_form }}
 
   {% for exercise, form in list_exercice_form %}
-=======
-  {% for exercise in exercises %}
->>>>>>> CHLOE-3 session display in template
-=======
-    </div>
-  </div>
-
-  {{ exercise_completed_formset.management_form }}
-
-  {% for exercise, form in list_exercice_form %}
->>>>>>> CHLOE-3 session completed added in database
   <div class="block-exercises">
 
     <div class="title-exercise-complete">
@@ -56,14 +40,7 @@
       <div class="exercice-info-item">
         {{ form.weight.label }}
         {{ form.weight }}
-<<<<<<< HEAD
-<<<<<<< HEAD
         {% include "muscu_site/_field_errors.html" with field=form.weight extra_classes="error-validation-list--red" %}
-=======
->>>>>>> CHLOE-3 session completed added in database
-=======
-        {% include "muscu_site/_field_errors.html" with field=form.weight extra_classes="error-validation-list--red" %}
->>>>>>> CHLOE-4 exceptions raised and tests written
       </div>
     </div>
 
@@ -76,22 +53,10 @@
 
   </div>
   {% endfor %}
-<<<<<<< HEAD
 
   <div class="block-button">
     <div class="on-left">
-      <button type="submit" name="button_delete" class="button-submit--white button-delete">Supprimer la séance</button>
-    </div>
-    <div class="on-right">
-      <button type="submit" name="button_save" class="button-submit--white">Enregistrer</button>
-    </div>
-  </div>
-=======
->>>>>>> CHLOE-3 session display in template
-
-  <div class="block-button">
-    <div class="on-left">
-      <button type="submit" name="button_delete" class="button-submit--white button-delete">Supprimer la séance</button>
+      <a href="{% url 'delete_session' training_session.id %}" class="button-submit--white button-delete">Supprimer la séance</a>
     </div>
     <div class="on-right">
       <button type="submit" name="button_save" class="button-submit--white">Enregistrer</button>
@@ -103,32 +68,12 @@
 <script type="text/javascript">
   let buttonDelete = document.querySelector('.button-delete');
 
-<<<<<<< HEAD
-<<<<<<< HEAD
   function takeOffRequired(){
     let dateForm = document.querySelector('.date');
     dateForm.innerHTML = dateForm.innerHTML.replace('required=""', '');
   }
 
   buttonDelete.addEventListener('click', takeOffRequired);
-=======
-  function askConfirmation(){
-    let confirmation = confirm('Êtes-vous sûr de vouloir supprimer votre séance? En acceptant, votre séance ne figurera
-                                plus dans la liste des séances planifiées.');
-    if (confirmation == true):
-        console.log('coucou');
-  }
-
-  buttonDelete.addEventListener('click', askConfirmation);
->>>>>>> CHLOE-3 confirmation message when try to delete a session
-=======
-  function takeOffRequired(){
-    let dateForm = document.querySelector('.date');
-    dateForm.innerHTML = dateForm.innerHTML.replace('required=""', '');
-  }
-
-  buttonDelete.addEventListener('click', takeOffRequired);
->>>>>>> CHLOE-3 errors corrections
 </script>
 
 {% endblock %}
