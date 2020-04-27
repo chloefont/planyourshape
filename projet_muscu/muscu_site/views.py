@@ -3,8 +3,18 @@ from django.forms import formset_factory
 from .forms import SessionForm, ExerciseForm
 from .models import TrainingSession, Exercise
 
+
+def list_sessions(request):
+    training_sessions = TrainingSession.objects.order_by('-date')
+    context = {
+        'training_sessions': training_sessions,
+    }
+
+    return render(request, 'muscu_site/sessions_list.html', context)
+
+
 def create_session(request):
-    ExerciseFormSet = formset_factory(ExerciseForm, extra = 3)
+    ExerciseFormSet = formset_factory(ExerciseForm, extra=3)
     if request.method == 'POST':
         session_form = SessionForm(request.POST)
         exercise_formset = ExerciseFormSet(request.POST)
@@ -13,22 +23,22 @@ def create_session(request):
 
             session = TrainingSession.objects.create(
                 session_title=session_form.cleaned_data['session_title'],
-                date=session_form.cleaned_data['date'],
             )
-
 
             for ex in exercise_formset.forms:
                 if ex.cleaned_data:
                     Exercise.objects.create(
-                        training_session = session,
-                        exercise = ex.cleaned_data['exercise'],
-                        sets = ex.cleaned_data['sets'],
-                        reps = ex.cleaned_data['reps'],
-                        break_time = ex.cleaned_data['break_time'],
+                        training_session=session,
+                        exercise=ex.cleaned_data['exercise'],
+                        sets=ex.cleaned_data['sets'],
+                        reps=ex.cleaned_data['reps'],
+                        break_time=ex.cleaned_data['break_time'],
                     )
-            return redirect('create_session')
+
+            return redirect('list_sessions')
+
     else:
-        session_form = SessionForm();
+        session_form = SessionForm()
         exercise_formset = ExerciseFormSet()
 
     context = {
