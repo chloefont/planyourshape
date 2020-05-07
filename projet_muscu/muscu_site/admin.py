@@ -1,6 +1,7 @@
 from django.contrib import admin
-from django.utils.safestring import mark_safe
-from muscu_site.models import TrainingSession, Exercise, TrainingSessionCompleted, ExerciseCompleted
+from django.utils.html import format_html
+from django.urls import reverse
+from .models import TrainingSession, Exercise, TrainingSessionCompleted, ExerciseCompleted
 
 
 class ExerciseInLine(admin.TabularInline):
@@ -16,18 +17,22 @@ class ExerciseCompletedInLine(admin.TabularInline):
 
 
 class TrainingSessionCompletedAdmin(admin.ModelAdmin):
-    list_display = ('get_session_title', 'get_date', 'date_completed')
+    list_display = ('get_session_title', 'get_date', 'date_completed', 'training_session_link')
     inlines = [ExerciseCompletedInLine]
 
     def get_session_title(self, obj):
         return obj.training_session.session_title
 
+    get_session_title.admin_order_field = 'training_session__session_title'
+
     def get_date(self, obj):
         return obj.training_session.date
 
+    get_date.admin_order_field = 'training_session__date'
+
     def training_session_link(self, obj):
-        url = '/admin/muscu_site/trainingsession/' + obj.id + '/change/'
-        return mark_safe("<a href='{}'>{}</a>".format(url, obj.training_session.session_title))
+        url = reverse('admin:muscu_site_trainingsessioncompleted_change', kwargs={'object_id': obj.id})
+        return format_html("<a href='{}'>{}</a>", url, obj.training_session.session_title)
 
     get_session_title.short_description = 'Titre de la séance'
     get_date.short_description = 'Date de création'

@@ -37,15 +37,15 @@
       <div class="exercise-info-item">
         Temps de pause: {{ exercise.break_time }}sec.
       </div>
-      <div class="exercice-info-item">
+    </div>
+
+    <div class="exercice-info-sup-row">
+      <div class="exercise-info-sup">
         {{ form.weight.label }}
         {{ form.weight }}
         {% include "muscu_site/_field_errors.html" with field=form.weight extra_classes="error-validation-list--red" %}
       </div>
-    </div>
-
-    <div class="exercice-info-sup-row">
-      <div class="exercice-info-sup">
+      <div class="exercise-info-sup">
         {{ form.comment.label }}<br>
         {{ form.comment }}
       </div>
@@ -54,7 +54,7 @@
   </div>
   {% endfor %}
 
-  <div class="block-button">
+  <div class="block-button ">
     <div class="on-left">
       <a href="{% url 'delete_session' training_session.id %}" class="button-submit--white button-delete">Supprimer la séance</a>
     </div>
@@ -64,16 +64,5 @@
   </div>
 
 </form>
-
-<script type="text/javascript">
-  let buttonDelete = document.querySelector('.button-delete');
-
-  function takeOffRequired(){
-    let dateForm = document.querySelector('.date');
-    dateForm.innerHTML = dateForm.innerHTML.replace('required=""', '');
-  }
-
-  buttonDelete.addEventListener('click', takeOffRequired);
-</script>
 
 {% endblock %}

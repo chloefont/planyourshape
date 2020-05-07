@@ -38,7 +38,7 @@ def create_session(request):
                         break_time=ex.cleaned_data['break_time'],
                     )
 
-            return redirect('list_sessions')
+            return redirect('sessions_list')
 
     else:
         session_form = SessionForm()
@@ -109,17 +109,12 @@ def delete_session(request, session_id):
     )
 
     if request.method == 'POST':
-        if 'button_cancel' in request.POST:
-            return redirect('complete_session', session_id)
-
-        elif 'button_delete' in request.POST:
-            if training_session.session_completed:
-                training_session.visible = False
-                training_session.save()
-            else:
-                training_session.delete()
-
-            return redirect('sessions_list')
+        if training_session.session_completed:
+            training_session.visible = False
+            training_session.save()
+        else:
+            training_session.delete()
+        return redirect('sessions_list')
 
     context = {
         'training_session': training_session,

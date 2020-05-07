@@ -36,7 +36,7 @@ class ExerciseCompleted(models.Model):
         TrainingSessionCompleted, on_delete=models.CASCADE, related_name='exercise_completed'
     )
     exercise = models.ForeignKey(
-        Exercise, on_delete=models.PROTECT, related_name='exercise_completed', blank=True
+        Exercise, on_delete=models.PROTECT, related_name='exercise_completed'
     )
-    weight = models.PositiveIntegerField(default=0)
-    comment = models.CharField(max_length=800, blank=True)
+    weight = models.PositiveIntegerField(default=0, blank=True)
+    comment = models.TextField(blank=True)

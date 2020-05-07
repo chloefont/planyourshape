@@ -298,17 +298,21 @@ html {
   color: black;
 }
 
-.exercice-info-sup-row {
+.exercise-info-sup-row {
   padding: var(--spacing-medium);
 }
 
-.exercice-info-sup,.exercice-info-item {
+.exercise-info-sup {
   color: var(--main-color);
+  padding-top: var(--spacing-small);
+  padding-bottom: var(--spacing-small);
 }
 
-.exercice-info-item input, .exercice-info-sup textarea {
+.exercise-info-sup input, .exercise-info-sup textarea {
   font-size: var(--font-size-text);
   font-family: sans-serif;
+  margin-top: var(--spacing-smaller);
+  margin-bottom: var(--spacing-smaller);
 }
 
 /*--
