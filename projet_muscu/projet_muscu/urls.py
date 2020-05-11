@@ -26,6 +26,7 @@ urlpatterns = [
     path('sessions/create/', muscu_site.views.create_session, name='create_session'),
     path('sessions/complete/<int:session_id>/', muscu_site.views.complete_session, name='complete_session'),
     path('sessions/delete/<int:session_id>', muscu_site.views.delete_session, name='delete_session'),
+    path('sessions/summary/<int:session_completed_id>', muscu_site.views.session_summary, name='session_summary'),
 ]
 
 if settings.DEBUG:

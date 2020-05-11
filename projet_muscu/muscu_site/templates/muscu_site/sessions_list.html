@@ -30,8 +30,10 @@
     <div class="column-title">Séances complétées</div>
     {% for session_completed in training_sessions_completed %}
       <div class="session-block">
-        <span class="session-block-title">{{ session_completed.training_session.session_title }}</span><br>
-        <span class="session-block-date">{{ session_completed.date_completed }}</span>
+        <a href="{% url 'session_summary' session_completed.id %}">
+          <span class="session-block-title">{{ session_completed.training_session.session_title }}</span><br>
+          <span class="session-block-date">{{ session_completed.date_completed }}</span>
+        </a>
       </div>
     {% endfor %}
   </div>
