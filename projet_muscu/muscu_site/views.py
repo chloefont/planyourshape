@@ -80,7 +80,7 @@ def complete_session(request, session_id):
                     )
                     number_ex += 1
 
-                return redirect('sessions_list')
+            return redirect('sessions_list')
 
     else:
         session_completed_form = SessionCompletedForm()
