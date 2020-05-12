@@ -5,7 +5,7 @@
 {% block title %}Suppression de séance{% endblock %}
 
 {% block content %}
-<div class="block-exercises text-align-center">
+<div class="block-exercise text-align-center">
   <p class="very-important-text">
     Êtes-vous sûr de vouloir supprimer la séance {{ training_session.session_title }}?
   </p>
@@ -14,12 +14,12 @@
   </p>
   <form method="post">
     {% csrf_token %}
-    <div class="block-button">
+    <div class="align-space-between">
       <div class="on-left">
-        <a href="{% url 'complete_session' training_session.id %}" class="button-submit">Annuler</a>
+        <a href="{% url 'complete_session' training_session.id %}" class="second-button--red">Annuler</a>
       </div>
       <div class="on-right">
-        <button type="submit" name="button_delete" class="button-submit ">Supprimer</button>
+        <button type="submit" name="button_delete" class="main-button--red ">Supprimer</button>
       </div>
     </div>
   </form>

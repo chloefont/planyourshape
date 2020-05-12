@@ -1,4 +1,4 @@
-from django.forms import ModelForm, DateInput, Textarea
+from django.forms import ModelForm, DateInput, Textarea, HiddenInput
 from .models import TrainingSession, Exercise, TrainingSessionCompleted, ExerciseCompleted
 
 
@@ -42,7 +42,7 @@ class SessionCompletedForm(ModelForm):
 class ExerciseCompletedForm(ModelForm):
     class Meta:
         model = ExerciseCompleted
-        fields = ['weight', 'comment']
+        fields = ['exercise', 'weight', 'comment']
 
         labels = {
             'weight': 'Poids:',
@@ -50,5 +50,6 @@ class ExerciseCompletedForm(ModelForm):
         }
 
         widgets = {
+            'exercise': HiddenInput(attrs={'type': 'hidden'}),
             'comment': Textarea(attrs={'type': 'textarea', 'cols': 50, 'rows': 6}),
         }

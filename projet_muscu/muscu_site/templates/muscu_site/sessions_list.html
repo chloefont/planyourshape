@@ -16,14 +16,12 @@
   <div class="column-block">
     <div class="column-title">Séances planifiées</div>
       {% for session in training_sessions %}
-      <div class="session-block">
-        <div class="session-block-title">
-          <a href="{% url 'complete_session' session.id %}">{{ session.session_title }}</a>
+        <div class="session-block">
+          <a href="{% url 'complete_session' session.id %}">
+            <span class="session-block-title">{{ session.session_title }}</span><br>
+            <span class="session-block-date">{{ session.date }}</span>
+          </a>
         </div>
-        <div class="session-block-date">
-          <a href="{% url 'complete_session' session.id %}">{{ session.date }}</a>
-        </div>
-      </div>
       {% endfor %}
   </div>
 
@@ -32,12 +30,8 @@
     <div class="column-title">Séances complétées</div>
     {% for session_completed in training_sessions_completed %}
       <div class="session-block">
-        <div class="session-block-title">
-          {{ session_completed.training_session.session_title }}
-        </div>
-        <div class="session-block-date">
-          {{ session_completed.date_completed }}
-        </div>
+        <span class="session-block-title">{{ session_completed.training_session.session_title }}</span><br>
+        <span class="session-block-date">{{ session_completed.date_completed }}</span>
       </div>
     {% endfor %}
   </div>

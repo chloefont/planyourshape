@@ -26,17 +26,17 @@ class Exercise(models.Model):
 
 class TrainingSessionCompleted(models.Model):
     training_session = models.ForeignKey(
-        TrainingSession, on_delete=models.PROTECT, related_name='session_completed'
+        TrainingSession, on_delete=models.PROTECT, related_name='sessions_completed'
     )
     date_completed = models.DateField(default=datetime.date.today)
 
 
 class ExerciseCompleted(models.Model):
     training_session_completed = models.ForeignKey(
-        TrainingSessionCompleted, on_delete=models.CASCADE, related_name='exercise_completed'
+        TrainingSessionCompleted, on_delete=models.CASCADE, related_name='exercises_completed'
     )
     exercise = models.ForeignKey(
-        Exercise, on_delete=models.PROTECT, related_name='exercise_completed'
+        Exercise, on_delete=models.PROTECT, related_name='exercises_completed'
     )
     weight = models.PositiveIntegerField(default=0, blank=True)
     comment = models.TextField(blank=True)
