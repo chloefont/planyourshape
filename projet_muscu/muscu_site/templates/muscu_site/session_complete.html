@@ -22,7 +22,11 @@
   {{ exercise_completed_formset.management_form }}
 
   {% for exercise, form in list_exercise_form %}
+<<<<<<< HEAD
   <div class="block-exercise">
+=======
+  <div class="block-exercises">
+>>>>>>> CHLOE-5 delete button and tests added
 
     <div class="title-exercise-complete">
       {{ exercise.exercise }}
@@ -57,7 +61,11 @@
 
   <div class="align-space-between"">
     <div class="on-left">
+<<<<<<< HEAD
       <a href="{% url 'delete_session' training_session.id %}" class="second-button--white">Supprimer la séance</a>
+=======
+      <a href="{% url 'delete_session' session_type='planned' session_id=training_session.id %}" class="button-submit--white button-delete">Supprimer la séance</a>
+>>>>>>> CHLOE-5 delete button and tests added
     </div>
     <div class="on-right">
       <button type="submit" name="button_save" class="main-button--white">Enregistrer</button>

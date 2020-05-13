@@ -151,3 +151,43 @@ class SessionCompleteTest(TestCase):
             'weight',
             'Saisissez un nombre entier.'
         )
+
+
+class SessionSummaryTest(TestCase):
+
+    def setUp(self):
+        training_session = TrainingSession.objects.create(
+            session_title='Ma Session',
+            date='2020-01-01'
+        )
+        exercise_1 = Exercise.objects.create(
+            exercise='Exercice 1',
+            training_session=training_session
+        )
+        exercise_2 = Exercise.objects.create(
+            exercise='Exercice 2',
+            training_session=training_session
+        )
+
+        training_session_completed = TrainingSessionCompleted.objects.create(
+            training_session=training_session,
+            date_completed='2020-04-03'
+        )
+        ExerciseCompleted.objects.create(
+            training_session_completed=training_session_completed,
+            exercise=exercise_1,
+        )
+        ExerciseCompleted.objects.create(
+            training_session_completed=training_session_completed,
+            exercise=exercise_2,
+        )
+
+    def test_all_exercises_displayed(self):
+        training_session_completed = TrainingSessionCompleted.objects.get(date_completed='2020-04-03')
+        response = self.client.get(reverse('session_summary', kwargs={'session_completed_id': training_session_completed.id}))
+
+        self.assertIn('exercises_completed', response.context[0])
+        data = response.context['exercises_completed']
+
+        self.assertEqual(data[0].exercise.exercise, 'Exercice 1')
+        self.assertEqual(data[1].exercise.exercise, 'Exercice 2')

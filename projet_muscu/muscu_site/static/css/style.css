@@ -230,6 +230,19 @@ input, textarea {
   margin: var(--spacing-medium);
 }
 
+.comment-block {
+  border: 2px solid var(--main-color);
+  padding: var(--spacing-small);
+  border-radius: var(--border-radius-button);
+  font-size: var(--font-size-text-smaller);
+}
+
+.comment-block div {
+  font-size: var(--font-size-text);
+  color: var(--main-color);
+  margin-bottom: var(--spacing-small);
+}
+
 /*--
   session blocks
 --*/

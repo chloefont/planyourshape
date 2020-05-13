@@ -35,8 +35,9 @@
 
     {% if exercise_completed.comment %}
     <div class="exercise-info-row">
-      <div class="exercise-info-item">
-        Comment: blablabla
+      <div class="exercise-info-item comment-block">
+        <div>Commentaire:</div>
+        {{ exercise_completed.comment }}
       </div>
     </div>
     {% endif %}
@@ -44,7 +45,14 @@
   </div>
 {% endfor %}
 
-<div class="on-right">
-  <a href="{% url 'sessions_list' %}" class="button-submit--white button-delete">Retour à la liste des séances</a>
+<div class="block-button">
+  <div class="on-left">
+    <a href="{% url 'delete_session' session_type='completed' session_id=training_session_completed.id %}"
+       class="button-submit--white button-delete">Supprimer le résumé de séance</a>
+  </div>
+  <div class="on-right">
+    <a href="{% url 'sessions_list' %}" class="button-submit--white button-delete">Retour à la liste des séances</a>
+  </div>
 </div>
+
 {% endblock %}
