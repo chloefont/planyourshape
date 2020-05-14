@@ -1,0 +1,69 @@
+{% extends "muscu_site/base.html" %}
+
+{% load static %}
+
+{% block title %}Complétion d'une séance{% endblock %}
+
+{% block content %}
+<form method="post">
+  {% csrf_token %}
+
+  <div class="block-title text-align-center">
+    <div class="title-label">
+      {{ training_session.session_title }}
+    </div>
+    <div class="date">
+      {{ session_completed_form.date_completed.label }}<br>
+      {{ session_completed_form.date_completed }}
+      {% include "muscu_site/_field_errors.html" with field=session_completed_form.date_completed extra_classes="error-validation-list--white" %}
+    </div>
+  </div>
+
+  {{ exercise_completed_formset.management_form }}
+
+  {% for exercise, form in list_exercise_form %}
+  <div class="block-exercise">
+
+    <div class="title-exercise-complete">
+      {{ exercise.exercise }}
+    </div>
+    <div class="exercise-info-row">
+      <div class="exercise-info-item">
+        {{ exercise.sets }} séries
+      </div>
+      <div class="exercise-info-item">
+        {{ exercise.reps }} répétitions
+      </div>
+      <div class="exercise-info-item">
+        Temps de pause: {{ exercise.break_time }}sec.
+      </div>
+    </div>
+
+    {{ form.exercise }}
+    <div class="exercice-info-sup-row">
+      <div class="exercise-info-sup">
+        {{ form.weight.label }}
+        {{ form.weight }}
+        {% include "muscu_site/_field_errors.html" with field=form.weight extra_classes="error-validation-list--red" %}
+      </div>
+      <div class="exercise-info-sup">
+        {{ form.comment.label }}<br>
+        {{ form.comment }}
+      </div>
+    </div>
+
+  </div>
+  {% endfor %}
+
+  <div class="align-space-between"">
+    <div class="on-left">
+      <a href="{% url 'delete_session' training_session.id %}" class="second-button--white">Supprimer la séance</a>
+    </div>
+    <div class="on-right">
+      <button type="submit" name="button_save" class="main-button--white">Enregistrer</button>
+    </div>
+  </div>
+
+</form>
+
+{% endblock %}

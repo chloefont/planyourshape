@@ -1,13 +1,17 @@
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, get_object_or_404
 from django.forms import formset_factory
-from .forms import SessionForm, ExerciseForm
-from .models import TrainingSession, Exercise
+from django.db import transaction
+from .forms import (SessionForm, ExerciseForm, SessionCompletedForm,
+                    ExerciseCompletedForm)
+from .models import TrainingSession, Exercise, TrainingSessionCompleted
 
 
-def list_sessions(request):
-    training_sessions = TrainingSession.objects.order_by('-date')
+def sessions_list(request):
+    training_sessions = TrainingSession.objects.filter(visible=True).order_by('-date')
+    training_sessions_completed = TrainingSessionCompleted.objects.order_by('-date_completed').select_related('training_session')
     context = {
         'training_sessions': training_sessions,
+        'training_sessions_completed': training_sessions_completed,
     }
 
     return render(request, 'muscu_site/sessions_list.html', context)
@@ -35,7 +39,7 @@ def create_session(request):
                         break_time=ex.cleaned_data['break_time'],
                     )
 
-            return redirect('list_sessions')
+            return redirect('sessions_list')
 
     else:
         session_form = SessionForm()
@@ -46,3 +50,60 @@ def create_session(request):
         'exercise_formset': exercise_formset,
     }
     return render(request, 'muscu_site/session_creation.html', context)
+
+
+@transaction.atomic
+def complete_session(request, session_id):
+    training_session = get_object_or_404(TrainingSession, id=session_id)
+    exercises = training_session.exercises.all()
+    ExerciseCompletedFormSet = formset_factory(ExerciseCompletedForm, extra=0)
+
+    if request.method == 'POST':
+        session_completed_form = SessionCompletedForm(request.POST)
+        exercise_completed_formset = ExerciseCompletedFormSet(request.POST)
+
+        if session_completed_form.is_valid() and exercise_completed_formset.is_valid():
+            session_completed = session_completed_form.save(commit=False)
+            session_completed.training_session = training_session
+            session_completed.save()
+            for exercise_completed_form in exercise_completed_formset:
+                exercise_completed = exercise_completed_form.save(commit=False)
+                exercise_completed.training_session_completed = session_completed
+                exercise_completed.save()
+
+            return redirect('sessions_list')
+
+    else:
+        session_completed_form = SessionCompletedForm()
+        exercise_completed_formset = ExerciseCompletedFormSet(initial=[
+            {'exercise': exercise.id} for exercise in exercises
+        ])
+
+    list_exercise_form = zip(exercises, exercise_completed_formset)
+
+    context = {
+        'training_session': training_session,
+        'session_completed_form': session_completed_form,
+        'exercise_completed_formset': exercise_completed_formset,
+        'list_exercise_form': list_exercise_form,
+    }
+
+    return render(request, 'muscu_site/session_complete.html', context)
+
+
+def delete_session(request, session_id):
+    training_session = get_object_or_404(TrainingSession, id=session_id)
+
+    if request.method == 'POST':
+        if training_session.sessions_completed:
+            training_session.visible = False
+            training_session.save()
+        else:
+            training_session.delete()
+        return redirect('sessions_list')
+
+    context = {
+        'training_session': training_session,
+    }
+
+    return render(request, 'muscu_site/session_delete_confirmation.html', context)

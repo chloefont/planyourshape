@@ -1,0 +1,29 @@
+{% extends "muscu_site/base.html" %}
+
+{% load static %}
+
+{% block title %}Suppression de séance{% endblock %}
+
+{% block content %}
+<div class="block-exercise text-align-center">
+  <p class="very-important-text">
+    Êtes-vous sûr de vouloir supprimer la séance {{ training_session.session_title }}?
+  </p>
+  <p class="important-text">
+    En supprimant cette séance, elle n'apparaitra plus dans votre liste de séances planifiées.
+  </p>
+  <form method="post">
+    {% csrf_token %}
+    <div class="align-space-between">
+      <div class="on-left">
+        <a href="{% url 'complete_session' training_session.id %}" class="second-button--red">Annuler</a>
+      </div>
+      <div class="on-right">
+        <button type="submit" name="button_delete" class="main-button--red ">Supprimer</button>
+      </div>
+    </div>
+  </form>
+  </div>
+
+
+{% endblock %}
