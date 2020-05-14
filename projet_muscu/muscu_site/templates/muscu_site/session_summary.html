@@ -13,7 +13,7 @@
 </div>
 
 {% for exercise_completed in exercises_completed %}
-  <div class="block-exercises">
+  <div class="block-exercise">
 
     <div class="title-exercise-complete">
       {{ exercise_completed.exercise.exercise }}
@@ -45,13 +45,13 @@
   </div>
 {% endfor %}
 
-<div class="block-button">
+<div class="align-space-between">
   <div class="on-left">
     <a href="{% url 'delete_session' session_type='completed' session_id=training_session_completed.id %}"
-       class="button-submit--white button-delete">Supprimer le résumé de séance</a>
+       class="second-button--white">Supprimer le résumé de séance</a>
   </div>
   <div class="on-right">
-    <a href="{% url 'sessions_list' %}" class="button-submit--white button-delete">Retour à la liste des séances</a>
+    <a href="{% url 'sessions_list' %}" class="main-button--white">Retour à la liste des séances</a>
   </div>
 </div>
 

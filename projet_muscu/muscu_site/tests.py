@@ -1,7 +1,7 @@
 from django.test import TestCase
 from django.urls import reverse
 
-from muscu_site.models import TrainingSession, Exercise, TrainingSessionCompleted
+from muscu_site.models import TrainingSession, Exercise, TrainingSessionCompleted, ExerciseCompleted
 
 
 class SessionListTest(TestCase):

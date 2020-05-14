@@ -93,7 +93,7 @@ def complete_session(request, session_id):
 
 def session_summary(request, session_completed_id):
     training_session_completed = get_object_or_404(TrainingSessionCompleted, id=session_completed_id)
-    exercises_completed = training_session_completed.exercise_completed.all()
+    exercises_completed = training_session_completed.exercises_completed.all()
 
     context = {
         'training_session_completed': training_session_completed,

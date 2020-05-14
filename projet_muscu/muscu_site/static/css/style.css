@@ -82,11 +82,17 @@ input, textarea {
   text-decoration: none;
 }
 
-.main-button--white:hover, .second-button--white:hover, .second-button--red:hover {
-  font-weight: var(--font-weight-bold);
+.second-button--red {
+  font-size: var(--font-size-button);
+  color: var(--main-color);
+  text-decoration: none;
+  border-radius: var(--border-radius-button);
+  border: 3px solid var(--main-color);
+  padding: var(--spacing-medium);
 }
 
 .second-button--white {
+  font-size: var(--font-size-button);
   color: white;
   text-decoration: none;
   border-radius: var(--border-radius-button);
@@ -94,12 +100,8 @@ input, textarea {
   padding: var(--spacing-medium);
 }
 
-.second-button--red {
-  color: var(--main-color);
-  text-decoration: none;
-  border-radius: var(--border-radius-button);
-  border: 3px solid var(--main-color);
-  padding: var(--spacing-medium);
+.main-button--white:hover, .second-button--white:hover, .second-button--red:hover {
+  font-weight: var(--font-weight-bold);
 }
 
 .button-add, .button-cancel {
