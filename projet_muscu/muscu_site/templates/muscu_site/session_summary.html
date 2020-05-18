@@ -36,7 +36,7 @@
     {% if exercise_completed.comment %}
     <div class="exercise-info-row">
       <div class="exercise-info-item comment-block">
-        <div>Commentaire:</div>
+        <div class="comment-block--title">Commentaire:</div>
         {{ exercise_completed.comment }}
       </div>
     </div>
@@ -47,11 +47,11 @@
 
 <div class="align-space-between">
   <div class="on-left">
-    <a href="{% url 'delete_session' session_type='completed' session_id=training_session_completed.id %}"
-       class="second-button--white">Supprimer le résumé de séance</a>
+    <a href="{% url 'delete_session_completed' session_completed_id=training_session_completed.id %}"
+       class="button second-button--white">Supprimer le résumé de séance</a>
   </div>
   <div class="on-right">
-    <a href="{% url 'sessions_list' %}" class="main-button--white">Retour à la liste des séances</a>
+    <a href="{% url 'sessions_list' %}" class="button main-button--white">Retour à la liste des séances</a>
   </div>
 </div>
 

@@ -57,51 +57,40 @@ input, textarea {
 /*--
   button
 --*/
-.main-button--red {
-  background-color: var(--main-color);
-  color: white;
+.button {
+  font-size: var(--font-size-button);
   padding: var(--spacing-medium);
   border-radius: var(--border-radius-button);
-  font-size: var(--font-size-button);
   cursor: pointer;
   text-decoration: none;
 }
 
+.button:hover {
+  font-weight: var(--font-weight-bold);
+}
+
+.main-button--red {
+  background-color: var(--main-color);
+  color: white;
+}
+
 .main-button--red:hover {
   background-color: var(--main-color-light);
-  font-weight: var(--font-weight-bold);
 }
 
 .main-button--white {
   background-color: white;
   color: var(--main-color);
-  padding: var(--spacing-medium);
-  border-radius: var(--border-radius-button);
-  font-size: var(--font-size-button);
-  cursor: pointer;
-  text-decoration: none;
 }
 
 .second-button--red {
-  font-size: var(--font-size-button);
   color: var(--main-color);
-  text-decoration: none;
-  border-radius: var(--border-radius-button);
   border: 3px solid var(--main-color);
-  padding: var(--spacing-medium);
 }
 
 .second-button--white {
-  font-size: var(--font-size-button);
   color: white;
-  text-decoration: none;
-  border-radius: var(--border-radius-button);
   border: 3px solid white;
-  padding: var(--spacing-medium);
-}
-
-.main-button--white:hover, .second-button--white:hover, .second-button--red:hover {
-  font-weight: var(--font-weight-bold);
 }
 
 .button-add, .button-cancel {
@@ -239,7 +228,7 @@ input, textarea {
   font-size: var(--font-size-text-smaller);
 }
 
-.comment-block div {
+.comment-block--title {
   font-size: var(--font-size-text);
   color: var(--main-color);
   margin-bottom: var(--spacing-small);

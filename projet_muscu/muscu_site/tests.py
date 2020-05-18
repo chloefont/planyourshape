@@ -169,22 +169,23 @@ class SessionSummaryTest(TestCase):
             training_session=training_session
         )
 
-        training_session_completed = TrainingSessionCompleted.objects.create(
+        self.training_session_completed = TrainingSessionCompleted.objects.create(
             training_session=training_session,
             date_completed='2020-04-03'
         )
         ExerciseCompleted.objects.create(
-            training_session_completed=training_session_completed,
+            training_session_completed=self.training_session_completed,
             exercise=exercise_1,
         )
         ExerciseCompleted.objects.create(
-            training_session_completed=training_session_completed,
+            training_session_completed=self.training_session_completed,
             exercise=exercise_2,
         )
 
     def test_all_exercises_displayed(self):
-        training_session_completed = TrainingSessionCompleted.objects.get(date_completed='2020-04-03')
-        response = self.client.get(reverse('session_summary', kwargs={'session_completed_id': training_session_completed.id}))
+        response = self.client.get(reverse('session_summary', kwargs={
+            'session_completed_id': self.training_session_completed.id
+        }))
 
         self.assertIn('exercises_completed', response.context[0])
         data = response.context['exercises_completed']

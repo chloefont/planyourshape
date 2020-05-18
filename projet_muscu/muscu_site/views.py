@@ -102,29 +102,11 @@ def session_summary(request, session_completed_id):
     return render(request, 'muscu_site/session_summary.html', context)
 
 
-def delete_session(request, session_type, session_id):
-    if session_type == 'planned':
-        session = get_object_or_404(TrainingSession, id=session_id)
-        session_type_sentence = {
-            'name': "séance",
-            'session_title': session.session_title,
-            'list_title': "séances planifiées",
-            'explanation': "Vous ne pourrez plus compléter cette séance."
-        }
-        url_name = 'complete_session'
-
-    elif session_type == 'completed':
-        session = get_object_or_404(TrainingSessionCompleted, id=session_id)
-        session_type_sentence = {
-            'name': "séance complétée",
-            'session_title': session.training_session.session_title,
-            'list_title': "séances complétées",
-            'explanation': "Vous n'aurez plus accès au résumé de cette séance."
-        }
-        url_name = 'session_summary'
+def delete_session(request, session_id):
+    session = get_object_or_404(TrainingSession, id=session_id)
 
     if request.method == 'POST':
-        if session_type == 'planned' and session.session_completed:
+        if session.sessions_completed:
             session.visible = False
             session.save()
         else:
@@ -132,9 +114,23 @@ def delete_session(request, session_type, session_id):
         return redirect('sessions_list')
 
     context = {
-        'training_session': session,
-        'session_type_sentence': session_type_sentence,
-        'url_name': url_name,
+        'session': session,
+        'session_title': session.session_title,
     }
 
     return render(request, 'muscu_site/session_delete_confirmation.html', context)
+
+
+def delete_session_completed(request, session_completed_id):
+    session_completed = get_object_or_404(TrainingSessionCompleted, id=session_completed_id)
+
+    if request.method == 'POST':
+        session_completed.delete()
+        return redirect('sessions_list')
+
+    context = {
+        'session_completed': session_completed,
+        'session_title': session_completed.training_session.session_title,
+    }
+
+    return render(request, 'muscu_site/session_completed_delete_confirmation.html', context)

@@ -25,7 +25,9 @@ urlpatterns = [
     path('sessions/', muscu_site.views.sessions_list, name='sessions_list'),
     path('sessions/create/', muscu_site.views.create_session, name='create_session'),
     path('sessions/complete/<int:session_id>/', muscu_site.views.complete_session, name='complete_session'),
-    path('sessions/delete/<str:session_type>/<int:session_id>', muscu_site.views.delete_session, name='delete_session'),
+    path('sessions/complete/delete/<int:session_id>', muscu_site.views.delete_session, name='delete_session'),
+    path('sessions/summary/delete/<int:session_completed_id>', muscu_site.views.delete_session_completed,
+         name='delete_session_completed'),
     path('sessions/summary/<int:session_completed_id>', muscu_site.views.session_summary, name='session_summary'),
 ]
 
