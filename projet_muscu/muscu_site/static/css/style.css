@@ -100,7 +100,7 @@ textarea {
 .button-add {
   font-size: var(--font-size-button-smaller);
   padding: var(--spacing-small);
-  color: var(--main-color);
+  color: white;
   display: flex;
   justify-content: center;
 }
@@ -140,20 +140,6 @@ textarea {
   font-weight: bold;
 }
 
-.second-title {
-  display: flex;
-  justify-content: space-around;
-}
-
-.second-title span {
-  color: var(--main-color);
-  font-weight: var(--font-weight-bold);
-  text-decoration: underline;
-  margin: 0;
-  padding: var(--spacing-tiny);
-  display: block;
-}
-
 .column-title {
   color: white;
   font-size: 30px;
@@ -163,7 +149,7 @@ textarea {
   margin-left: 40px;
 }
 
-.title-exercise-complete {
+.title-exercise {
   color: var(--main-color);
   font-size: var(--font-size-title-medium);
   font-weight: var(--font-weight-bold);
@@ -180,11 +166,6 @@ textarea {
 .container {
   max-width: 1600px;
   margin: 0 auto;
-}
-
-.fields-container {
-  padding-top: var(--spacing-smaller);
-  padding-bottom: var(--spacing-smaller);
 }
 
 .block-title {
@@ -281,37 +262,15 @@ textarea {
 }
 
 /*--
-  block exercises
+  block exercise
 --*/
-.fields-row {
-  display: flex;
-  justify-content: space-between;
-  padding-bottom: var(--spacing-small);
-  padding-top: var(--spacing-small);
-}
-
-.exercise input {
-  margin-right: var(--spacing-smaller);
-}
-
-.w-3-9 {
-  width: 33.333%;
-}
-
-.w-2-9 {
-  width: 22.222%;
-}
-
-/*--
-  sessions complete block exercice
---*/
-.exercise-info-item {
+.exercise-info-item, .exercise-creation-item {
   color: black;
   padding-top: var(--spacing-smaller);
   padding-bottom: var(--spacing-smaller);
 }
 
-.exercise-info-row, .exercise-info-sup-row {
+.exercise-info-row, .exercise-info-sup-row, .exercise-creation-block {
   padding: var(--spacing-small);
 }
 
@@ -336,11 +295,11 @@ textarea {
 .very-important-text {
   color: var(--main-color);
   font-weight: var(--font-weight-bolder);
-  font-size: var(--font-size-title-medium);
+  font-size: var(--font-size-text);
 }
 
 .important-text {
-  font-weight: var(--font-weight-bold);
+  font-size: var(--font-size-button-smaller);
 }
 
 /*--
@@ -421,7 +380,8 @@ textarea {
   }
 
   .button-add {
-    padding: var(--spacing-medium);
+    font-size: var(--font-size-button);
+    padding: var(--spacing-large);
   }
 
   /*--
@@ -444,11 +404,6 @@ textarea {
   /*--
     blocks and containers
   --*/
-  .fields-container {
-    padding-top: var(--spacing-large);
-    padding-bottom: var(--spacing-larger);
-  }
-
   .block-exercise {
     padding-left: var(--spacing-medium);
     padding-right: var(--spacing-medium);
@@ -462,9 +417,9 @@ textarea {
   }
 
   /*--
-    session complete block exercise
+    block exercise
   --*/
-  .exercise-info-row {
+  .exercise-info-row, .exercise-creation-block {
     display: flex;
     justify-content: space-between;
     padding: var(--spacing-medium);
@@ -472,6 +427,18 @@ textarea {
 
   .weight input {
     max-width: 310px;
+  }
+
+  /*--
+    session delete block
+  --*/
+  .very-important-text {
+    font-size: var(--font-size-title-medium);
+  }
+
+  .important-text {
+    font-size: inherit;
+    font-weight: var(--font-weight-bold);
   }
 
   /*--

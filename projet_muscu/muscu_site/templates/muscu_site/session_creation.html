@@ -19,89 +19,79 @@
 
   </div>
 
+  {{ exercise_formset.management_form }}
 
-  <div class="block-exercise">
-    {{ exercise_formset.management_form }}
+  <div class="block-exercises">
+    {% for form in exercise_formset %}
+    <div class="block-exercise">
 
-    <div class="second-title text-align-center">
-      <div class="w-3-9">
-        <span class="exercise">Exercice</span>
+      <div class="title-exercise">
+        Nom de l'exercice: {{ form.exercise }}
+        {% include "muscu_site/_field_errors.html" with field=form.exercice extra_classes="error-validation-list--red" %}
       </div>
-      <div class="w-2-9">
-        <span class="sets">Séries</span>
-      </div>
-      <div class="w-2-9">
-        <span class="reps">Répétitions</span>
-      </div>
-      <div class="w-2-9">
-        <span class="break_time">Temps de pause (sec)</span>
-      </div>
-    </div>
-
-    <div class="fields-container">
-      {% for form in exercise_formset %}
-      <div class="fields-row">
-        <div class="text-align-center exercise w-3-9 block-adapted-width">
-          {{ form.exercise }}
-          {% include "muscu_site/_field_errors.html" with field=form.exercice extra_classes="error-validation-list--red" %}
-        </div>
-        <div class="text-align-center w-2-9 block-adapted-width">
-          {{ form.sets }}
+      <div class="exercise-creation-block block-adapted-width">
+        <div class="exercise-creation-item">
+          {{ form.sets.label }}{{ form.sets }}
           {% include "muscu_site/_field_errors.html" with field=form.sets extra_classes="error-validation-list--red" %}
         </div>
-        <div class="text-align-center w-2-9 block-adapted-width">
-          {{ form.reps }}
+        <div class="exercise-creation-item">
+          {{ form.reps.label }}{{ form.reps }}
           {% include "muscu_site/_field_errors.html" with field=form.reps extra_classes="error-validation-list--red" %}
         </div>
-        <div class="text-align-center w-2-9 block-adapted-width">
-          {{ form.break_time }}
+        <div class="exercise-creation-item">
+          {{form.break_time.label }}{{ form.break_time }} sec.
           {% include "muscu_site/_field_errors.html" with field=form.break_time extra_classes="error-validation-list--red" %}
-        </div><br>
+        </div>
       </div>
-      {% endfor %}
-    </div>
 
-    <div>
-      <a class= "button-add" href="#">Ajouter un exercice</a>
     </div>
+    {% endfor %}
+  </div>
 
-    <div class="on-right">
-      <button type="submit" name="button" class="button main-button--red">Enregistrer</button>
-    </div>
+  <div>
+    <a class= "button-add" href="#">Ajouter un exercice</a>
+  </div>
 
-    <div class="hidden extra-row">
-      <div class="fields-row">
-        <div class="text-align-center exercise w-3-9">
-          {{exercise_formset.empty_form.exercise}}
-        </div>
-        <div class="text-align-center w-2-9">
-          {{exercise_formset.empty_form.sets}}
-        </div>
-        <div class="text-align-center w-2-9">
-          {{exercise_formset.empty_form.reps}}
-        </div>
-        <div class="text-align-center w-2-9">
-          {{exercise_formset.empty_form.break_time}}
-        </div><br>
+  <div class="on-right">
+    <button type="submit" name="button" class="button main-button--white">Enregistrer</button>
+  </div>
+
+  <div class="hidden extra-row">
+    <div class="block-exercise">
+
+      <div class="title-exercise">
+        Nom de l'exercice: {{ exercise_formset.empty_form.exercise }}
       </div>
-    </div>
+      <div class="exercise-creation-block block-adapted-width">
+        <div class="exercise-creation-item">
+          {{ exercise_formset.empty_form.sets.label }}{{ exercise_formset.empty_form.sets }}
+        </div>
+        <div class="exercise-creation-item">
+          {{ exercise_formset.empty_form.reps.label }}{{ exercise_formset.empty_form.reps }}
+        </div>
+        <div class="exercise-creation-item">
+          {{exercise_formset.empty_form.break_time.label }}{{ exercise_formset.empty_form.break_time }} sec.
+        </div>
+      </div>
 
+    </div>
   </div>
 
 </form>
+
 
 <script type="text/javascript">
   var buttonAdd = document.querySelector('.button-add');
 
   function addRow(){
-    const extraRow = document.querySelector('.extra-row .fields-row');
-    const fieldContainer = document.querySelector('.fields-container');
+    const extraRow = document.querySelector('.extra-row .block-exercise');
+    const blockExercises = document.querySelector('.block-exercises');
 
 
     newNbRow = document.querySelector('#id_form-TOTAL_FORMS').value++;
     let clonedRow = extraRow.cloneNode(true);
     clonedRow.innerHTML = clonedRow.innerHTML.replace(/__prefix__/g, newNbRow);
-    fieldContainer.appendChild(clonedRow);
+    blockExercises.appendChild(clonedRow);
 
   }
 

@@ -18,10 +18,10 @@ class ExerciseForm(ModelForm):
         fields = ['exercise', 'sets', 'reps', 'break_time']
 
         labels = {
-            'exercise': 'Exercice',
-            'sets': 'Séries',
-            'reps': 'Répétitions',
-            'break_time': 'Temps de pause',
+            'exercise': 'Exercice: ',
+            'sets': 'Séries: ',
+            'reps': 'Répétitions: ',
+            'break_time': 'Temps de pause: ',
         }
 
 
