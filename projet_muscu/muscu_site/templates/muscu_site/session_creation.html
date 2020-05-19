@@ -10,7 +10,7 @@
 
   <div class="block-title text-align-center">
 
-    <div class="title">
+    <div class="title block-adapted-width">
       <label for="{{session_form.session_title.id_for_label}}" class="title-label">
         {{ session_form.session_title.label }}<br>
       </label>
@@ -41,19 +41,19 @@
     <div class="fields-container">
       {% for form in exercise_formset %}
       <div class="fields-row">
-        <div class="text-align-center exercise w-3-9">
+        <div class="text-align-center exercise w-3-9 block-adapted-width">
           {{ form.exercise }}
           {% include "muscu_site/_field_errors.html" with field=form.exercice extra_classes="error-validation-list--red" %}
         </div>
-        <div class="text-align-center w-2-9">
+        <div class="text-align-center w-2-9 block-adapted-width">
           {{ form.sets }}
           {% include "muscu_site/_field_errors.html" with field=form.sets extra_classes="error-validation-list--red" %}
         </div>
-        <div class="text-align-center w-2-9">
+        <div class="text-align-center w-2-9 block-adapted-width">
           {{ form.reps }}
           {% include "muscu_site/_field_errors.html" with field=form.reps extra_classes="error-validation-list--red" %}
         </div>
-        <div class="text-align-center w-2-9">
+        <div class="text-align-center w-2-9 block-adapted-width">
           {{ form.break_time }}
           {% include "muscu_site/_field_errors.html" with field=form.break_time extra_classes="error-validation-list--red" %}
         </div><br>

@@ -40,8 +40,8 @@
     </div>
 
     {{ form.exercise }}
-    <div class="exercice-info-sup-row">
-      <div class="exercise-info-sup">
+    <div class="exercise-info-sup-row">
+      <div class="exercise-info-sup weight">
         {{ form.weight.label }}
         {{ form.weight }} kg.
         {% include "muscu_site/_field_errors.html" with field=form.weight extra_classes="error-validation-list--red" %}

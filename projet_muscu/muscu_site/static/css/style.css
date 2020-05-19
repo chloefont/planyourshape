@@ -52,8 +52,10 @@ body {
 input, textarea {
   font-family: sans-serif;
   font-size: var(--font-size-text-smaller);
+}
+
+textarea {
   width: 90%;
-  max-height: 30px;
 }
 
 /*--
@@ -198,7 +200,7 @@ input, textarea {
 .block-exercise {
   background-color: white;
   border-radius: var(--main-border-radius);
-  padding-bottom: var(--spacing-larger);
+  padding-bottom: var(--spacing-medium);
   padding-top: var(--spacing-large);
   padding-left: var(--spacing-smaller);
   padding-right: var(--spacing-smaller);
@@ -303,17 +305,14 @@ input, textarea {
 /*--
   sessions complete block exercice
 --*/
-.exercise-info-row {
-  display: flex;
-  justify-content: space-between;
-  padding: var(--spacing-medium);
-}
 .exercise-info-item {
   color: black;
+  padding-top: var(--spacing-smaller);
+  padding-bottom: var(--spacing-smaller);
 }
 
-.exercise-info-sup-row {
-  padding: var(--spacing-medium);
+.exercise-info-row, .exercise-info-sup-row {
+  padding: var(--spacing-small);
 }
 
 .exercise-info-sup {
@@ -325,6 +324,10 @@ input, textarea {
 .exercise-info-sup input, .exercise-info-sup textarea {
   margin-top: var(--spacing-smaller);
   margin-bottom: var(--spacing-smaller);
+}
+
+.weight input {
+  width: 20%;
 }
 
 /*--
@@ -372,6 +375,10 @@ input, textarea {
   margin-left: var(--spacing-medium);
 }
 
+.block-adapted-width input {
+  width: 90%;
+}
+
 /*--
   errors
 --*/
@@ -399,6 +406,10 @@ input, textarea {
 
   input, textarea {
     font-size: var(--font-size-text);
+  }
+
+  textarea {
+    width: 600px;
   }
 
   /*--
@@ -448,6 +459,19 @@ input, textarea {
   --*/
   .session-block-date {
     font-size: var(--font-size-text-smaller);
+  }
+
+  /*--
+    session complete block exercise
+  --*/
+  .exercise-info-row {
+    display: flex;
+    justify-content: space-between;
+    padding: var(--spacing-medium);
+  }
+
+  .weight input {
+    max-width: 310px;
   }
 
   /*--
