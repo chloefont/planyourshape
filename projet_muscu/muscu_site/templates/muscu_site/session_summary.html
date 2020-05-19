@@ -1,0 +1,58 @@
+{% extends "muscu_site/base.html" %}
+
+{% block title %}Résumé d'une séance{% endblock %}
+
+{% block content %}
+<div class="block-title text-align-center">
+  <div class="title-label">
+    {{ training_session_completed.training_session.session_title }}
+  </div>
+  <div class="date">
+    {{ training_session_completed.date_completed }}
+  </div>
+</div>
+
+{% for exercise_completed in exercises_completed %}
+  <div class="block-exercise">
+
+    <div class="title-exercise-complete">
+      {{ exercise_completed.exercise.exercise }}
+    </div>
+    <div class="exercise-info-row">
+      <div class="exercise-info-item">
+        {{ exercise_completed.exercise.sets }} séries
+      </div>
+      <div class="exercise-info-item">
+        {{ exercise_completed.exercise.reps }} répétitions
+      </div>
+      <div class="exercise-info-item">
+        Temps de pause: {{ exercise_completed.exercise.break_time }}sec.
+      </div>
+      <div class="exercise-info-item">
+        Poids: {{ exercise_completed.weight }}kg
+      </div>
+    </div>
+
+    {% if exercise_completed.comment %}
+    <div class="exercise-info-row">
+      <div class="exercise-info-item comment-block">
+        <div class="comment-block__title">Commentaire:</div>
+        {{ exercise_completed.comment }}
+      </div>
+    </div>
+    {% endif %}
+
+  </div>
+{% endfor %}
+
+<div class="align-space-between">
+  <div class="on-left">
+    <a href="{% url 'delete_session_completed' session_completed_id=training_session_completed.id %}"
+       class="button second-button--white">Supprimer le résumé de séance</a>
+  </div>
+  <div class="on-right">
+    <a href="{% url 'sessions_list' %}" class="button main-button--white">Retour à la liste des séances</a>
+  </div>
+</div>
+
+{% endblock %}

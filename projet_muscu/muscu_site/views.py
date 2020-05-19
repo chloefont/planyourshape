@@ -91,19 +91,46 @@ def complete_session(request, session_id):
     return render(request, 'muscu_site/session_complete.html', context)
 
 
+def session_summary(request, session_completed_id):
+    training_session_completed = get_object_or_404(TrainingSessionCompleted, id=session_completed_id)
+    exercises_completed = training_session_completed.exercises_completed.all()
+
+    context = {
+        'training_session_completed': training_session_completed,
+        'exercises_completed': exercises_completed
+    }
+    return render(request, 'muscu_site/session_summary.html', context)
+
+
 def delete_session(request, session_id):
-    training_session = get_object_or_404(TrainingSession, id=session_id)
+    session = get_object_or_404(TrainingSession, id=session_id)
 
     if request.method == 'POST':
-        if training_session.sessions_completed:
-            training_session.visible = False
-            training_session.save()
+        if session.sessions_completed:
+            session.visible = False
+            session.save()
         else:
-            training_session.delete()
+            session.delete()
         return redirect('sessions_list')
 
     context = {
-        'training_session': training_session,
+        'session': session,
+        'session_title': session.session_title,
     }
 
     return render(request, 'muscu_site/session_delete_confirmation.html', context)
+
+
+def delete_session_completed(request, session_completed_id):
+    session_completed = get_object_or_404(TrainingSessionCompleted, id=session_completed_id)
+
+    if request.method == 'POST':
+        session_completed.delete()
+        return redirect('sessions_list')
+
+    context = {
+        'session_completed': session_completed,
+        'session_title': session_completed.training_session.session_title,
+    }
+
+    return render(request, 'muscu_site/session_completed_delete_confirmation.html', context)

@@ -43,7 +43,7 @@
     <div class="exercice-info-sup-row">
       <div class="exercise-info-sup">
         {{ form.weight.label }}
-        {{ form.weight }}
+        {{ form.weight }} kg.
         {% include "muscu_site/_field_errors.html" with field=form.weight extra_classes="error-validation-list--red" %}
       </div>
       <div class="exercise-info-sup">
@@ -57,10 +57,11 @@
 
   <div class="align-space-between"">
     <div class="on-left">
-      <a href="{% url 'delete_session' training_session.id %}" class="second-button--white">Supprimer la séance</a>
+      <a href="{% url 'delete_session' session_id=training_session.id %}"
+         class="button second-button--white">Supprimer la séance</a>
     </div>
     <div class="on-right">
-      <button type="submit" name="button_save" class="main-button--white">Enregistrer</button>
+      <button type="submit" name="button_save" class="button main-button--white">Enregistrer</button>
     </div>
   </div>
 

@@ -1,0 +1,14 @@
+{% extends "muscu_site/base_session_delete_confirmation.html" %}
+
+{% block message %}
+<p class="very-important-text">
+  Êtes-vous sûr de vouloir supprimer le résumé de la séance {{ session_title }}?
+</p>
+<p class="important-text">
+  En supprimant cette séance, elle n'apparaîtra plus dans votre liste de séances complétées.
+</p>
+<p class="important-text">Vous n'aurez plus accès au résumé de cette séance.</p>
+{% endblock %}
+
+
+{% block url %}{% url 'session_summary' session_completed.id %}{% endblock %}
