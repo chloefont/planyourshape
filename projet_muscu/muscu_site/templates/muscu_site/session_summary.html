@@ -4,7 +4,7 @@
 
 {% block content %}
 <div class="block-title text-align-center">
-  <div class="title-label">
+  <div class="main-title">
     {{ training_session_completed.training_session.session_title }}
   </div>
   <div class="date">
@@ -13,29 +13,29 @@
 </div>
 
 {% for exercise_completed in exercises_completed %}
-  <div class="block-exercise">
+  <div class="block-white">
 
-    <div class="title-exercise">
+    <div class="second-title">
       {{ exercise_completed.exercise.exercise }}
     </div>
-    <div class="exercise-info-row">
-      <div class="exercise-info-item">
+    <div class="items-online">
+      <div class="form-item--black">
         {{ exercise_completed.exercise.sets }} séries
       </div>
-      <div class="exercise-info-item">
+      <div class="form-item--black">
         {{ exercise_completed.exercise.reps }} répétitions
       </div>
-      <div class="exercise-info-item">
+      <div class="form-item--black">
         Temps de pause: {{ exercise_completed.exercise.break_time }}sec.
       </div>
-      <div class="exercise-info-item">
+      <div class="form-item--black">
         Poids: {{ exercise_completed.weight }}kg
       </div>
     </div>
 
     {% if exercise_completed.comment %}
-    <div class="exercise-info-row">
-      <div class="exercise-info-item comment-block">
+    <div class="items-online">
+      <div class="form-item--black comment-block">
         <div class="comment-block__title">Commentaire:</div>
         {{ exercise_completed.comment }}
       </div>

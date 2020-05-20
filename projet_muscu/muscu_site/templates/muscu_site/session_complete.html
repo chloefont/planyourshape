@@ -9,7 +9,7 @@
   {% csrf_token %}
 
   <div class="block-title text-align-center">
-    <div class="title-label">
+    <div class="main-title">
       {{ training_session.session_title }}
     </div>
     <div class="date">
@@ -22,31 +22,31 @@
   {{ exercise_completed_formset.management_form }}
 
   {% for exercise, form in list_exercise_form %}
-  <div class="block-exercise">
+  <div class="block-white">
 
-    <div class="title-exercise">
+    <div class="second-title">
       {{ exercise.exercise }}
     </div>
-    <div class="exercise-info-row">
-      <div class="exercise-info-item">
+    <div class="items-online">
+      <div class="form-item--black">
         {{ exercise.sets }} séries
       </div>
-      <div class="exercise-info-item">
+      <div class="form-item--black">
         {{ exercise.reps }} répétitions
       </div>
-      <div class="exercise-info-item">
+      <div class="form-item--black">
         Temps de pause: {{ exercise.break_time }}sec.
       </div>
     </div>
 
     {{ form.exercise }}
-    <div class="exercise-info-sup-row">
-      <div class="exercise-info-sup weight">
+    <div class="items-linewrap">
+      <div class="form-item--red weight">
         {{ form.weight.label }}
         {{ form.weight }} kg.
         {% include "muscu_site/_field_errors.html" with field=form.weight extra_classes="error-validation-list--red" %}
       </div>
-      <div class="exercise-info-sup">
+      <div class="form-item--red">
         {{ form.comment.label }}<br>
         {{ form.comment }}
       </div>

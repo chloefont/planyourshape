@@ -1,0 +1,29 @@
+{% extends "muscu_site/base.html" %}
+
+{% load static %}
+
+{% block title %}Connexion{% endblock %}
+
+{% block content %}
+<div class="block-white block-login">
+  <div class="second-title text-align-center">
+    Connexion
+  </div>
+  <form method="post">
+    {% csrf_token %}
+    {{ form.management_form }}
+    <div class="block-input--red">
+      <div class="items-linewrap">
+        {{ form.username.label_tag }} <span>{{ form.username }}</span>
+      </div>
+      <div class="items-linewrap">
+        {{ form.password.label_tag }} <span>{{ form.password }}</span>
+      </div>
+    </div>
+    <div class="middle-display">
+      <button type="submit" name="button" class="button main-button--red">Se connecter</button>
+    </div>
+  </form>
+</div>
+
+{% endblock %}

@@ -11,7 +11,7 @@
   <div class="block-title text-align-center">
 
     <div class="title block-adapted-width">
-      <label for="{{session_form.session_title.id_for_label}}" class="title-label">
+      <label for="{{session_form.session_title.id_for_label}}" class="main-title">
         {{ session_form.session_title.label }}<br>
       </label>
         {{ session_form.session_title }}
@@ -23,7 +23,7 @@
 
   <div class="block-exercises">
     {% for form in exercise_formset %}
-    <div class="block-exercise">
+    <div class="block-white">
       {% include "muscu_site/_exercise_creation_form.html" with form=form %}
     </div>
     {% endfor %}
@@ -38,7 +38,7 @@
   </div>
 
   <div class="hidden extra-row">
-    <div class="block-exercise">
+    <div class="block-white">
       {% include "muscu_site/_exercise_creation_form.html" with form=exercise_formset.empty_form %}
     </div>
   </div>
@@ -50,7 +50,7 @@
   var buttonAdd = document.querySelector('.button-add');
 
   function addRow(){
-    const extraRow = document.querySelector('.extra-row .block-exercise');
+    const extraRow = document.querySelector('.extra-row .block-white');
     const blockExercises = document.querySelector('.block-exercises');
 
 
