@@ -1,5 +1,6 @@
 from django.test import TestCase
 from django.urls import reverse
+from django.contrib.auth import User
 
 from muscu_site.models import TrainingSession, Exercise, TrainingSessionCompleted, ExerciseCompleted
 
@@ -192,3 +193,43 @@ class SessionSummaryTest(TestCase):
 
         self.assertEqual(data[0].exercise.exercise, 'Exercice 1')
         self.assertEqual(data[1].exercise.exercise, 'Exercice 2')
+
+
+class LoginTest(TestCase):
+
+    def setUp(self):
+        self.user = User.objects.create(
+            username="patrick",
+            password="right password"
+        )
+
+    def test_right_login_input(self):
+        response = self.client.post(reverse('login'), data={
+            'username': self.user.username,
+            'password': self.user.password
+        })
+
+        self.assertRedirect(response, reverse('sessions_list'))
+
+    def test_wrong_login_input(self):
+        response = self.client.post(reverse('login'), data={
+            'username': self.user.username,
+            'password': "wrong password"
+        })
+
+        self.assertFormError(response, 'form', 'password', "Le nom d'utilisateur ou le mot de masse entré n'est pas correct.")
+
+    def test_wrong_access_to_login_required_page(self):
+        response = self.client.get(reverse('create_session'))
+
+        self.assertRedirect(response, '/?next=/sessions/create/')
+
+    def test_redirect_if_already_login(self):
+        self.client.post(reverse('login'), data={
+            'username': self.user.username,
+            'password': self.user.password
+        })
+
+        response = self.client.get(reverse('login'))
+
+        self.assertRedirect(response, reverse('sessions_list'))
