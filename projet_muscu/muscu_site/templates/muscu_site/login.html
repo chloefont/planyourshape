@@ -19,6 +19,11 @@
       <div class="items-linewrap">
         {{ form.password.label_tag }} <span>{{ form.password }}</span>
       </div>
+      {% if form.errors %}
+        <p class="error-login-informations text-align-center">
+          Le nom d'utilisateur ou le mot de passe entré n'est pas correct.
+        </p>
+      {% endif %}
     </div>
     <div class="middle-display">
       <button type="submit" name="button" class="button main-button--red">Se connecter</button>

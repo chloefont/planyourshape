@@ -1,3 +1,4 @@
+from django.contrib.auth.decorators import login_required
 from django.shortcuts import render, redirect, get_object_or_404
 from django.forms import formset_factory
 from django.db import transaction
@@ -6,6 +7,7 @@ from .forms import (SessionForm, ExerciseForm, SessionCompletedForm,
 from .models import TrainingSession, Exercise, TrainingSessionCompleted
 
 
+@login_required
 def sessions_list(request):
     training_sessions = TrainingSession.objects.filter(visible=True).order_by('-date')
     training_sessions_completed = TrainingSessionCompleted.objects.order_by('-date_completed').select_related('training_session')
@@ -17,6 +19,7 @@ def sessions_list(request):
     return render(request, 'muscu_site/sessions_list.html', context)
 
 
+@login_required
 def create_session(request):
     ExerciseFormSet = formset_factory(ExerciseForm, extra=3)
     if request.method == 'POST':
@@ -52,6 +55,7 @@ def create_session(request):
     return render(request, 'muscu_site/session_creation.html', context)
 
 
+@login_required
 @transaction.atomic
 def complete_session(request, session_id):
     training_session = get_object_or_404(TrainingSession, id=session_id)
@@ -91,6 +95,7 @@ def complete_session(request, session_id):
     return render(request, 'muscu_site/session_complete.html', context)
 
 
+@login_required
 def session_summary(request, session_completed_id):
     training_session_completed = get_object_or_404(TrainingSessionCompleted, id=session_completed_id)
     exercises_completed = training_session_completed.exercises_completed.all()
@@ -102,6 +107,7 @@ def session_summary(request, session_completed_id):
     return render(request, 'muscu_site/session_summary.html', context)
 
 
+@login_required
 def delete_session(request, session_id):
     session = get_object_or_404(TrainingSession, id=session_id)
 
@@ -121,6 +127,7 @@ def delete_session(request, session_id):
     return render(request, 'muscu_site/session_delete_confirmation.html', context)
 
 
+@login_required
 def delete_session_completed(request, session_completed_id):
     session_completed = get_object_or_404(TrainingSessionCompleted, id=session_completed_id)
 

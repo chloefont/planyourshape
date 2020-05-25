@@ -460,6 +460,10 @@ textarea {
     margin: var(--spacing-large);
   }
 
+  /*--
+    errors
+  --*/
   .error-validation-list li {
     font-size: var(--font-size-text);
+  }
 }
