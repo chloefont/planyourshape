@@ -437,7 +437,7 @@ textarea {
     padding: var(--spacing-medium);
   }
 
-  .weight input {
+  .weight input, .exercise-form input {
     max-width: 310px;
   }
 

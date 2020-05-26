@@ -4,10 +4,8 @@ from django.contrib.auth.models import User
 
 from muscu_site.models import TrainingSession, Exercise, TrainingSessionCompleted, ExerciseCompleted
 
-import pdb
 
-
-class SessionListTest(TestCase):
+class LoggedInUserMixin(TestCase):
 
     def setUp(self):
         User.objects.create_user(
@@ -16,6 +14,9 @@ class SessionListTest(TestCase):
         )
 
         self.client.login(username="patrick", password="right password")
+
+
+class SessionListTest(LoggedInUserMixin):
 
     def test_sessions_in_list_ordered_by_time(self):
         TrainingSession.objects.create(
@@ -35,15 +36,7 @@ class SessionListTest(TestCase):
         self.assertEqual(data.all()[1].session_title, 'old session')
 
 
-class SessionCreationTest(TestCase):
-
-    def setUp(self):
-        User.objects.create_user(
-            username="patrick",
-            password="right password"
-        )
-
-        self.client.login(username="patrick", password="right password")
+class SessionCreationTest(LoggedInUserMixin):
 
     def test_string_in_sets(self):
         response = self.client.post(reverse('create_session'), data={
@@ -106,16 +99,10 @@ class SessionCreationTest(TestCase):
         )
 
 
-class SessionCompleteTest(TestCase):
+class SessionCompleteTest(LoggedInUserMixin):
 
     def setUp(self):
-        User.objects.create_user(
-            username="patrick",
-            password="right password"
-        )
-
-        self.client.login(username="patrick", password="right password")
-
+        super().setUp()
         self.training_session = TrainingSession.objects.create(
             session_title='Ma Session',
             date='2020-01-01'
@@ -179,16 +166,10 @@ class SessionCompleteTest(TestCase):
         )
 
 
-class SessionSummaryTest(TestCase):
+class SessionSummaryTest(LoggedInUserMixin):
 
     def setUp(self):
-        User.objects.create_user(
-            username="patrick",
-            password="right password"
-        )
-
-        self.client.login(username="patrick", password="right password")
-
+        super().setUp()
         training_session = TrainingSession.objects.create(
             session_title='Ma Session',
             date='2020-01-01'
@@ -242,7 +223,7 @@ class LoginTest(TestCase):
             'password': "right password"
         }, follow=True)
 
-        self.assertTrue(response.context['user'].is_active)
+        self.assertTrue(response.context['user'] == self.user)
 
     def test_wrong_login_input(self):
         response = self.client.post(reverse('login'), data={
@@ -258,11 +239,13 @@ class LoginTest(TestCase):
         self.assertRedirects(response, '/?next=/sessions/create/')
 
     def test_redirect_if_already_login(self):
-        self.client.post(reverse('login'), data={
-            'username': "patrick",
-            'password': "right password"
-        })
-
+        self.client.login(username="patrick", password="right password")
         response = self.client.get(reverse('login'))
 
         self.assertRedirects(response, reverse('sessions_list'))
+
+    def test_login_user_can_access_protected_page(self):
+        self.client.login(username="patrick", password="right password")
+        response = self.client.get(reverse('create_session'))
+
+        self.assertEqual(response.status_code, 200)

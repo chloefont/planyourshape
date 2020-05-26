@@ -1,17 +1,17 @@
-<div class="title-exercise">
+<div class="second-title">
   {{ form.exercise.label_tag }} {{ form.exercise }}
   {% include "muscu_site/_field_errors.html" with field=form.exercice extra_classes="error-validation-list--red" %}
 </div>
-<div class="exercise-creation-block block-adapted-width">
-  <div class="exercise-creation-item">
+<div class="items-online block-adapted-width">
+  <div class="block-input--black exercise-form">
     {{ form.sets.label_tag }} {{ form.sets }}
     {% include "muscu_site/_field_errors.html" with field=form.sets extra_classes="error-validation-list--red" %}
   </div>
-  <div class="exercise-creation-item">
+  <div class="block-input--black exercise-form">
     {{ form.reps.label_tag }} {{ form.reps }}
     {% include "muscu_site/_field_errors.html" with field=form.reps extra_classes="error-validation-list--red" %}
   </div>
-  <div class="exercise-creation-item">
+  <div class="block-input--black exercise-form">
     {{form.break_time.label_tag }} {{ form.break_time }} sec.
     {% include "muscu_site/_field_errors.html" with field=form.break_time extra_classes="error-validation-list--red" %}
   </div>
