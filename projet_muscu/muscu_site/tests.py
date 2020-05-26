@@ -1,11 +1,21 @@
 from django.test import TestCase
 from django.urls import reverse
-from django.contrib.auth import User
+from django.contrib.auth.models import User
 
 from muscu_site.models import TrainingSession, Exercise, TrainingSessionCompleted, ExerciseCompleted
 
+import pdb
+
 
 class SessionListTest(TestCase):
+
+    def setUp(self):
+        User.objects.create_user(
+            username="patrick",
+            password="right password"
+        )
+
+        self.client.login(username="patrick", password="right password")
 
     def test_sessions_in_list_ordered_by_time(self):
         TrainingSession.objects.create(
@@ -26,6 +36,14 @@ class SessionListTest(TestCase):
 
 
 class SessionCreationTest(TestCase):
+
+    def setUp(self):
+        User.objects.create_user(
+            username="patrick",
+            password="right password"
+        )
+
+        self.client.login(username="patrick", password="right password")
 
     def test_string_in_sets(self):
         response = self.client.post(reverse('create_session'), data={
@@ -91,6 +109,13 @@ class SessionCreationTest(TestCase):
 class SessionCompleteTest(TestCase):
 
     def setUp(self):
+        User.objects.create_user(
+            username="patrick",
+            password="right password"
+        )
+
+        self.client.login(username="patrick", password="right password")
+
         self.training_session = TrainingSession.objects.create(
             session_title='Ma Session',
             date='2020-01-01'
@@ -157,6 +182,13 @@ class SessionCompleteTest(TestCase):
 class SessionSummaryTest(TestCase):
 
     def setUp(self):
+        User.objects.create_user(
+            username="patrick",
+            password="right password"
+        )
+
+        self.client.login(username="patrick", password="right password")
+
         training_session = TrainingSession.objects.create(
             session_title='Ma Session',
             date='2020-01-01'
@@ -198,38 +230,39 @@ class SessionSummaryTest(TestCase):
 class LoginTest(TestCase):
 
     def setUp(self):
-        self.user = User.objects.create(
+        self.user = User.objects.create_user(
             username="patrick",
             password="right password"
         )
 
     def test_right_login_input(self):
-        response = self.client.post(reverse('login'), data={
-            'username': self.user.username,
-            'password': self.user.password
-        })
 
-        self.assertRedirect(response, reverse('sessions_list'))
+        response = self.client.post(reverse('login'), data={
+            'username': "patrick",
+            'password': "right password"
+        }, follow=True)
+
+        self.assertTrue(response.context['user'].is_active)
 
     def test_wrong_login_input(self):
         response = self.client.post(reverse('login'), data={
-            'username': self.user.username,
+            'username': "patrick",
             'password': "wrong password"
         })
 
-        self.assertFormError(response, 'form', 'password', "Le nom d'utilisateur ou le mot de masse entré n'est pas correct.")
+        self.assertContains(response, "Le nom d'utilisateur ou le mot de passe entré n'est pas correct.")
 
     def test_wrong_access_to_login_required_page(self):
         response = self.client.get(reverse('create_session'))
 
-        self.assertRedirect(response, '/?next=/sessions/create/')
+        self.assertRedirects(response, '/?next=/sessions/create/')
 
     def test_redirect_if_already_login(self):
         self.client.post(reverse('login'), data={
-            'username': self.user.username,
-            'password': self.user.password
+            'username': "patrick",
+            'password': "right password"
         })
 
         response = self.client.get(reverse('login'))
 
-        self.assertRedirect(response, reverse('sessions_list'))
+        self.assertRedirects(response, reverse('sessions_list'))
