@@ -46,11 +46,11 @@
 {% endfor %}
 
 <div class="align-space-between">
-  <div class="on-left">
+  <div class="button-margin">
     <a href="{% url 'delete_session_completed' session_completed_id=training_session_completed.id %}"
        class="button second-button--white">Supprimer le résumé de séance</a>
   </div>
-  <div class="on-right">
+  <div class="button-margin">
     <a href="{% url 'sessions_list' %}" class="button main-button--white">Retour à la liste des séances</a>
   </div>
 </div>

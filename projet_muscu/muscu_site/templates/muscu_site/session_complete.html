@@ -55,12 +55,12 @@
   </div>
   {% endfor %}
 
-  <div class="align-space-between"">
-    <div class="on-left">
+  <div class="align-space-between">
+    <div class="button-margin">
       <a href="{% url 'delete_session' session_id=training_session.id %}"
          class="button second-button--white">Supprimer la séance</a>
     </div>
-    <div class="on-right">
+    <div class="button-margin">
       <button type="submit" name="button_save" class="button main-button--white">Enregistrer</button>
     </div>
   </div>

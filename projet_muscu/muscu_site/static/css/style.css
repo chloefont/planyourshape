@@ -56,6 +56,7 @@ input, textarea {
 
 textarea {
   width: 90%;
+  max-width: 600px;
 }
 
 /*--
@@ -286,7 +287,7 @@ textarea {
 }
 
 .weight input {
-  width: 20%;
+  max-width: 20%;
 }
 
 /*--
@@ -318,20 +319,13 @@ textarea {
   justify-content: space-between;
 }
 
+.button-margin {
+  margin: var(--spacing-medium);
+}
+
 .on-right {
   display: flex;
   justify-content: flex-end;
-  margin-top: var(--spacing-medium);
-  margin-right: var(--spacing-medium);
-  margin-left: var(--spacing-medium);
-}
-
-.on-left {
-  display: flex;
-  justify-content: flex-start;
-  margin-top: var(--spacing-medium);
-  margin-right: var(--spacing-medium);
-  margin-left: var(--spacing-medium);
 }
 
 .block-adapted-width input {
@@ -367,10 +361,6 @@ textarea {
     font-size: var(--font-size-text);
   }
 
-  textarea {
-    width: 600px;
-  }
-
   /*--
     button
   --*/
@@ -390,15 +380,6 @@ textarea {
   .title-label {
     font-size: var(--font-size-title-large);
     margin-top: var(--spacing-medium);
-  }
-
-  .second-title span {
-    border: 5px solid var(--main-color);
-    font-size: var(--font-size-title-medium);
-    border-radius: var(--spacing-medium);
-    margin: var(--spacing-smaller);
-    padding: var(--spacing-medium);
-    text-decoration: none;
   }
 
   /*--
@@ -444,16 +425,8 @@ textarea {
   /*--
     diverse
   --*/
-  .on-right {
-    margin-top: var(--spacing-large);
-    margin-right: var(--spacing-large);
-    margin-left: var(--spacing-large);
-  }
-
-  .on-left {
-    margin-top: var(--spacing-large);
-    margin-right: var(--spacing-large);
-    margin-left: var(--spacing-large);
+  .button-margin {
+    margin: var(--spacing-large);
   }
 
   .error-validation-list li {
