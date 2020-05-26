@@ -10,10 +10,10 @@
   <form method="post">
     {% csrf_token %}
     <div class="align-space-between">
-      <div class="on-left">
+      <div class="button-margin">
         <a href="{% block url %}{% endblock %}" class="button second-button--red">Annuler</a>
       </div>
-      <div class="on-right">
+      <div class="button-margin">
         <button type="submit" name="button_delete" class="button main-button--red ">Supprimer</button>
       </div>
     </div>
