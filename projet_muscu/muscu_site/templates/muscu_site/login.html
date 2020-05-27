@@ -12,7 +12,7 @@
   <form method="post">
     {% csrf_token %}
     {{ form.management_form }}
-    <div class="block-input--red">
+    <div class="block-input--red block-adapted-width">
       <div class="items-linewrap">
         {{ form.username.label_tag }} <span>{{ form.username }}</span>
       </div>

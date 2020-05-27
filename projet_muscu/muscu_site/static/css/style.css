@@ -357,6 +357,7 @@ textarea {
 
 .block-adapted-width input {
   width: 90%;
+  max-width: 346px;
 }
 
 /*--
