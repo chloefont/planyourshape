@@ -326,6 +326,23 @@ textarea {
 }
 
 /*--
+  logo
+--*/
+.logo {
+  width: 20%;
+  max-width: 160px;
+  height: auto;
+  margin: var(--spacing-small);
+}
+
+.logo-login {
+  width: 45%;
+  max-width: 320px;
+  height: auto;
+  margin: var(--spacing-medium);
+}
+
+/*--
   diverse
 --*/
 .text-align-center {
@@ -452,6 +469,20 @@ textarea {
   .important-text {
     font-size: inherit;
     font-weight: var(--font-weight-bold);
+  }
+
+  /*--
+    logo
+  --*/
+  .logo {
+    margin: var(--spacing-medium);
+  }
+
+  .logo-login {
+    width: 40%;
+    max width: 320px;
+    height: auto;
+    margin: var(--spacing-large);
   }
 
   /*--

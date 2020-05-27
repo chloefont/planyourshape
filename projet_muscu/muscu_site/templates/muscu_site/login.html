@@ -1,34 +1,47 @@
-{% extends "muscu_site/base.html" %}
-
 {% load static %}
 
-{% block title %}Connexion{% endblock %}
+<!DOCTYPE html>
+<html>
 
-{% block content %}
-<div class="block-white block-login">
-  <div class="second-title text-align-center">
-    Connexion
-  </div>
-  <form method="post">
-    {% csrf_token %}
-    {{ form.management_form }}
-    <div class="block-input--red block-adapted-width">
-      <div class="items-linewrap">
-        {{ form.username.label_tag }} <span>{{ form.username }}</span>
-      </div>
-      <div class="items-linewrap">
-        {{ form.password.label_tag }} <span>{{ form.password }}</span>
-      </div>
-      {% if form.errors %}
-        <p class="error-login-informations text-align-center">
-          Le nom d'utilisateur ou le mot de passe entré n'est pas correct.
-        </p>
-      {% endif %}
-    </div>
-    <div class="middle-display">
-      <button type="submit" name="button" class="button main-button--red">Se connecter</button>
-    </div>
-  </form>
-</div>
+  <head>
+    <meta charset="utf-8">
+    <link rel="stylesheet" text="text/css" href="{% static 'css/style.css' %}">
+    <title>Connexion - Programme de muscu</title>
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+  </head>
 
-{% endblock %}
+  <body>
+    <div class="container">
+      <div class="middle-display">
+        <img src="{% static 'logo-muscu_site--white.png' %}" alt="white logo" class="logo-login">
+      </div>
+
+      <div class="block-white block-login">
+        <div class="second-title text-align-center">
+          Connexion
+        </div>
+        <form method="post">
+          {% csrf_token %}
+          {{ form.management_form }}
+          <div class="block-input--red block-adapted-width">
+            <div class="items-linewrap">
+              {{ form.username.label_tag }} <span>{{ form.username }}</span>
+            </div>
+            <div class="items-linewrap">
+              {{ form.password.label_tag }} <span>{{ form.password }}</span>
+            </div>
+            {% if form.errors %}
+              <p class="error-login-informations text-align-center">
+                Le nom d'utilisateur ou le mot de passe entré n'est pas correct.
+              </p>
+            {% endif %}
+          </div>
+          <div class="middle-display">
+            <button type="submit" name="button" class="button main-button--red">Se connecter</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </body>
+
+</html>

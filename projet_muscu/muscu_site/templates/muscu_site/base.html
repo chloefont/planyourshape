@@ -12,7 +12,9 @@
 
   <body>
     <div class="container">
-      <img src="muscu_site/static/images/logo-muscu_site--white.png" alt="white logo">
+      <a href="{% url 'sessions_list' %}">
+        <img src="{% static 'logo-muscu_site--white.png' %}" alt="white logo" class="logo">
+      </a>
       {% block content %}{% endblock %}
     </div>
   </body>
