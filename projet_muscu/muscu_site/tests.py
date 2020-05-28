@@ -1,10 +1,22 @@
 from django.test import TestCase
 from django.urls import reverse
+from django.contrib.auth.models import User
 
 from muscu_site.models import TrainingSession, Exercise, TrainingSessionCompleted, ExerciseCompleted
 
 
-class SessionListTest(TestCase):
+class LoggedInUserMixin(TestCase):
+
+    def setUp(self):
+        User.objects.create_user(
+            username="patrick",
+            password="right password"
+        )
+
+        self.client.login(username="patrick", password="right password")
+
+
+class SessionListTest(LoggedInUserMixin):
 
     def test_sessions_in_list_ordered_by_time(self):
         TrainingSession.objects.create(
@@ -24,7 +36,7 @@ class SessionListTest(TestCase):
         self.assertEqual(data.all()[1].session_title, 'old session')
 
 
-class SessionCreationTest(TestCase):
+class SessionCreationTest(LoggedInUserMixin):
 
     def test_string_in_sets(self):
         response = self.client.post(reverse('create_session'), data={
@@ -87,9 +99,10 @@ class SessionCreationTest(TestCase):
         )
 
 
-class SessionCompleteTest(TestCase):
+class SessionCompleteTest(LoggedInUserMixin):
 
     def setUp(self):
+        super().setUp()
         self.training_session = TrainingSession.objects.create(
             session_title='Ma Session',
             date='2020-01-01'
@@ -153,9 +166,10 @@ class SessionCompleteTest(TestCase):
         )
 
 
-class SessionSummaryTest(TestCase):
+class SessionSummaryTest(LoggedInUserMixin):
 
     def setUp(self):
+        super().setUp()
         training_session = TrainingSession.objects.create(
             session_title='Ma Session',
             date='2020-01-01'
@@ -192,3 +206,46 @@ class SessionSummaryTest(TestCase):
 
         self.assertEqual(data[0].exercise.exercise, 'Exercice 1')
         self.assertEqual(data[1].exercise.exercise, 'Exercice 2')
+
+
+class LoginTest(TestCase):
+
+    def setUp(self):
+        self.user = User.objects.create_user(
+            username="patrick",
+            password="right password"
+        )
+
+    def test_right_login_input(self):
+
+        response = self.client.post(reverse('login'), data={
+            'username': "patrick",
+            'password': "right password"
+        }, follow=True)
+
+        self.assertTrue(response.context['user'] == self.user)
+
+    def test_wrong_login_input(self):
+        response = self.client.post(reverse('login'), data={
+            'username': "patrick",
+            'password': "wrong password"
+        })
+
+        self.assertContains(response, "Le nom d'utilisateur ou le mot de passe entré n'est pas correct.")
+
+    def test_wrong_access_to_login_required_page(self):
+        response = self.client.get(reverse('create_session'))
+
+        self.assertRedirects(response, '/?next=/sessions/create/')
+
+    def test_redirect_if_already_login(self):
+        self.client.login(username="patrick", password="right password")
+        response = self.client.get(reverse('login'))
+
+        self.assertRedirects(response, reverse('sessions_list'))
+
+    def test_login_user_can_access_protected_page(self):
+        self.client.login(username="patrick", password="right password")
+        response = self.client.get(reverse('create_session'))
+
+        self.assertEqual(response.status_code, 200)

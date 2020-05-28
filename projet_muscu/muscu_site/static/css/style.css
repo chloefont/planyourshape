@@ -125,7 +125,7 @@ textarea {
 /* --
   title
 --*/
-.title-label {
+.main-title {
   font-size: var(--font-size-title-large);
   text-align: center;
   color: white;
@@ -133,7 +133,7 @@ textarea {
   margin-top: var(--spacing-small);
 }
 
-.title-large {
+.main-title--large {
   font-size: var(--font-size-title-large);
   color: white;
   padding-top: var(--spacing-medium);
@@ -150,7 +150,7 @@ textarea {
   margin-left: 40px;
 }
 
-.title-exercise {
+.second-title {
   color: var(--main-color);
   font-size: var(--font-size-title-medium);
   font-weight: var(--font-weight-bold);
@@ -179,7 +179,7 @@ textarea {
   padding: var(--spacing-medium);
 }
 
-.block-exercise {
+.block-white {
   background-color: white;
   border-radius: var(--main-border-radius);
   padding-bottom: var(--spacing-medium);
@@ -213,6 +213,49 @@ textarea {
   font-size: var(--font-size-text);
   color: var(--main-color);
   margin-bottom: var(--spacing-small);
+}
+
+.block-login {
+  width:90%;
+  margin: var(--spacing-xl) auto;
+}
+
+.block-input--red, .block-input--black {
+  padding-top: var(--spacing-smaller);
+  padding-bottom: var(--spacing-smaller);
+}
+
+.block-input--red {
+  color: var(--main-color);
+}
+
+.block-input--black {
+  color: black;
+}
+
+/*-
+  form
+-*/
+.form-item--black, .form-item--red {
+  padding-top: var(--spacing-smaller);
+  padding-bottom: var(--spacing-smaller);
+}
+
+.form-item--black {
+  color: black;
+}
+
+.form-item--red {
+  color: var(--main-color);
+}
+
+.form-item--red input, .form-item--red textarea {
+  margin-top: var(--spacing-smaller);
+  margin-bottom: var(--spacing-smaller);
+}
+
+.items-online, .items-linewrap {
+  padding: var(--spacing-small);
 }
 
 /*--
@@ -265,27 +308,6 @@ textarea {
 /*--
   block exercise
 --*/
-.exercise-info-item, .exercise-creation-item {
-  color: black;
-  padding-top: var(--spacing-smaller);
-  padding-bottom: var(--spacing-smaller);
-}
-
-.exercise-info-row, .exercise-info-sup-row, .exercise-creation-block {
-  padding: var(--spacing-small);
-}
-
-.exercise-info-sup {
-  color: var(--main-color);
-  padding-top: var(--spacing-small);
-  padding-bottom: var(--spacing-small);
-}
-
-.exercise-info-sup input, .exercise-info-sup textarea {
-  margin-top: var(--spacing-smaller);
-  margin-bottom: var(--spacing-smaller);
-}
-
 .weight input {
   max-width: 20%;
 }
@@ -328,8 +350,14 @@ textarea {
   justify-content: flex-end;
 }
 
+.middle-display {
+  display: flex;
+  justify-content: center
+}
+
 .block-adapted-width input {
   width: 90%;
+  max-width: 346px;
 }
 
 /*--
@@ -377,7 +405,7 @@ textarea {
   /*--
     title
   --*/
-  .title-label {
+  .main-title {
     font-size: var(--font-size-title-large);
     margin-top: var(--spacing-medium);
   }
@@ -385,9 +413,13 @@ textarea {
   /*--
     blocks and containers
   --*/
-  .block-exercise {
+  .block-white {
     padding-left: var(--spacing-medium);
     padding-right: var(--spacing-medium);
+  }
+
+  .block-login {
+    max-width: 760px;
   }
 
   /*--
@@ -400,13 +432,13 @@ textarea {
   /*--
     block exercise
   --*/
-  .exercise-info-row, .exercise-creation-block {
+  .items-online {
     display: flex;
     justify-content: space-between;
     padding: var(--spacing-medium);
   }
 
-  .weight input {
+  .weight input, .exercise-form input {
     max-width: 310px;
   }
 
@@ -429,6 +461,10 @@ textarea {
     margin: var(--spacing-large);
   }
 
+  /*--
+    errors
+  --*/
   .error-validation-list li {
     font-size: var(--font-size-text);
+  }
 }
