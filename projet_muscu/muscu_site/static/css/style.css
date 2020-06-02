@@ -331,14 +331,12 @@ textarea {
 .logo {
   width: 20%;
   max-width: 160px;
-  height: auto;
   margin: var(--spacing-small);
 }
 
 .logo-login {
   width: 45%;
   max-width: 320px;
-  height: auto;
   margin: var(--spacing-medium);
 }
 
@@ -480,8 +478,7 @@ textarea {
 
   .logo-login {
     width: 40%;
-    max width: 320px;
-    height: auto;
+    max-width: 320px;
     margin: var(--spacing-large);
   }
 
