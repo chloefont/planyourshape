@@ -4,7 +4,14 @@
 
 {% block title %}Complétion d'une séance{% endblock %}
 
+{% block logo %}
+<a href="{% url 'sessions_list' %}">
+  <img src="{% static 'logo-muscu_site--white.png' %}" alt="white logo" class="logo">
+</a>
+{% endblock %}
+
 {% block content %}
+
 <form method="post">
   {% csrf_token %}
 

@@ -4,6 +4,12 @@
 
 {% block title %}Connexion{% endblock %}
 
+{% block logo %}
+<div class="middle-display">
+  <img src="{% static 'logo-muscu_site--white.png' %}" alt="white logo" class="logo-login">
+</div>
+{% endblock %}
+
 {% block content %}
 <div class="block-white block-login">
   <div class="second-title text-align-center">
@@ -30,5 +36,4 @@
     </div>
   </form>
 </div>
-
 {% endblock %}
