@@ -30,7 +30,11 @@
         Temps de pause: {{ exercise_completed.exercise.break_time }}sec.
       </div>
       <div class="form-item--black">
-        Poids: {{ exercise_completed.weight }}kg
+        {% if exercise_completed.weight == 0 %}
+          Pas de poids
+        {% else %}
+          Poids: {{ exercise_completed.weight }}kg
+        {% endif %}
       </div>
     </div>
 
