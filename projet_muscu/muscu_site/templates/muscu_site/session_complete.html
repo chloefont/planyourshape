@@ -4,12 +4,6 @@
 
 {% block title %}Complétion d'une séance{% endblock %}
 
-{% block logo %}
-<a href="{% url 'sessions_list' %}">
-  <img src="{% static 'logo-muscu_site--white.png' %}" alt="white logo" class="logo">
-</a>
-{% endblock %}
-
 {% block content %}
 
 <form method="post">
@@ -48,10 +42,13 @@
 
     {{ form.exercise }}
     <div class="items-linewrap">
-      <div class="form-item--red weight">
+      <div class="form-item--red ">
         {{ form.weight.label }}
-        {{ form.weight }} kg.
-        {% include "muscu_site/_field_errors.html" with field=form.weight extra_classes="error-validation-list--red" %}
+        <input type="checkbox" name="has_weight" class="checkbox">
+        <div class="weight hidden">
+          {{ form.weight }} kg.
+          {% include "muscu_site/_field_errors.html" with field=form.weight extra_classes="error-validation-list--red" %}
+        </div>
       </div>
       <div class="form-item--red">
         {{ form.comment.label }}<br>
@@ -73,5 +70,21 @@
   </div>
 
 </form>
+
+<script type="text/javascript">
+  let checkboxes = document.getElementsByName('has_weight');
+
+  for (let i = 0; i < checkboxes.length; i++){
+    checkboxes[i].addEventListener('change', function() {
+      let weightInputs = document.querySelectorAll('.weight');
+      if (this.checked) {
+        weightInputs[i].style.display = 'block';
+      } else {
+        weightInputs[i].style.display = 'none';
+      };
+    });
+  };
+
+</script>
 
 {% endblock %}
