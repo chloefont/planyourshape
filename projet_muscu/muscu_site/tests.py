@@ -248,3 +248,16 @@ class LoginTest(LoggedInUserMixin):
         response = self.client.get(reverse('create_session'))
 
         self.assertEqual(response.status_code, 200)
+
+
+class MenuTest(LoggedInUserMixin):
+
+    def test_navbar_redirects_sessions_list(self):
+        response = self.client.get(reverse('sessions_list'))
+
+        self.assertContains(response, '<a href="%s">Liste des séances</a>' % reverse('sessions_list'), html=True)
+
+    def test_navbar_redirects_session_creation(self):
+        response = self.client.get(reverse('sessions_list'))
+
+        self.assertContains(response, '<a href="%s">Créer une séance</a>' % reverse('create_session'), html=True)
