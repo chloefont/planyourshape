@@ -326,12 +326,53 @@ textarea {
 }
 
 /*--
+  menu
+--*/
+.header {
+  width: 100%;
+  display: inline-grid;
+  grid-template-columns: [logo-start] 30% [logo-end] 60% [navebar-end] 10%;
+  border-bottom: 2px solid white;
+}
+
+.navigation-bar {
+  text-align: center;
+  margin: auto auto;
+}
+
+.menu {
+  list-style: none;
+  grid-column-start: logo-end;
+  grid-column-end: navbar-end;
+  padding-left: 0;
+  vertical-align: middle;
+}
+
+.menu li {
+  padding-top: var(--spacing-smaller);
+  padding-bottom: var(--spacing-smaller);
+}
+
+.menu a {
+  color: white;
+  text-decoration: none;
+  font-size: var(--font-size-button);
+  padding-top: var(--spacing-small);
+}
+
+.menu a:hover {
+  font-weight: bold;
+}
+
+/*--
   logo
 --*/
 .logo {
-  width: 20%;
+  width: 90%;
   max-width: 160px;
   margin: var(--spacing-small);
+  grid-column-start: logo-start;
+  grid-column-end: logo-end;
 }
 
 .logo-login {
@@ -367,7 +408,7 @@ textarea {
 
 .middle-display {
   display: flex;
-  justify-content: center
+  justify-content: center;
 }
 
 .block-adapted-width input {
@@ -380,6 +421,10 @@ textarea {
   height: 20px;
   vertical-align: middle;
   cursor: pointer;
+}
+
+.text-drive {
+  text-decoration: none;
 }
 
 /*--
@@ -477,10 +522,40 @@ textarea {
   }
 
   /*--
+    menu
+  --*/
+  .header {
+    grid-template-columns: [logo-start] 23% [logo-end] 100% [navebar-end];
+    border: none;
+  }
+
+  .navigation-bar {
+    text-align: center;
+    vertical-align: top;
+    margin-top: var(--spacing-large);
+    width: 75%;
+    justify-content: space-evenly;
+    margin-left: 0;
+    margin-right: 0;
+  }
+
+  .menu {
+    display: flex;
+    justify-content: space-evenly;
+    border-bottom: 2px solid white;
+    padding-bottom: var(--spacing-large);
+  }
+
+  .menu a {
+    font-size: var(--font-size-text);
+  }
+
+  /*--
     logo
   --*/
   .logo {
     margin: var(--spacing-medium);
+    max-width:
   }
 
   .logo-login {

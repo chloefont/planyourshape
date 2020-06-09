@@ -208,7 +208,7 @@ class SessionSummaryTest(LoggedInUserMixin):
         self.assertEqual(data[1].exercise.exercise, 'Exercice 2')
 
 
-class LoginTest(TestCase):
+class LoginTest(LoggedInUserMixin):
 
     def setUp(self):
         self.user = User.objects.create_user(
@@ -217,7 +217,6 @@ class LoginTest(TestCase):
         )
 
     def test_right_login_input(self):
-
         response = self.client.post(reverse('login'), data={
             'username': "patrick",
             'password': "right password"
