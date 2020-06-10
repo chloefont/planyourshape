@@ -252,12 +252,12 @@ class LoginTest(LoggedInUserMixin):
 
 class MenuTest(LoggedInUserMixin):
 
-    def test_navbar_redirects_sessions_list(self):
+    def test_navbar_contains_sessions_list_link(self):
         response = self.client.get(reverse('sessions_list'))
 
         self.assertContains(response, '<a href="%s">Liste des séances</a>' % reverse('sessions_list'), html=True)
 
-    def test_navbar_redirects_session_creation(self):
+    def test_navbar_contains_session_creation_link(self):
         response = self.client.get(reverse('sessions_list'))
 
         self.assertContains(response, '<a href="%s">Créer une séance</a>' % reverse('create_session'), html=True)

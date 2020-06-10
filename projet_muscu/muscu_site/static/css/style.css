@@ -331,7 +331,7 @@ textarea {
 .header {
   width: 100%;
   display: inline-grid;
-  grid-template-columns: [logo-start] 30% [logo-end] 60% [navebar-end] 10%;
+  grid-template-columns: [logo-start] 30% [logo-end] 60% [navbar-end] 10%;
   border-bottom: 2px solid white;
 }
 
@@ -525,7 +525,7 @@ textarea {
     menu
   --*/
   .header {
-    grid-template-columns: [logo-start] 23% [logo-end] 100% [navebar-end];
+    grid-template-columns: [logo-start] 23% [logo-end] 100% [navbar-end];
     border: none;
   }
 
@@ -555,7 +555,6 @@ textarea {
   --*/
   .logo {
     margin: var(--spacing-medium);
-    max-width:
   }
 
   .logo-login {
