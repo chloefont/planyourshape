@@ -117,6 +117,7 @@ AUTH_PASSWORD_VALIDATORS = [
 ]
 LOGIN_REDIRECT_URL = reverse_lazy('sessions_list')
 LOGIN_URL = '/'
+LOGOUT_REDIRECT_URL = reverse_lazy('login')
 
 
 # Internationalization

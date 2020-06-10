@@ -23,7 +23,9 @@ import muscu_site.views
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('', auth_views.LoginView.as_view(template_name='muscu_site/login.html', redirect_authenticated_user=True), name='login'),
+    path('', auth_views.LoginView.as_view(template_name='muscu_site/login.html', redirect_authenticated_user=False),
+         name='login'),
+    path('', auth_views.LogoutView.as_view(template_name='muscu_site/login.html'), name='logout'),
     path('sessions/', muscu_site.views.sessions_list, name='sessions_list'),
     path('sessions/create/', muscu_site.views.create_session, name='create_session'),
     path('sessions/complete/<int:session_id>/', muscu_site.views.complete_session, name='complete_session'),
