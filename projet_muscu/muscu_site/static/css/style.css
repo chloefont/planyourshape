@@ -3,7 +3,7 @@
     colors
   --*/
   --main-color: #ce3a3a;
-  --main-color-light:#ce3a3aab;
+  --main-color-light: #ecafaf;
 
   /*--
     spacing
@@ -361,7 +361,7 @@ textarea {
 }
 
 .menu a:hover {
-  font-weight: bold;
+  color: var(--main-color-light);
 }
 
 /*--
