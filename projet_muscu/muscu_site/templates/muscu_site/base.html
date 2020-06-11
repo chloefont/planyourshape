@@ -13,9 +13,18 @@
   <body>
     <div class="container">
       {% block logo %}
-      <a href="{% url 'sessions_list' %}">
-        <img src="{% static 'logo-muscu_site--white.png' %}" alt="white logo" class="logo">
-      </a>
+      <div class="header">
+        <a href="{% url 'sessions_list' %}" class="text-drive">
+          <img src="{% static 'logo-muscu_site--white.png' %}" alt="white logo" class="logo">
+        </a>
+        <div class="navigation-bar">
+          <ul class="menu">
+            <li><a href="{% url 'sessions_list' %}">Liste des séances</a></li>
+            <li><a href="{% url 'create_session' %}">Créer une séance</a></li>
+          </ul>
+        </div>
+      </div>
+
       {% endblock %}
       {% block content %}{% endblock %}
     </div>

@@ -208,7 +208,7 @@ class SessionSummaryTest(LoggedInUserMixin):
         self.assertEqual(data[1].exercise.exercise, 'Exercice 2')
 
 
-class LoginTest(TestCase):
+class LoginTest(LoggedInUserMixin):
 
     def setUp(self):
         self.user = User.objects.create_user(
@@ -217,7 +217,6 @@ class LoginTest(TestCase):
         )
 
     def test_right_login_input(self):
-
         response = self.client.post(reverse('login'), data={
             'username': "patrick",
             'password': "right password"
@@ -249,3 +248,16 @@ class LoginTest(TestCase):
         response = self.client.get(reverse('create_session'))
 
         self.assertEqual(response.status_code, 200)
+
+
+class MenuTest(LoggedInUserMixin):
+
+    def test_navbar_contains_sessions_list_link(self):
+        response = self.client.get(reverse('sessions_list'))
+
+        self.assertContains(response, '<a href="%s">Liste des séances</a>' % reverse('sessions_list'), html=True)
+
+    def test_navbar_contains_session_creation_link(self):
+        response = self.client.get(reverse('sessions_list'))
+
+        self.assertContains(response, '<a href="%s">Créer une séance</a>' % reverse('create_session'), html=True)
