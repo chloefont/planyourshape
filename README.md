@@ -9,7 +9,7 @@ pip3 install pipenv
 
 Clone the repository :
 ```bash
-git clone 18decae5068a55ad8010dfa3c2eb5b5f2494682c
+git clone git@gitlab.liip.ch:chloefont/projet-perso-muscu
 ```
 
 Create yourself a superuser :
