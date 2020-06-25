@@ -4,8 +4,6 @@ from django.contrib.auth.models import User
 
 from muscu_site.models import TrainingSession, Exercise, TrainingSessionCompleted, ExerciseCompleted
 
-import pdb
-
 
 class LoggedInUserMixin(TestCase):
 
@@ -238,6 +236,12 @@ class LoginTest(LoggedInUserMixin):
         response = self.client.get(reverse('create_session'))
 
         self.assertRedirects(response, '/?next=/sessions/create/')
+
+    def test_redirect_if_already_login(self):
+        self.client.login(username="patrick", password="right password")
+        response = self.client.get(reverse('login'))
+
+        self.assertRedirects(response, reverse('sessions_list'))
 
     def test_login_user_can_access_protected_page(self):
         self.client.login(username="patrick", password="right password")
