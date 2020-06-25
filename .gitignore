@@ -1,1 +1,4 @@
 /projet_muscu/db.sqlite3
+*.pyc
+__pycache__
+/.env
