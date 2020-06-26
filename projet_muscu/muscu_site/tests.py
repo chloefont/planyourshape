@@ -261,3 +261,22 @@ class MenuTest(LoggedInUserMixin):
         response = self.client.get(reverse('sessions_list'))
 
         self.assertContains(response, '<a href="%s">Créer une séance</a>' % reverse('create_session'), html=True)
+
+
+class LogoutTest(LoggedInUserMixin):
+
+    def test_navbar_contains_logout_link(self):
+        response = self.client.get(reverse('sessions_list'))
+
+        self.assertContains(response, '<a href="%s">Se déconnecter</a>' % reverse('logout'), html=True)
+
+    def test_logout_user_cannot_access_protected_page(self):
+        self.client.get(reverse('logout'))
+        response = self.client.get(reverse('create_session'))
+
+        self.assertRedirects(response, '/?next=/sessions/create/')
+
+    def test_logout_redirects_to_login_page(self):
+        response = self.client.get(reverse('logout'), follow=True)
+
+        self.assertTemplateUsed(response, 'muscu_site/login.html')
