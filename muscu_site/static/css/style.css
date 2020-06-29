@@ -68,6 +68,7 @@ textarea {
   border-radius: var(--border-radius-button);
   cursor: pointer;
   text-decoration: none;
+  display: block;
 }
 
 .button:hover {
@@ -77,6 +78,7 @@ textarea {
 .main-button--red {
   background-color: var(--main-color);
   color: white;
+  border: 3px solid var(--main-color);
 }
 
 .main-button--red:hover {
@@ -86,6 +88,7 @@ textarea {
 .main-button--white {
   background-color: white;
   color: var(--main-color);
+  border: 3px solid white;
 }
 
 .second-button--red {
