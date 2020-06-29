@@ -26,7 +26,7 @@ class Migration(migrations.Migration):
             fields=[
                 ('id', models.AutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
                 ('label', models.CharField(max_length=100)),
-                ('sets', models.DateTimeField(default=1)),
+                ('sets', models.InetegerField(default=1)),
                 ('reps', models.IntegerField(default=1)),
                 ('break_time', models.IntegerField(default=60)),
                 ('training_session', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, related_name='exercice', to='muscu_site.TrainingSession')),
