@@ -12,7 +12,7 @@
         <a href="{% block url %}{% endblock %}" class="button second-button--red">Annuler</a>
       </div>
       <div class="button-margin">
-        <button type="submit" name="button_delete" class="button main-button--red ">Supprimer</button>
+        <button {% if hasnt_all_perms %}disabled{% endif %} type="submit" name="button_delete" class="button main-button--red ">Supprimer</button>
       </div>
     </div>
   </form>

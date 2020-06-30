@@ -65,7 +65,7 @@
          class="button second-button--white">Supprimer la séance</a>
     </div>
     <div class="button-margin">
-      <button type="submit" name="button_save" class="button main-button--white">Enregistrer</button>
+      <button {% if hasnt_all_perms %}disabled{% endif %} type="submit" name="button_save" class="button main-button--white">Enregistrer</button>
     </div>
   </div>
 

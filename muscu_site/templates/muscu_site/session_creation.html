@@ -33,7 +33,7 @@
   </div>
 
   <div class="button-margin on-right">
-    <button type="submit" name="button" class="button main-button--white">Enregistrer</button>
+    <button {% if hasnt_all_perms %}disabled{% endif %} type="submit" name="button" class="button main-button--white">Enregistrer</button>
   </div>
 
   <div class="hidden extra-row">

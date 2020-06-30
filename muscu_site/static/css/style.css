@@ -125,6 +125,11 @@ textarea {
   background-color: var(--main-color-light);
 }
 
+.link--red {
+  font-size: var(--font-size-button-smaller);
+  color: var(--main-color);
+}
+
 /* --
   title
 --*/
@@ -362,7 +367,7 @@ textarea {
   padding-top: var(--spacing-small);
 }
 
-.menu a:hover, .button-add:hover {
+.menu a:hover, .button-add:hover, .link--red:hover {
   color: var(--main-color-light);
 }
 
@@ -429,6 +434,16 @@ textarea {
   text-decoration: none;
 }
 
+.band--white {
+  background-color: white;
+  width: 100%;
+  padding: var(--spacing-small);
+  color: var(--main-color);
+  font-weight: var(--font-weight-bold);
+  margin:-10px;
+  margin-bottom: var(--spacing-smaller);
+}
+
 /*--
   errors
 --*/
@@ -469,6 +484,10 @@ textarea {
   .button-add {
     font-size: var(--font-size-button);
     padding: var(--spacing-large);
+  }
+
+  .link--red {
+    font-size: var(--font-size-button);
   }
 
   /*--

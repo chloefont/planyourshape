@@ -12,6 +12,15 @@
 
   <body>
     <div class="container">
+      {% if hasnt_all_perms %}
+      <div class="band--white text-align-center">
+        Vous avez un accès restreint au site.<br>
+        <a href="#" class="link--red perm-infos">Cliquez pour en savoir plus</a>
+        <p class="hidden">
+          Vous êtes en mode observateur-trice. Vous avez accès à toutes les pages mais ne pouvez pas y apporter de modifications.
+        </p>
+      </div>
+      {% endif %}
       {% block logo %}
       <div class="header">
         <a href="{% url 'sessions_list' %}" class="text-drive">
@@ -25,10 +34,13 @@
           </ul>
         </div>
       </div>
-
       {% endblock %}
       {% block content %}{% endblock %}
     </div>
   </body>
 
 </html>
+
+<script type="text/javascript">
+  var PermInfos = document.querySelector('.perm-infos');
+</script>
