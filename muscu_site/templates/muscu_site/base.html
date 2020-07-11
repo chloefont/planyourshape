@@ -16,8 +16,9 @@
       <div class="band--white text-align-center">
         Vous avez un accès restreint au site.<br>
         <a href="#" class="link--red perm-infos">Cliquez pour en savoir plus</a>
-        <p class="hidden">
-          Vous êtes en mode observateur-trice. Vous avez accès à toutes les pages mais ne pouvez pas y apporter de modifications.
+        <p class="hidden infos">
+          Vous êtes en mode observateur-trice. Vous avez accès à toutes les pages mais ne pouvez pas y apporter de modifications.<br>
+          <a href="link--red hide-infos">Cachers</a>
         </p>
       </div>
       {% endif %}
@@ -42,5 +43,20 @@
 </html>
 
 <script type="text/javascript">
-  var PermInfos = document.querySelector('.perm-infos');
+  var permInfos = document.querySelector('.perm-infos');
+  var hideInfos = document.querySelector('.hide-infos');
+  var infos = document.querySelector('.infos');
+
+  function showDetails(){
+    infos.style.display = 'block';
+    permInfos.style.display = 'none';
+  }
+
+  function hideDetails(){
+    infos.style.display = 'none';
+    permInfos.style.display = 'block';
+  }
+
+  permInfos.addEventListener('click', showDetails);
+  hideInfos.addEventListener('click', hideDetails);
 </script>
