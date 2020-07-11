@@ -444,6 +444,10 @@ textarea {
   margin-bottom: var(--spacing-smaller);
 }
 
+.text-smaller {
+  font-size: var(--font-size-button-smaller);
+}
+
 /*--
   errors
 --*/
@@ -589,6 +593,10 @@ textarea {
   --*/
   .button-margin {
     margin: var(--spacing-large);
+  }
+
+  .text-smaller {
+    font-size: var(--font-size-button);
   }
 
   /*--

@@ -16,9 +16,9 @@
       <div class="band--white text-align-center">
         Vous avez un accès restreint au site.<br>
         <a href="#" class="link--red perm-infos">Cliquez pour en savoir plus</a>
-        <p class="hidden infos">
+        <p class="hidden infos text-smaller">
           Vous êtes en mode observateur-trice. Vous avez accès à toutes les pages mais ne pouvez pas y apporter de modifications.<br>
-          <a href="link--red hide-infos">Cachers</a>
+          <a class="link--red hide-infos">Cacher</a>
         </p>
       </div>
       {% endif %}
@@ -54,7 +54,7 @@
 
   function hideDetails(){
     infos.style.display = 'none';
-    permInfos.style.display = 'block';
+    permInfos.style.display = 'inline';
   }
 
   permInfos.addEventListener('click', showDetails);
