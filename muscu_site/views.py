@@ -63,93 +63,111 @@ def create_session(request):
 @transaction.atomic
 def complete_session(request, session_id):
     training_session = get_object_or_404(TrainingSession, id=session_id)
-    exercises = training_session.exercises.all()
-    ExerciseCompletedFormSet = formset_factory(ExerciseCompletedForm, extra=0)
 
-    if request.method == 'POST' and request.user.has_perm(
-        'muscu_site.training_session_completed.can_add_training_session_completed'
-    ):
-        session_completed_form = SessionCompletedForm(request.POST)
-        exercise_completed_formset = ExerciseCompletedFormSet(request.POST)
+    if training_session in request.user.training_session.filter(visible=True) :
+        exercises = training_session.exercises.all()
+        ExerciseCompletedFormSet = formset_factory(ExerciseCompletedForm, extra=0)
 
-        if session_completed_form.is_valid() and exercise_completed_formset.is_valid():
-            session_completed = session_completed_form.save(commit=False)
-            session_completed.training_session = training_session
-            session_completed.save()
-            request.user.training_session_completed.add(session_completed)
+        if request.method == 'POST' and request.user.has_perm(
+            'muscu_site.training_session_completed.can_add_training_session_completed'
+        ):
+            session_completed_form = SessionCompletedForm(request.POST)
+            exercise_completed_formset = ExerciseCompletedFormSet(request.POST)
 
-            for exercise_completed_form in exercise_completed_formset:
-                exercise_completed = exercise_completed_form.save(commit=False)
-                exercise_completed.training_session_completed = session_completed
-                exercise_completed.save()
+            if session_completed_form.is_valid() and exercise_completed_formset.is_valid():
+                session_completed = session_completed_form.save(commit=False)
+                session_completed.training_session = training_session
+                session_completed.save()
+                request.user.training_session_completed.add(session_completed)
 
-            return redirect('sessions_list')
+                for exercise_completed_form in exercise_completed_formset:
+                    exercise_completed = exercise_completed_form.save(commit=False)
+                    exercise_completed.training_session_completed = session_completed
+                    exercise_completed.save()
 
-    else:
-        session_completed_form = SessionCompletedForm()
-        exercise_completed_formset = ExerciseCompletedFormSet(initial=[
-            {'exercise': exercise.id} for exercise in exercises
-        ])
+                return redirect('sessions_list')
 
-    list_exercise_form = zip(exercises, exercise_completed_formset)
+        else:
+            session_completed_form = SessionCompletedForm()
+            exercise_completed_formset = ExerciseCompletedFormSet(initial=[
+                {'exercise': exercise.id} for exercise in exercises
+            ])
 
-    context = {
-        'training_session': training_session,
-        'session_completed_form': session_completed_form,
-        'exercise_completed_formset': exercise_completed_formset,
-        'list_exercise_form': list_exercise_form,
-        'hasnt_all_perms': not request.user.has_perm('muscu_site.training_session.can_add_training_session'),
-    }
+        list_exercise_form = zip(exercises, exercise_completed_formset)
 
-    return render(request, 'muscu_site/session_complete.html', context)
+        context = {
+            'training_session': training_session,
+            'session_completed_form': session_completed_form,
+            'exercise_completed_formset': exercise_completed_formset,
+            'list_exercise_form': list_exercise_form,
+            'hasnt_all_perms': not request.user.has_perm('muscu_site.training_session.can_add_training_session'),
+        }
+
+        return render(request, 'muscu_site/session_complete.html', context)
+
+    else :
+        return redirect('sessions_list')
 
 
 @login_required
 def session_summary(request, session_completed_id):
     training_session_completed = get_object_or_404(TrainingSessionCompleted, id=session_completed_id)
-    exercises_completed = training_session_completed.exercises_completed.all()
 
-    context = {
-        'training_session_completed': training_session_completed,
-        'exercises_completed': exercises_completed,
-        'hasnt_all_perms': not request.user.has_perm('muscu_site.training_session.can_add_training_session'),
-    }
-    return render(request, 'muscu_site/session_summary.html', context)
+    if training_session_completed in request.user.training_session_completed.all() :
+        exercises_completed = training_session_completed.exercises_completed.all()
+
+        context = {
+            'training_session_completed': training_session_completed,
+            'exercises_completed': exercises_completed,
+            'hasnt_all_perms': not request.user.has_perm('muscu_site.training_session.can_add_training_session'),
+        }
+        return render(request, 'muscu_site/session_summary.html', context)
+
+    else :
+        return redirect('sessions_list')
 
 
 @login_required
 def delete_session(request, session_id):
     session = get_object_or_404(TrainingSession, id=session_id)
 
-    if request.method == 'POST' and request.user.has_perm('muscu_site.training_session.can_delete_training_session'):
-        if session.sessions_completed:
-            session.visible = False
-            session.save()
-        else:
-            session.delete()
+    if session in request.user.training_session.filter(visible=True) :
+        if request.method == 'POST' and request.user.has_perm('muscu_site.training_session.can_delete_training_session'):
+            if session.sessions_completed:
+                session.visible = False
+                session.save()
+            else:
+                session.delete()
+            return redirect('sessions_list')
+
+        context = {
+            'session': session,
+            'session_title': session.session_title,
+            'hasnt_all_perms': not request.user.has_perm('muscu_site.training_session.can_add_training_session'),
+        }
+
+        return render(request, 'muscu_site/session_delete_confirmation.html', context)
+
+    else :
         return redirect('sessions_list')
-
-    context = {
-        'session': session,
-        'session_title': session.session_title,
-        'hasnt_all_perms': not request.user.has_perm('muscu_site.training_session.can_add_training_session'),
-    }
-
-    return render(request, 'muscu_site/session_delete_confirmation.html', context)
 
 
 @login_required
 def delete_session_completed(request, session_completed_id):
     session_completed = get_object_or_404(TrainingSessionCompleted, id=session_completed_id)
 
-    if request.method == 'POST' and request.user.has_perm('muscu_site.can_delete_training_session_completed'):
-        session_completed.delete()
+    if session_completed in request.user.training_session_completed.all() :
+        if request.method == 'POST' and request.user.has_perm('muscu_site.can_delete_training_session_completed'):
+            session_completed.delete()
+            return redirect('sessions_list')
+
+        context = {
+            'session_completed': session_completed,
+            'session_title': session_completed.training_session.session_title,
+            'hasnt_all_perms': not request.user.has_perm('muscu_site.training_session.can_add_training_session'),
+        }
+
+        return render(request, 'muscu_site/session_completed_delete_confirmation.html', context)
+
+    else :
         return redirect('sessions_list')
-
-    context = {
-        'session_completed': session_completed,
-        'session_title': session_completed.training_session.session_title,
-        'hasnt_all_perms': not request.user.has_perm('muscu_site.training_session.can_add_training_session'),
-    }
-
-    return render(request, 'muscu_site/session_completed_delete_confirmation.html', context)
