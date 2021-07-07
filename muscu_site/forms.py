@@ -1,7 +1,6 @@
 from django.forms import ModelForm, DateInput, Textarea, HiddenInput
 from .models import TrainingSession, Exercise, TrainingSessionCompleted, ExerciseCompleted
 
-
 class SessionForm(ModelForm):
     class Meta:
         model = TrainingSession
