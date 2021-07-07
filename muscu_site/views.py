@@ -9,8 +9,8 @@ from .models import TrainingSession, Exercise, TrainingSessionCompleted
 
 @login_required
 def sessions_list(request):
-    training_sessions = TrainingSession.objects.filter(visible=True).order_by('-date')
-    training_sessions_completed = TrainingSessionCompleted.objects.order_by('-date_completed').select_related('training_session')
+    training_sessions = request.user.training_session.filter(visible=True).order_by('-date')
+    training_sessions_completed = request.user.training_session_completed.all().order_by('-date_completed').select_related('training_session')
     context = {
         'training_sessions': training_sessions,
         'training_sessions_completed': training_sessions_completed,
@@ -30,8 +30,10 @@ def create_session(request):
         if session_form.is_valid() and exercise_formset.is_valid():
 
             session = TrainingSession.objects.create(
+                user_id=request.user.id,
                 session_title=session_form.cleaned_data['session_title'],
             )
+            request.user.training_session.add(session)
 
             for ex in exercise_formset.forms:
                 if ex.cleaned_data:
@@ -74,6 +76,8 @@ def complete_session(request, session_id):
             session_completed = session_completed_form.save(commit=False)
             session_completed.training_session = training_session
             session_completed.save()
+            request.user.training_session_completed.add(session_completed)
+
             for exercise_completed_form in exercise_completed_formset:
                 exercise_completed = exercise_completed_form.save(commit=False)
                 exercise_completed.training_session_completed = session_completed

@@ -1,8 +1,12 @@
 import datetime
 from django.db import models
+from django.contrib.auth.models import User
 
 
 class TrainingSession(models.Model):
+    user = models.ForeignKey(
+        User, on_delete=models.CASCADE, related_name="training_session", null=True
+    )
     session_title = models.CharField(max_length=100)
     date = models.DateField(default=datetime.date.today)
     visible = models.BooleanField(default=True)
@@ -25,6 +29,9 @@ class Exercise(models.Model):
 
 
 class TrainingSessionCompleted(models.Model):
+    user = models.ForeignKey(
+        User, on_delete=models.CASCADE, related_name="training_session_completed", null=True
+    )
     training_session = models.ForeignKey(
         TrainingSession, on_delete=models.PROTECT, related_name='sessions_completed'
     )
