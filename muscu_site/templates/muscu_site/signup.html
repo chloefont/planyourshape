@@ -24,13 +24,19 @@
       </div>
       <div class="items-linewrap">
         {{ signup_form.password1.label_tag }}
-        <span>{{ signup_form.password1  }}</span>
+        <span>{{ signup_form.password1 }}</span>
       </div>
       <div class="items-linewrap">
         {{ signup_form.password2.label_tag }}
-        <span>{{ signup_form.password2  }}</span>
-      </div>
+        <span>{{ signup_form.password2 }}</span>
+      </div
+      {% if form.errors %}
+        <p class="error-login-informations text-align-center">
+          Erreur
+        </p>
+      {% endif %}
     </div>
+    
     <div class="middle-display">
       <button type="submit" name="button" class="button main-button--red">Envoyer</button>
     </div>

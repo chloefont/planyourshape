@@ -21,11 +21,12 @@ def signup(request) :
             login(request, user)
 
             return redirect('sessions_list')
-    else :
-        context = {
-            'signup_form' : UserCreationForm(),
-        }
 
+    else :
+        form = UserCreationForm()
+    context = {
+        'signup_form' : form,
+    }
     return render(request, 'muscu_site/signup.html', context)
 
 @login_required
