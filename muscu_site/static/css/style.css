@@ -101,12 +101,20 @@ textarea {
   border: 3px solid white;
 }
 
-.button-add {
+.button-add--white, .button-add--red {
   font-size: var(--font-size-button-smaller);
   padding: var(--spacing-small);
   color: white;
   display: flex;
   justify-content: center;
+}
+
+.button-add--red {
+  color: var(--main-color);
+}
+
+.button-add--white {
+  color: white;
 }
 
 .button-create-session {
@@ -368,7 +376,7 @@ textarea {
   padding-top: var(--spacing-small);
 }
 
-.menu a:hover, .button-add:hover, .link--red:hover {
+.menu a:hover, .button-add--white:hover, .button-add--red:hover, .link--red:hover {
   color: var(--main-color-light);
 }
 
@@ -464,6 +472,15 @@ textarea {
 
 .error-validation-list--red li {
   color: var(--main-color);
+}
+
+.error-form {
+  color: var(--main-color-light);
+  font-size: var(--font-size-text-smaller);
+  margin-bottom: var(--spacing-medium);
+  margin-right: var(--spacing-medium);
+  margin-left: var(--spacing-medium);
+  font-style: italic;
 }
 
 /*--

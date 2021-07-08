@@ -26,6 +26,7 @@ urlpatterns = [
     path('', auth_views.LoginView.as_view(template_name='muscu_site/login.html', redirect_authenticated_user=True),
          name='login'),
     path('logout/', auth_views.LogoutView.as_view(), name='logout'),
+    path('signup/', muscu_site.views.signup, name='signup'),
     path('sessions/', muscu_site.views.sessions_list, name='sessions_list'),
     path('sessions/create/', muscu_site.views.create_session, name='create_session'),
     path('sessions/complete/<int:session_id>/', muscu_site.views.complete_session, name='complete_session'),

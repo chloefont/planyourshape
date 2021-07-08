@@ -1,11 +1,33 @@
 from django.contrib.auth.decorators import login_required
+from django.contrib.auth import login, authenticate
 from django.shortcuts import render, redirect, get_object_or_404
 from django.forms import formset_factory
 from django.db import transaction
+from django.contrib.auth.forms import UserCreationForm
 from .forms import (SessionForm, ExerciseForm, SessionCompletedForm,
                     ExerciseCompletedForm)
 from .models import TrainingSession, Exercise, TrainingSessionCompleted
 
+
+def signup(request) :
+    if request.method == 'POST' :
+        form = UserCreationForm(request.POST)
+
+        if form.is_valid():
+            form.save()
+            username = form.cleaned_data.get('username')
+            password = form.cleaned_data.get('password1')
+            user = authenticate(username=username, password=password)
+            login(request, user)
+
+            return redirect('sessions_list')
+
+    else :
+        form = UserCreationForm()
+    context = {
+        'signup_form' : form,
+    }
+    return render(request, 'muscu_site/signup.html', context)
 
 @login_required
 def sessions_list(request):
@@ -125,7 +147,6 @@ def session_summary(request, session_completed_id):
 
     else :
         return redirect('sessions_list')
-
 
 @login_required
 def delete_session(request, session_id):
