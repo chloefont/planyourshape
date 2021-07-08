@@ -25,8 +25,11 @@
 
       {% if signup_form.username.errors %}
       <div class="error-form">
-          Le nom d'utilisateur doit contenir 50 caractères ou moins et ne peut être composé que de lettres, de
-          chiffres ou des caractères @/,/+/-/_.
+        <p>Ce nom d'utilisateur est peut-être déjà utilisé.</p>
+        <p>
+          Votre nom d'utilisateur doit contenir au maximum 50 caractères et ne peut être composé que de lettres, de
+          chiffres ou des caractères @/,/+/-/_
+        </p>
       </div>
 
       {% endif %}
@@ -47,7 +50,7 @@
             <li>Ne peut pas être similaire à vos autres informations personnelles.</li>
             <li>Doit contenir au minimum 8 caractères.</li>
             <li>Ne peut pas être entièrement numérique.</li>
-            <li>Ne peut pas être un mot de passe utilisé communément.</li>
+            <li>Ne peut pas être un mot de passe utilisé communément (ex: admin123).</li>
           </ul>
         </div>
       {% endif %}
