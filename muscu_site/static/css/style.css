@@ -474,6 +474,15 @@ textarea {
   color: var(--main-color);
 }
 
+.error-form {
+  color: var(--main-color-light);
+  font-size: var(--font-size-text-smaller);
+  margin-bottom: var(--spacing-medium);
+  margin-right: var(--spacing-medium);
+  margin-left: var(--spacing-medium);
+  font-style: italic;
+}
+
 /*--
   larger devices
 --*/

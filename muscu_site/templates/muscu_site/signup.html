@@ -22,6 +22,15 @@
         {{ signup_form.username.label_tag }}
         <span>{{ signup_form.username }}</span>
       </div>
+
+      {% if signup_form.username.errors %}
+      <div class="error-form">
+          Le nom d'utilisateur doit contenir 50 caractères ou moins et ne peut être composé que de lettres, de
+          chiffres ou des caractères @/,/+/-/_.
+      </div>
+
+      {% endif %}
+
       <div class="items-linewrap">
         {{ signup_form.password1.label_tag }}
         <span>{{ signup_form.password1 }}</span>
@@ -29,17 +38,29 @@
       <div class="items-linewrap">
         {{ signup_form.password2.label_tag }}
         <span>{{ signup_form.password2 }}</span>
-      </div
-      {% if form.errors %}
-        <p class="error-login-informations text-align-center">
-          Erreur
-        </p>
+      </div>
+
+      {% if signup_form.password2.errors %}
+        <div class="error-form">
+          Votre mot-de-passe :
+          <ul class="">
+            <li>Ne peut pas être similaire à vos autres informations personnelles.</li>
+            <li>Doit contenir au minimum 8 caractères.</li>
+            <li>Ne peut pas être entièrement numérique.</li>
+            <li>Ne peut pas être un mot de passe utilisé communément.</li>
+          </ul>
+        </div>
       {% endif %}
+
     </div>
-    
+
     <div class="middle-display">
       <button type="submit" name="button" class="button main-button--red">Envoyer</button>
     </div>
   </form>
+
+  <div class="text-align-center">
+    <a class="button-add--red" href="{% url 'login' %}">J'ai déjà un compte</a>
+  </div>
 </div>
 {% endblock %}
